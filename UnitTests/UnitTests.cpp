@@ -121,5 +121,32 @@ namespace UnitTests
 			Assert::AreEqual(result.x, 0.0f);
 			Assert::AreEqual(result.y, 0.0f);
 		}
+		TEST_METHOD(TestVectorDivisionByScalar1)
+		{
+			TinyMathLib::Vector2D<float> vector(100.0f, 50.0f);
+			TinyMathLib::Vector2D<float> result = vector / 2.0f;
+
+			Assert::AreEqual(result.x, 50.0f);
+			Assert::AreEqual(result.y, 25.0f);
+		}
+		TEST_METHOD(TestVectorDivisionByScalar2)
+		{
+			TinyMathLib::Vector2D<float> vector(100.0f, 50.0f);
+			TinyMathLib::Vector2D<float> result = vector / 1.0f;
+
+			Assert::AreEqual(result.x, 100.0f);
+			Assert::AreEqual(result.y, 50.0f);
+		}
+		TEST_METHOD(TestVectorDivisionByScalar3)
+		{
+			TinyMathLib::Vector2D<float> vectorA(100.0f, 50.0f);
+			TinyMathLib::Vector2D<float> resultA = vectorA / 2.0f;
+
+			TinyMathLib::Vector2D<float> vectorB(100.0f, 50.0f);
+			TinyMathLib::Vector2D<float> resultB = vectorA * 0.5f;
+
+			Assert::AreEqual(resultA.x, resultB.x);
+			Assert::AreEqual(resultB.y, resultB.y);
+		}
 	};
 }
