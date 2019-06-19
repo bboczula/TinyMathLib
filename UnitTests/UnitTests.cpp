@@ -9,7 +9,27 @@ namespace UnitTests
 	TEST_CLASS(GeneralVector2DTesting)
 	{
 	public:
-		
+		TEST_METHOD(TestInitialization1)
+		{
+			TinyMathLib::Vector2D<float> vector;
+
+			Assert::AreEqual(vector.x, 0.0f);
+			Assert::AreEqual(vector.y, 0.0f);
+		}
+		TEST_METHOD(TestInitialization2)
+		{
+			TinyMathLib::Vector2D<float> vector(3.141592f, 6.283184f);
+
+			Assert::AreEqual(vector.x, 3.141592f);
+			Assert::AreEqual(vector.y, 6.283184f);
+		}
+		TEST_METHOD(TestInitialization3)
+		{
+			TinyMathLib::Vector2D<float> vector = { 3.141592f, 6.283184f };
+
+			Assert::AreEqual(vector.x, 3.141592f);
+			Assert::AreEqual(vector.y, 6.283184f);
+		}
 		TEST_METHOD(TestVectorNegation1)
 		{
 			TinyMathLib::Vector2D<float> vector(4.0f, -5.0f);
