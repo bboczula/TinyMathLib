@@ -146,7 +146,44 @@ namespace UnitTests
 			TinyMathLib::Vector2D<float> resultB = vectorA * 0.5f;
 
 			Assert::AreEqual(resultA.x, resultB.x);
-			Assert::AreEqual(resultB.y, resultB.y);
+			Assert::AreEqual(resultA.y, resultB.y);
+		}
+		TEST_METHOD(TestVectorDivisionByVector1)
+		{
+			TinyMathLib::Vector2D<float> vectorA(100.0f, 90.0f);
+			TinyMathLib::Vector2D<float> vectorB(2.0f, 3.0f);
+			TinyMathLib::Vector2D<float> result = vectorA / vectorB;
+
+			Assert::AreEqual(result.x, 50.0f);
+			Assert::AreEqual(result.y, 30.0f);
+		}
+		TEST_METHOD(TestVectorAddition1)
+		{
+			TinyMathLib::Vector2D<float> vectorA(100.0f, 90.0f);
+			TinyMathLib::Vector2D<float> vectorB(2.0f, 3.0f);
+			TinyMathLib::Vector2D<float> result = vectorA + vectorB;
+
+			Assert::AreEqual(result.x, 102.0f);
+			Assert::AreEqual(result.y, 93.0f);
+		}
+		TEST_METHOD(TestVectorAddition2)
+		{
+			TinyMathLib::Vector2D<float> vectorA(100.0f, 90.0f);
+			TinyMathLib::Vector2D<float> vectorB(2.0f, 3.0f);
+			TinyMathLib::Vector2D<float> resultA = vectorA + vectorB;
+			TinyMathLib::Vector2D<float> resultB = vectorA + vectorB;
+
+			Assert::AreEqual(resultA.x, resultB.x);
+			Assert::AreEqual(resultA.y, resultB.y);
+		}
+		TEST_METHOD(TestVectorSubstraction1)
+		{
+			TinyMathLib::Vector2D<float> vectorA(100.0f, 90.0f);
+			TinyMathLib::Vector2D<float> vectorB(2.0f, 3.0f);
+			TinyMathLib::Vector2D<float> result = vectorA - vectorB;
+
+			Assert::AreEqual(result.x, 98.0f);
+			Assert::AreEqual(result.y, 87.0f);
 		}
 	};
 }
