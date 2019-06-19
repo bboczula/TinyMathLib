@@ -103,5 +103,23 @@ namespace UnitTests
 			Assert::AreEqual(result.x, 50.0f);
 			Assert::AreEqual(result.y, 25.0f);
 		}
+		TEST_METHOD(TestVectorMultiplicationByVector1)
+		{
+			TinyMathLib::Vector2D<float> vectorA(100.0f, 50.0f);
+			TinyMathLib::Vector2D<float> vectorB(2.0f, 0.5f);
+			TinyMathLib::Vector2D<float> result = vectorA * vectorB;
+
+			Assert::AreEqual(result.x, 200.0f);
+			Assert::AreEqual(result.y, 25.0f);
+		}
+		TEST_METHOD(TestVectorMultiplicationByVector2)
+		{
+			TinyMathLib::Vector2D<float> vectorA(100.0f, 50.0f);
+			TinyMathLib::Vector2D<float> vectorB;
+			TinyMathLib::Vector2D<float> result = vectorA * vectorB;
+
+			Assert::AreEqual(result.x, 0.0f);
+			Assert::AreEqual(result.y, 0.0f);
+		}
 	};
 }
