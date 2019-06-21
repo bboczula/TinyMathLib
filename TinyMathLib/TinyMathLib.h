@@ -212,6 +212,10 @@ namespace TinyMathLib
 		{
 			return Matrix3x3(m11, m21, m31, m12, m22, m32, m13, m23, m33);
 		}
+		Matrix3x3<T> operator*(T scalar)
+		{
+			return Matrix3x3(m11 * scalar, m12 * scalar, m13 * scalar, m21 * scalar, m22 * scalar, m23 * scalar, m31 * scalar, m32 * scalar, m33 * scalar);
+		}
 	public:
 		T m11, m12, m13, m21, m22, m23, m31, m32, m33;
 	};
