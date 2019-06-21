@@ -520,5 +520,31 @@ namespace UnitTests
 			Assert::AreEqual(matrixB.m43, 6.0f);
 			Assert::AreEqual(matrixB.m44, 8.0f);
 		}
+		TEST_METHOD(TestMatrixMultiplicatoinByMatrix1)
+		{
+			TinyMathLib::Matrix4x4<float> matrixA(5.0f, 7.0f, 9.0f, 10.0f, 2.0f, 3.0f, 3.0f, 8.0f, 8.0f, 10.0f, 2.0f, 3.0f, 3.0f, 3.0f, 4.0f, 8.0f);
+			TinyMathLib::Matrix4x4<float> matrixB(3.0f, 10.0f, 12.0f, 18.0f, 12.0f, 1.0f, 4.0f, 9.0f, 9.0f, 10.0f, 12.0f, 2.0f, 3.0f, 12.0f, 4.0f, 10.0f);
+			TinyMathLib::Matrix4x4<float> matrixC = matrixA * matrixB;
+
+			Assert::AreEqual(210.0f, matrixC.m11);
+			Assert::AreEqual(267.0f, matrixC.m12);
+			Assert::AreEqual(236.0f, matrixC.m13);
+			Assert::AreEqual(271.0f, matrixC.m14);
+
+			Assert::AreEqual(93.0f, matrixC.m21);
+			Assert::AreEqual(149.0f, matrixC.m22);
+			Assert::AreEqual(104.0f, matrixC.m23);
+			Assert::AreEqual(149.0f, matrixC.m24);
+
+			Assert::AreEqual(171.0f, matrixC.m31);
+			Assert::AreEqual(146.0f, matrixC.m32);
+			Assert::AreEqual(172.0f, matrixC.m33);
+			Assert::AreEqual(268.0f, matrixC.m34);
+
+			Assert::AreEqual(105.0f, matrixC.m41);
+			Assert::AreEqual(169.0f, matrixC.m42);
+			Assert::AreEqual(128.0f, matrixC.m43);
+			Assert::AreEqual(169.0f, matrixC.m44);
+		}
 	};
 }
