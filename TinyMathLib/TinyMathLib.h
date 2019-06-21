@@ -188,6 +188,10 @@ namespace TinyMathLib
 		{
 			return Matrix2x2(m11, m21, m12, m22);
 		}
+		Matrix2x2<T> operator*(T scalar)
+		{
+			return Matrix2x2(m11 * scalar, m12 * scalar, m21 * scalar, m22 * scalar);
+		}
 	public:
 		T m11, m12, m21, m22;
 	};
