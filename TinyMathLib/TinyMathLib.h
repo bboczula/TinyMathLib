@@ -222,6 +222,22 @@ namespace TinyMathLib
 		{
 			return Matrix3x3(m11 * scalar, m12 * scalar, m13 * scalar, m21 * scalar, m22 * scalar, m23 * scalar, m31 * scalar, m32 * scalar, m33 * scalar);
 		}
+		Matrix3x3<T> operator*(Matrix3x3<T> matrix)
+		{
+			return Matrix3x3(
+				(m11 * matrix.m11 + m12 * matrix.m21 + m13 * matrix.m31),
+				(m11 * matrix.m12 + m12 * matrix.m22 + m13 * matrix.m32),
+				(m11 * matrix.m13 + m12 * matrix.m23 + m13 * matrix.m33),
+
+				(m21 * matrix.m11 + m22 * matrix.m21 + m23 * matrix.m31),
+				(m21 * matrix.m12 + m22 * matrix.m22 + m23 * matrix.m32),
+				(m21 * matrix.m13 + m22 * matrix.m23 + m23 * matrix.m33),
+
+				(m31 * matrix.m11 + m32 * matrix.m21 + m33 * matrix.m31),
+				(m31 * matrix.m12 + m32 * matrix.m22 + m33 * matrix.m32),
+				(m31 * matrix.m13 + m32 * matrix.m23 + m33 * matrix.m33)
+			);
+		}
 	public:
 		T m11, m12, m13, m21, m22, m23, m31, m32, m33;
 	};
