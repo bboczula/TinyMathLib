@@ -21,6 +21,8 @@
 // Vector has magnitude and direction, but no position
 
 // Our Matrix is RxC (rows by columns)
+// An r x n matrix may be multiplied by an n x c matrix and the result is an r x c matrix.
+// For now we only support 2x2, 3x3 and 4x4 matrices, so basically you can only multiply them by themselves.
 
 namespace TinyMathLib
 {
@@ -191,6 +193,10 @@ namespace TinyMathLib
 		Matrix2x2<T> operator*(T scalar)
 		{
 			return Matrix2x2(m11 * scalar, m12 * scalar, m21 * scalar, m22 * scalar);
+		}
+		Matrix2x2<T> operator*(Matrix2x2<T> matrix)
+		{
+			return Matrix2x2((m11 * matrix.m11 + m12 * matrix.m21), (m11 * matrix.m12 + m12 * matrix.m22), (m21 * matrix.m11 + m22 * matrix.m21), (m21 * matrix.m12 + m22 * matrix.m22));
 		}
 	public:
 		T m11, m12, m21, m22;

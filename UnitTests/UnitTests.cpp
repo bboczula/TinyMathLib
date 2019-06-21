@@ -249,6 +249,17 @@ namespace UnitTests
 			Assert::AreEqual(matrixB.m21, 9.0f);
 			Assert::AreEqual(matrixB.m22, 13.4f);
 		}
+		TEST_METHOD(TestMatrixMultiplicationByMatrix1)
+		{
+			TinyMathLib::Matrix2x2<float> M1(-3.0f, 0.0f, 5.0f, 0.5f);
+			TinyMathLib::Matrix2x2<float> M2(-7.0f, 2.0f, 4.0f, 6.0f);
+			TinyMathLib::Matrix2x2<float> M3 = M1 * M2;
+
+			Assert::AreEqual(M3.m11, 21.0f);
+			Assert::AreEqual(M3.m12, -6.0f);
+			Assert::AreEqual(M3.m21, -33.0f);
+			Assert::AreEqual(M3.m22, 13.0f);
+		}
 	};
 
 	TEST_CLASS(GeneralMatrix3x3DTesting)
