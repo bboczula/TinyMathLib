@@ -20,6 +20,8 @@
 // Point has location but no real size or thickness
 // Vector has magnitude and direction, but no position
 
+// Our Matrix is RxC (rows by columns)
+
 namespace TinyMathLib
 {
 	constexpr auto PI = 3.141592f;
@@ -171,6 +173,64 @@ namespace TinyMathLib
 		T x, y, z;
 	};
 
+	template<typename T>
+	class Matrix2x2
+	{
+	public:
+		Matrix2x2() : m11(0), m12(0), m21(0), m22(0)
+		{
+		}
+		Matrix2x2(T _m11, T _m12, T _m21, T _m22)
+			: m11(_m11), m12(_m12), m21(_m21), m22(_m22)
+		{
+		}
+		Matrix2x2<T> transpose()
+		{
+			return Matrix2x2(m11, m21, m12, m22);
+		}
+	public:
+		T m11, m12, m21, m22;
+	};
+
+	template<typename T>
+	class Matrix3x3
+	{
+	public:
+		Matrix3x3() : m11(0), m12(0), m13(0), m21(0), m22(0), m23(0), m31(0), m32(0), m33(0)
+		{
+		}
+		Matrix3x3(T _m11, T _m12, T _m13, T _m21, T _m22, T _m23, T _m31, T _m32, T _m33)
+			: m11(_m11), m12(_m12), m13(_m13), m21(_m21), m22(_m22), m23(_m23), m31(_m31), m32(_m32), m33(_m33)
+		{
+		}
+		// Again, should I return or operate on myself??
+		Matrix3x3<T> transpose()
+		{
+			return Matrix3x3(m11, m21, m31, m12, m22, m32, m13, m23, m33);
+		}
+	public:
+		T m11, m12, m13, m21, m22, m23, m31, m32, m33;
+	};
+
+	template<typename T>
+	class Matrix4x4
+	{
+	public:
+		Matrix4x4() : m11(0), m12(0), m13(0), m14(0), m21(0), m22(0), m23(0), m24(0), m31(0), m32(0), m33(0), m34(0), m41(0), m42(0), m43(0), m44(0)
+		{
+		}
+		Matrix4x4(T _m11, T _m12, T _m13, T _m14, T _m21, T _m22, T _m23, T _m24, T _m31, T _m32, T _m33, T _m34, T _m41, T _m42, T _m43, T _m44)
+			: m11(_m11), m12(_m12), m13(_m13), m14(_m14), m21(_m21), m22(_m22), m23(_m23), m24(_m24), m31(_m31), m32(_m32), m33(_m33), m34(_m34), m41(_m41), m42(_m42), m43(_m43), m44(_m44)
+		{
+		}
+		Matrix4x4<T> transpose()
+		{
+			return Matrix4x4(m11, m21, m31, m41, m12, m22, m32, m42, m13, m23, m33, m43, m14, m24, m34, m44);
+		}
+	public:
+		T m11, m12, m13, m14, m21, m22, m23, m24, m31, m32, m33, m34, m41, m42, m43, m44;
+	};
+
 	// Converts Degrees to Radians
 	float convertToRadians(float degrees)
 	{
@@ -257,5 +317,23 @@ namespace TinyMathLib
 	Vector2D<T> MakeZeroVector2D()
 	{
 		return Vector2D<T>(0, 0, 0);
+	}
+
+	template<typename T>
+	Matrix2x2<T> MakeIdentityMatrix2x2()
+	{
+		return Matrix2x2(1.0f, 0.0f, 0.0f, 1.0f);
+	}
+
+	template<typename T>
+	Matrix3x3<T> MakeIdentityMatrix3x3()
+	{
+		return Matrix3x3(1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f);
+	}
+
+	template<typename T>
+	Matrix4x4<T> MakeIdentityMatrix4x4()
+	{
+		return Matrix4x4(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
 	}
 }

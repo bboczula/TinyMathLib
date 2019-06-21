@@ -186,4 +186,260 @@ namespace UnitTests
 			Assert::AreEqual(result.y, 87.0f);
 		}
 	};
+
+	TEST_CLASS(GeneralMatrix2x2DTesting)
+	{
+	public:
+		TEST_METHOD(TestInitialization1)
+		{
+			TinyMathLib::Matrix2x2<float> matrix;
+
+			Assert::AreEqual(matrix.m11, 0.0f);
+			Assert::AreEqual(matrix.m12, 0.0f);
+			Assert::AreEqual(matrix.m21, 0.0f);
+			Assert::AreEqual(matrix.m22, 0.0f);
+		}
+		TEST_METHOD(TestInitialization2)
+		{
+			TinyMathLib::Matrix2x2<float> matrix(1.0f, 2.0f, 3.0f, 4.0f);
+
+			Assert::AreEqual(matrix.m11, 1.0f);
+			Assert::AreEqual(matrix.m12, 2.0f);
+			Assert::AreEqual(matrix.m21, 3.0f);
+			Assert::AreEqual(matrix.m22, 4.0f);
+		}
+		TEST_METHOD(TestMatrixTransposition1)
+		{
+			TinyMathLib::Matrix2x2<float> matrixA(1.0f, 2.0f, 3.0f, 4.0f);
+			TinyMathLib::Matrix2x2<float> matrixB = matrixA.transpose();
+
+			Assert::AreEqual(matrixB.m11, 1.0f);
+			Assert::AreEqual(matrixB.m12, 3.0f);
+			Assert::AreEqual(matrixB.m21, 2.0f);
+			Assert::AreEqual(matrixB.m22, 4.0f);
+		}
+		TEST_METHOD(TestMatrixTransposition2)
+		{
+			TinyMathLib::Matrix2x2<float> matrixA(1.0f, 2.0f, 3.0f, 4.0f);
+			TinyMathLib::Matrix2x2<float> matrixB = matrixA.transpose();
+			TinyMathLib::Matrix2x2<float> matrixC = matrixB.transpose();
+
+			Assert::AreEqual(matrixC.m11, matrixA.m11);
+			Assert::AreEqual(matrixC.m12, matrixA.m12);
+			Assert::AreEqual(matrixC.m21, matrixA.m21);
+			Assert::AreEqual(matrixC.m22, matrixA.m22);
+		}
+		TEST_METHOD(TestMatrixTransposition3)
+		{
+			TinyMathLib::Matrix2x2<float> matrixA(1.0f, 0.0f, 0.0f, 4.0f);
+			TinyMathLib::Matrix2x2<float> matrixB = matrixA.transpose();
+
+			Assert::AreEqual(matrixB.m11, matrixA.m11);
+			Assert::AreEqual(matrixB.m12, matrixA.m12);
+			Assert::AreEqual(matrixB.m21, matrixA.m21);
+			Assert::AreEqual(matrixB.m22, matrixA.m22);
+		}
+	};
+
+	TEST_CLASS(GeneralMatrix3x3DTesting)
+	{
+	public:
+		TEST_METHOD(TestInitialization1)
+		{
+			TinyMathLib::Matrix3x3<float> matrix;
+
+			Assert::AreEqual(matrix.m11, 0.0f);
+			Assert::AreEqual(matrix.m12, 0.0f);
+			Assert::AreEqual(matrix.m13, 0.0f);
+			Assert::AreEqual(matrix.m21, 0.0f);
+			Assert::AreEqual(matrix.m22, 0.0f);
+			Assert::AreEqual(matrix.m23, 0.0f);
+			Assert::AreEqual(matrix.m31, 0.0f);
+			Assert::AreEqual(matrix.m32, 0.0f);
+			Assert::AreEqual(matrix.m33, 0.0f);
+		}
+		TEST_METHOD(TestInitialization2)
+		{
+			TinyMathLib::Matrix3x3<float> matrix(1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f);
+
+			Assert::AreEqual(matrix.m11, 1.0f);
+			Assert::AreEqual(matrix.m12, 2.0f);
+			Assert::AreEqual(matrix.m13, 3.0f);
+			Assert::AreEqual(matrix.m21, 4.0f);
+			Assert::AreEqual(matrix.m22, 5.0f);
+			Assert::AreEqual(matrix.m23, 6.0f);
+			Assert::AreEqual(matrix.m31, 7.0f);
+			Assert::AreEqual(matrix.m32, 8.0f);
+			Assert::AreEqual(matrix.m33, 9.0f);
+		}
+		TEST_METHOD(TestMatrixTransposition1)
+		{
+			TinyMathLib::Matrix3x3<float> matrixA(1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f);
+			TinyMathLib::Matrix3x3<float> matrixB = matrixA.transpose();
+
+			Assert::AreEqual(matrixB.m11, 1.0f);
+			Assert::AreEqual(matrixB.m12, 4.0f);
+			Assert::AreEqual(matrixB.m13, 7.0f);
+
+			Assert::AreEqual(matrixB.m21, 2.0f);
+			Assert::AreEqual(matrixB.m22, 5.0f);
+			Assert::AreEqual(matrixB.m23, 8.0f);
+
+			Assert::AreEqual(matrixB.m31, 3.0f);
+			Assert::AreEqual(matrixB.m32, 6.0f);
+			Assert::AreEqual(matrixB.m33, 9.0f);
+		}
+		TEST_METHOD(TestMatrixTransposition2)
+		{
+			TinyMathLib::Matrix3x3<float> matrixA(1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f);
+			TinyMathLib::Matrix3x3<float> matrixB = matrixA.transpose();
+			TinyMathLib::Matrix3x3<float> matrixC = matrixB.transpose();
+
+			Assert::AreEqual(matrixA.m11, matrixC.m11);
+			Assert::AreEqual(matrixA.m12, matrixC.m12);
+			Assert::AreEqual(matrixA.m13, matrixC.m13);
+
+			Assert::AreEqual(matrixA.m21, matrixC.m21);
+			Assert::AreEqual(matrixA.m22, matrixC.m22);
+			Assert::AreEqual(matrixA.m23, matrixC.m23);
+
+			Assert::AreEqual(matrixA.m31, matrixC.m31);
+			Assert::AreEqual(matrixA.m32, matrixC.m32);
+			Assert::AreEqual(matrixA.m33, matrixC.m33);
+		}
+		TEST_METHOD(TestMatrixTransposition3)
+		{
+			TinyMathLib::Matrix3x3<float> matrixA(1.0f, 0.0f, 0.0f, 0.0f, 5.0f, 0.0f, 0.0f, 0.0f, 9.0f);
+			TinyMathLib::Matrix3x3<float> matrixB = matrixA.transpose();
+
+			Assert::AreEqual(matrixA.m11, matrixB.m11);
+			Assert::AreEqual(matrixA.m12, matrixB.m12);
+			Assert::AreEqual(matrixA.m13, matrixB.m13);
+
+			Assert::AreEqual(matrixA.m21, matrixB.m21);
+			Assert::AreEqual(matrixA.m22, matrixB.m22);
+			Assert::AreEqual(matrixA.m23, matrixB.m23);
+
+			Assert::AreEqual(matrixA.m31, matrixB.m31);
+			Assert::AreEqual(matrixA.m32, matrixB.m32);
+			Assert::AreEqual(matrixA.m33, matrixB.m33);
+		}
+	};
+
+	TEST_CLASS(GeneralMatrix4x4DTesting)
+	{
+	public:
+		TEST_METHOD(TestInitialization1)
+		{
+			TinyMathLib::Matrix4x4<float> matrix;
+
+			Assert::AreEqual(matrix.m11, 0.0f);
+			Assert::AreEqual(matrix.m12, 0.0f);
+			Assert::AreEqual(matrix.m13, 0.0f);
+			Assert::AreEqual(matrix.m14, 0.0f);
+			Assert::AreEqual(matrix.m21, 0.0f);
+			Assert::AreEqual(matrix.m22, 0.0f);
+			Assert::AreEqual(matrix.m23, 0.0f);
+			Assert::AreEqual(matrix.m24, 0.0f);
+			Assert::AreEqual(matrix.m31, 0.0f);
+			Assert::AreEqual(matrix.m32, 0.0f);
+			Assert::AreEqual(matrix.m33, 0.0f);
+			Assert::AreEqual(matrix.m34, 0.0f);
+			Assert::AreEqual(matrix.m41, 0.0f);
+			Assert::AreEqual(matrix.m42, 0.0f);
+			Assert::AreEqual(matrix.m43, 0.0f);
+			Assert::AreEqual(matrix.m44, 0.0f);
+		}
+		TEST_METHOD(TestInitialization2)
+		{
+			TinyMathLib::Matrix4x4<float> matrix(1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f, 10.0f, 11.0f, 12.0f, 13.0f, 14.0f, 15.0f, 16.0f);
+
+			Assert::AreEqual(matrix.m11, 1.0f);
+			Assert::AreEqual(matrix.m12, 2.0f);
+			Assert::AreEqual(matrix.m13, 3.0f);
+			Assert::AreEqual(matrix.m14, 4.0f);
+			Assert::AreEqual(matrix.m21, 5.0f);
+			Assert::AreEqual(matrix.m22, 6.0f);
+			Assert::AreEqual(matrix.m23, 7.0f);
+			Assert::AreEqual(matrix.m24, 8.0f);
+			Assert::AreEqual(matrix.m31, 9.0f);
+			Assert::AreEqual(matrix.m32, 10.0f);
+			Assert::AreEqual(matrix.m33, 11.0f);
+			Assert::AreEqual(matrix.m34, 12.0f);
+			Assert::AreEqual(matrix.m41, 13.0f);
+			Assert::AreEqual(matrix.m42, 14.0f);
+			Assert::AreEqual(matrix.m43, 15.0f);
+			Assert::AreEqual(matrix.m44, 16.0f);
+		}
+		TEST_METHOD(TestMatrixTransposition1)
+		{
+			TinyMathLib::Matrix4x4<float> matrixA(1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f, 10.0f, 11.0f, 12.0f, 13.0f, 14.0f, 15.0f, 16.0f);
+			TinyMathLib::Matrix4x4<float> matrixB = matrixA.transpose();
+
+			Assert::AreEqual(matrixB.m11, 1.0f);
+			Assert::AreEqual(matrixB.m12, 5.0f);
+			Assert::AreEqual(matrixB.m13, 9.0f);
+			Assert::AreEqual(matrixB.m14, 13.0f);
+			Assert::AreEqual(matrixB.m21, 2.0f);
+			Assert::AreEqual(matrixB.m22, 6.0f);
+			Assert::AreEqual(matrixB.m23, 10.0f);
+			Assert::AreEqual(matrixB.m24, 14.0f);
+			Assert::AreEqual(matrixB.m31, 3.0f);
+			Assert::AreEqual(matrixB.m32, 7.0f);
+			Assert::AreEqual(matrixB.m33, 11.0f);
+			Assert::AreEqual(matrixB.m34, 15.0f);
+			Assert::AreEqual(matrixB.m41, 4.0f);
+			Assert::AreEqual(matrixB.m42, 8.0f);
+			Assert::AreEqual(matrixB.m43, 12.0f);
+			Assert::AreEqual(matrixB.m44, 16.0f);
+		}
+		TEST_METHOD(TestMatrixTransposition2)
+		{
+			TinyMathLib::Matrix4x4<float> matrixA(1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f, 10.0f, 11.0f, 12.0f, 13.0f, 14.0f, 15.0f, 16.0f);
+			TinyMathLib::Matrix4x4<float> matrixB = matrixA.transpose();
+			TinyMathLib::Matrix4x4<float> matrixC = matrixB.transpose();
+
+			Assert::AreEqual(matrixA.m11, matrixC.m11);
+			Assert::AreEqual(matrixA.m12, matrixC.m12);
+			Assert::AreEqual(matrixA.m13, matrixC.m13);
+			Assert::AreEqual(matrixA.m14, matrixC.m14);
+			Assert::AreEqual(matrixA.m21, matrixC.m21);
+			Assert::AreEqual(matrixA.m22, matrixC.m22);
+			Assert::AreEqual(matrixA.m23, matrixC.m23);
+			Assert::AreEqual(matrixA.m24, matrixC.m24);
+			Assert::AreEqual(matrixA.m31, matrixC.m31);
+			Assert::AreEqual(matrixA.m32, matrixC.m32);
+			Assert::AreEqual(matrixA.m33, matrixC.m33);
+			Assert::AreEqual(matrixA.m34, matrixC.m34);
+			Assert::AreEqual(matrixA.m41, matrixC.m41);
+			Assert::AreEqual(matrixA.m42, matrixC.m42);
+			Assert::AreEqual(matrixA.m43, matrixC.m43);
+			Assert::AreEqual(matrixA.m44, matrixC.m44);
+		}
+		TEST_METHOD(TestMatrixTransposition3)
+		{
+			TinyMathLib::Matrix4x4<float> matrixA(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 6.0f, 0.0f, 0.0f, 0.0f, 0.0f, 11.0f, 0.0f, 0.0f, 0.0f, 0.0f, 16.0f);
+			TinyMathLib::Matrix4x4<float> matrixB = matrixA.transpose();
+
+			Assert::AreEqual(matrixA.m11, matrixB.m11);
+			Assert::AreEqual(matrixA.m12, matrixB.m12);
+			Assert::AreEqual(matrixA.m13, matrixB.m13);
+			Assert::AreEqual(matrixA.m14, matrixB.m14);
+
+			Assert::AreEqual(matrixA.m21, matrixB.m21);
+			Assert::AreEqual(matrixA.m22, matrixB.m22);
+			Assert::AreEqual(matrixA.m23, matrixB.m23);
+			Assert::AreEqual(matrixA.m24, matrixB.m24);
+
+			Assert::AreEqual(matrixA.m31, matrixB.m31);
+			Assert::AreEqual(matrixA.m32, matrixB.m32);
+			Assert::AreEqual(matrixA.m33, matrixB.m33);
+			Assert::AreEqual(matrixA.m34, matrixB.m34);
+
+			Assert::AreEqual(matrixA.m41, matrixB.m41);
+			Assert::AreEqual(matrixA.m42, matrixB.m42);
+			Assert::AreEqual(matrixA.m43, matrixB.m43);
+			Assert::AreEqual(matrixA.m44, matrixB.m44);
+		}
+	};
 }
