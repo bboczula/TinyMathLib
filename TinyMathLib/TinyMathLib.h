@@ -380,18 +380,18 @@ namespace TinyMathLib
 	template<typename T>
 	Matrix2x2<T> MakeIdentityMatrix2x2()
 	{
-		return Matrix2x2(1.0f, 0.0f, 0.0f, 1.0f);
+		return Matrix2x2<T>(1.0f, 0.0f, 0.0f, 1.0f);
 	}
 
 	template<typename T>
 	Matrix3x3<T> MakeIdentityMatrix3x3()
 	{
-		return Matrix3x3(1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f);
+		return Matrix3x3<T>(1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f);
 	}
 
 	template<typename T>
 	Matrix4x4<T> MakeIdentityMatrix4x4()
 	{
-		return Matrix4x4(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
+		return Matrix4x4<T>(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
 	}
 }

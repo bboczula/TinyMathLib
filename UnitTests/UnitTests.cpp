@@ -260,6 +260,17 @@ namespace UnitTests
 			Assert::AreEqual(M3.m21, -33.0f);
 			Assert::AreEqual(M3.m22, 13.0f);
 		}
+		TEST_METHOD(TestMatrixMultiplicationByIdentity1)
+		{
+			TinyMathLib::Matrix2x2<float> M1(-3.0f, 0.0f, 5.0f, 0.5f);
+			TinyMathLib::Matrix2x2<float> M2 = TinyMathLib::MakeIdentityMatrix2x2<float>();
+			TinyMathLib::Matrix2x2<float> M3 = M1 * M2;
+
+			Assert::AreEqual(M3.m11, M1.m11);
+			Assert::AreEqual(M3.m12, M1.m12);
+			Assert::AreEqual(M3.m21, M1.m21);
+			Assert::AreEqual(M3.m22, M1.m22);
+		}
 	};
 
 	TEST_CLASS(GeneralMatrix3x3DTesting)
@@ -377,6 +388,22 @@ namespace UnitTests
 			Assert::AreEqual(M3.m31, -50.0f);
 			Assert::AreEqual(M3.m32, 26.0f);
 			Assert::AreEqual(M3.m33, -19.0f);
+		}
+		TEST_METHOD(TestMatrixMultiplicationByIndentity1)
+		{
+			TinyMathLib::Matrix3x3<float> M1(0.25f, 0.5f, 0.75f, -1.0f, -2.0f, -3.0f, 1.0f, 1.0f, 1.0f);
+			TinyMathLib::Matrix3x3<float> M2 = TinyMathLib::MakeIdentityMatrix3x3<float>();
+			TinyMathLib::Matrix3x3<float> M3 = M1 * M2;
+
+			Assert::AreEqual(M3.m11, M1.m11);
+			Assert::AreEqual(M3.m12, M1.m12);
+			Assert::AreEqual(M3.m13, M1.m13);
+			Assert::AreEqual(M3.m21, M1.m21);
+			Assert::AreEqual(M3.m22, M1.m22);
+			Assert::AreEqual(M3.m23, M1.m23);
+			Assert::AreEqual(M3.m31, M1.m31);
+			Assert::AreEqual(M3.m32, M1.m32);
+			Assert::AreEqual(M3.m33, M1.m33);
 		}
 	};
 
@@ -545,6 +572,29 @@ namespace UnitTests
 			Assert::AreEqual(169.0f, matrixC.m42);
 			Assert::AreEqual(128.0f, matrixC.m43);
 			Assert::AreEqual(169.0f, matrixC.m44);
+		}
+		TEST_METHOD(TestMatrixMultiplicationByIdentity1)
+		{
+			TinyMathLib::Matrix4x4<float> M1(1.25f, 2.25f, 3.35f, 4.25f, 0.1f, 0.2f, 0.3f, 0.4f, 1.0f, 2.0f, 3.0f, 4.0f, -1.0f, -2.0f, -3.0f, -4.0f);
+			TinyMathLib::Matrix4x4<float> M2 = TinyMathLib::MakeIdentityMatrix4x4<float>();
+			TinyMathLib::Matrix4x4<float> M3 = M1 * M2;
+
+			Assert::AreEqual(M3.m11, M1.m11);
+			Assert::AreEqual(M3.m12, M1.m12);
+			Assert::AreEqual(M3.m13, M1.m13);
+			Assert::AreEqual(M3.m14, M1.m14);
+			Assert::AreEqual(M3.m21, M1.m21);
+			Assert::AreEqual(M3.m22, M1.m22);
+			Assert::AreEqual(M3.m23, M1.m23);
+			Assert::AreEqual(M3.m24, M1.m24);
+			Assert::AreEqual(M3.m31, M1.m31);
+			Assert::AreEqual(M3.m32, M1.m32);
+			Assert::AreEqual(M3.m33, M1.m33);
+			Assert::AreEqual(M3.m34, M1.m34);
+			Assert::AreEqual(M3.m41, M1.m41);
+			Assert::AreEqual(M3.m42, M1.m42);
+			Assert::AreEqual(M3.m43, M1.m43);
+			Assert::AreEqual(M3.m44, M1.m44);
 		}
 	};
 }
