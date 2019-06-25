@@ -169,6 +169,11 @@ namespace TinyMathLib
 		{
 			return Vector2D(x * vector.x, y * vector.y);
 		}
+		// Vector Multiplication by Matrix
+		Vector2D operator*(const Matrix2x2<T>& matrix)
+		{
+			return Vector2D((x * matrix.m11 + y * matrix.m21), (x * matrix.m12 + y * matrix.m22));
+		}
 		// Vector Division by Scalar
 		Vector2D operator/(T scalar) const
 		{
