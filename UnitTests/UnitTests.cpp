@@ -187,6 +187,20 @@ namespace UnitTests
 		}
 	};
 
+	TEST_CLASS(GeneralVector3DTesting)
+	{
+		TEST_METHOD(TestVectorMultiplicationByMatrix)
+		{
+			TinyMathLib::Vector3D<float> V1(2.0f, 3.0f, 1.5f);
+			TinyMathLib::Matrix3x3<float> M1(0.1f, 0.2f, 0.3f, 1.0f, 2.0f, 1.0f, 3.0f, 4.0f, 5.0f);
+			TinyMathLib::Vector3D<float> V2 = V1 * M1;
+
+			Assert::AreEqual(7.7f, V2.x);
+			Assert::AreEqual(12.4f, V2.y);
+			Assert::AreEqual(11.1f, V2.z);
+		}
+	};
+
 	TEST_CLASS(GeneralMatrix2x2DTesting)
 	{
 	public:

@@ -24,156 +24,11 @@
 // An r x n matrix may be multiplied by an n x c matrix and the result is an r x c matrix.
 // For now we only support 2x2, 3x3 and 4x4 matrices, so basically you can only multiply them by themselves.
 
+// This library uses ROW VECTORS (at leas for now).
+
 namespace TinyMathLib
 {
 	constexpr auto PI = 3.141592f;
-
-	template<typename T>
-	class Vector2D
-	{
-	public:
-		Vector2D() : x(0), y(0)
-		{
-		}
-		Vector2D(T _x, T _y) : x(_x), y(_y)
-		{
-		}
-		// Vector Negation
-		Vector2D operator-()
-		{
-			return Vector2D(-x, -y);
-		}
-		// Vector Multiplication by Scalar
-		Vector2D operator*(T scalar) const
-		{
-			return Vector2D(x * scalar, y * scalar);
-		}
-		// Vector Multiplcation by Vector
-		Vector2D operator*(const Vector2D& vector) const
-		{
-			return Vector2D(x * vector.x, y * vector.y);
-		}
-		// Vector Division by Scalar
-		Vector2D operator/(T scalar) const
-		{
-			return Vector2D(x / scalar, y / scalar);
-		}
-		// Vector Division by Vector
-		Vector2D operator/(const Vector2D& vector) const
-		{
-			return Vector2D(x / vector.x, y / vector.y);
-		}
-		// Vector Addition
-		Vector2D operator+(const Vector2D& vector)
-		{
-			return Vector2D(x + vector.x, y + vector.y);
-		}
-		// Vector Substraction
-		Vector2D operator-(const Vector2D& vector) const
-		{
-			return Vector2D(x - vector.x, y - vector.y);
-		}
-		// Dot Product
-		T dotProduct(const Vector2D& vector) const
-		{
-			return (x * vector.x) + (y * vector.y);
-		}
-		// Vector Magnitude (length)
-		// - why float and not double??
-		float length() const
-		{
-			return sqrt((x * x) + (y * y));
-		}
-		// Normalizing a Vector
-		// - do we return or operate on the vector itself??
-		Vector2D normalize()
-		{
-			return *this / this->length();
-		}
-		friend std::ostream& operator<< (std::ostream& out, const Vector2D& obj)
-		{
-			out << "[" << obj.x << ", " << obj.y << "]";
-			return out;
-		}
-	public:
-		T x, y;
-	};
-
-	template<typename T>
-	class Vector3D
-	{
-	public:
-		Vector3D() : x(0), y(0), z(0)
-		{
-		}
-		Vector3D(T _x, T _y, T _z) : x(_x), y(_y), z(_z)
-		{
-		}
-		// Vector Negation
-		Vector3D operator-()
-		{
-			return Vector3D(-x, -y, -z);
-		}
-		// Vector Multiplicaton by Scalar
-		Vector3D operator*(T scalar) const
-		{
-			return Vector3D(x * scalar, y * scalar, z * scalar);
-		}
-		// Vector Multiplication by Vector
-		Vector3D operator*(const Vector3D& vector) const
-		{
-			return Vector3D(x * vector.x, y * vector.y, z * vector.z);
-		}
-		// Vector Division by Scalar
-		Vector3D operator/(T scalar) const
-		{
-			return Vector3D(x / scalar, y / scalar, z / scalar);
-		}
-		// Vector Division by Vector
-		Vector3D operator/(const Vector3D& vector) const
-		{
-			return Vector3D(x / vector.x, y / vector.y, z / vector.z);
-		}
-		// Vector Addition
-		Vector3D operator+(const Vector3D& vector)
-		{
-			return Vector3D(x + vector.x, y + vector.y, z + vector.z);
-		}
-		// Vector Substraction
-		Vector3D operator-(const Vector3D& vector) const
-		{
-			return Vector3D(x - vector.x, y - vector.y, z - vector.z);
-		}
-		// Dot Product
-		T dotProduct(const Vector3D& vector)
-		{
-			return (x * vector.x) + (y * vector.y) + (z * vector.z);
-		}
-		// Cross Product
-		Vector3D crossProduct(const Vector3D& vector) const
-		{
-			return Vector3D((y * vector.z) - (z * vector.y), (z * vector.x) - (x * vector.z), (x * vector.y) - (y * vector.x));
-		}
-		// Vector Magnitude (length)
-		// - why float and not double??
-		float length()
-		{
-			return sqrt((x * x) + (y * y) + (z * z));
-		}
-		// Normalize a Vector
-		// - do we return or operate on the vector itself??
-		Vector3D normalize()
-		{
-			return *this / this->length();
-		}
-		friend std::ostream& operator<< (std::ostream& out, const Vector3D& obj)
-		{
-			out << "[" << obj.x << ", " << obj.y << ", " << obj.z << "]";
-			return out;
-		}
-	public:
-		T x, y, z;
-	};
 
 	template<typename T>
 	class Matrix2x2
@@ -287,6 +142,158 @@ namespace TinyMathLib
 		}
 	public:
 		T m11, m12, m13, m14, m21, m22, m23, m24, m31, m32, m33, m34, m41, m42, m43, m44;
+	};
+
+	template<typename T>
+	class Vector2D
+	{
+	public:
+		Vector2D() : x(0), y(0)
+		{
+		}
+		Vector2D(T _x, T _y) : x(_x), y(_y)
+		{
+		}
+		// Vector Negation
+		Vector2D operator-()
+		{
+			return Vector2D(-x, -y);
+		}
+		// Vector Multiplication by Scalar
+		Vector2D operator*(T scalar) const
+		{
+			return Vector2D(x * scalar, y * scalar);
+		}
+		// Vector Multiplcation by Vector
+		Vector2D operator*(const Vector2D& vector) const
+		{
+			return Vector2D(x * vector.x, y * vector.y);
+		}
+		// Vector Division by Scalar
+		Vector2D operator/(T scalar) const
+		{
+			return Vector2D(x / scalar, y / scalar);
+		}
+		// Vector Division by Vector
+		Vector2D operator/(const Vector2D& vector) const
+		{
+			return Vector2D(x / vector.x, y / vector.y);
+		}
+		// Vector Addition
+		Vector2D operator+(const Vector2D& vector)
+		{
+			return Vector2D(x + vector.x, y + vector.y);
+		}
+		// Vector Substraction
+		Vector2D operator-(const Vector2D& vector) const
+		{
+			return Vector2D(x - vector.x, y - vector.y);
+		}
+		// Dot Product
+		T dotProduct(const Vector2D& vector) const
+		{
+			return (x * vector.x) + (y * vector.y);
+		}
+		// Vector Magnitude (length)
+		// - why float and not double??
+		float length() const
+		{
+			return sqrt((x * x) + (y * y));
+		}
+		// Normalizing a Vector
+		// - do we return or operate on the vector itself??
+		Vector2D normalize()
+		{
+			return *this / this->length();
+		}
+		friend std::ostream& operator<< (std::ostream& out, const Vector2D& obj)
+		{
+			out << "[" << obj.x << ", " << obj.y << "]";
+			return out;
+		}
+	public:
+		T x, y;
+	};
+
+	template<typename T>
+	class Vector3D
+	{
+	public:
+		Vector3D() : x(0), y(0), z(0)
+		{
+		}
+		Vector3D(T _x, T _y, T _z) : x(_x), y(_y), z(_z)
+		{
+		}
+		// Vector Negation
+		Vector3D operator-()
+		{
+			return Vector3D(-x, -y, -z);
+		}
+		// Vector Multiplicaton by Scalar
+		Vector3D operator*(T scalar) const
+		{
+			return Vector3D(x * scalar, y * scalar, z * scalar);
+		}
+		// Vector Multiplication by Vector
+		Vector3D operator*(const Vector3D& vector) const
+		{
+			return Vector3D(x * vector.x, y * vector.y, z * vector.z);
+		}
+		// Vector Multiplication by Matrix3x3
+		Vector3D operator*(const Matrix3x3<T>& matrix)
+		{
+			return Vector3D((x * matrix.m11 + y * matrix.m21 + z * matrix.m31), (x * matrix.m12 + y * matrix.m22 + z * matrix.m32), (x * matrix.m13 + y * matrix.m23 + z * matrix.m33));
+		}
+		// Vector Division by Scalar
+		Vector3D operator/(T scalar) const
+		{
+			return Vector3D(x / scalar, y / scalar, z / scalar);
+		}
+		// Vector Division by Vector
+		Vector3D operator/(const Vector3D& vector) const
+		{
+			return Vector3D(x / vector.x, y / vector.y, z / vector.z);
+		}
+		// Vector Addition
+		Vector3D operator+(const Vector3D& vector)
+		{
+			return Vector3D(x + vector.x, y + vector.y, z + vector.z);
+		}
+		// Vector Substraction
+		Vector3D operator-(const Vector3D& vector) const
+		{
+			return Vector3D(x - vector.x, y - vector.y, z - vector.z);
+		}
+		// Dot Product
+		T dotProduct(const Vector3D& vector)
+		{
+			return (x * vector.x) + (y * vector.y) + (z * vector.z);
+		}
+		// Cross Product
+		Vector3D crossProduct(const Vector3D& vector) const
+		{
+			return Vector3D((y * vector.z) - (z * vector.y), (z * vector.x) - (x * vector.z), (x * vector.y) - (y * vector.x));
+		}
+		// Vector Magnitude (length)
+		// - why float and not double??
+		float length()
+		{
+			return sqrt((x * x) + (y * y) + (z * z));
+		}
+		// Normalize a Vector
+		// - do we return or operate on the vector itself??
+		Vector3D normalize()
+		{
+			return *this / this->length();
+		}
+		friend std::ostream& operator<< (std::ostream& out, const Vector3D& obj)
+		{
+			out << "[" << obj.x << ", " << obj.y << ", " << obj.z << "]";
+			return out;
+		}
+	public:
+		T x, y, z;
 	};
 
 	// Converts Degrees to Radians
