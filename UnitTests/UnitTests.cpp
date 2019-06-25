@@ -198,7 +198,7 @@ namespace UnitTests
 
 	TEST_CLASS(GeneralVector3DTesting)
 	{
-		TEST_METHOD(TestVectorMultiplicationByMatrix)
+		TEST_METHOD(TestVectorMultiplicationByMatrix1)
 		{
 			TinyMathLib::Vector3D<float> V1(2.0f, 3.0f, 1.5f);
 			TinyMathLib::Matrix3x3<float> M1(0.1f, 0.2f, 0.3f, 1.0f, 2.0f, 1.0f, 3.0f, 4.0f, 5.0f);
@@ -207,6 +207,36 @@ namespace UnitTests
 			Assert::AreEqual(7.7f, V2.x);
 			Assert::AreEqual(12.4f, V2.y);
 			Assert::AreEqual(11.1f, V2.z);
+		}
+		TEST_METHOD(TestVectorMultiplicationByMatrix2)
+		{
+			TinyMathLib::Vector3D<float> V1(1.0f, 0.0f, 0.0f);
+			TinyMathLib::Matrix3x3<float> M1(0.23f, 0.34f, 0.45f, 1.23f, 4.56f, 7.89f, 3.1f, 4.2f, 5.3f);
+			TinyMathLib::Vector3D<float> V2 = V1 * M1;
+
+			Assert::AreEqual(M1.m11, V2.x);
+			Assert::AreEqual(M1.m12, V2.y);
+			Assert::AreEqual(M1.m13, V2.z);
+		}
+		TEST_METHOD(TestVectorMultiplicationByMatrix3)
+		{
+			TinyMathLib::Vector3D<float> V1(0.0f, 1.0f, 0.0f);
+			TinyMathLib::Matrix3x3<float> M1(0.23f, 0.34f, 0.45f, 1.23f, 4.56f, 7.89f, 3.1f, 4.2f, 5.3f);
+			TinyMathLib::Vector3D<float> V2 = V1 * M1;
+
+			Assert::AreEqual(M1.m21, V2.x);
+			Assert::AreEqual(M1.m22, V2.y);
+			Assert::AreEqual(M1.m23, V2.z);
+		}
+		TEST_METHOD(TestVectorMultiplicationByMatrix4)
+		{
+			TinyMathLib::Vector3D<float> V1(0.0f, 0.0f, 1.0f);
+			TinyMathLib::Matrix3x3<float> M1(0.23f, 0.34f, 0.45f, 1.23f, 4.56f, 7.89f, 3.1f, 4.2f, 5.3f);
+			TinyMathLib::Vector3D<float> V2 = V1 * M1;
+
+			Assert::AreEqual(M1.m31, V2.x);
+			Assert::AreEqual(M1.m32, V2.y);
+			Assert::AreEqual(M1.m33, V2.z);
 		}
 	};
 
