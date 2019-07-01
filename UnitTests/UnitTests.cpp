@@ -458,6 +458,35 @@ namespace UnitTests
 			Assert::AreEqual(M3.m32, M1.m32);
 			Assert::AreEqual(M3.m33, M1.m33);
 		}
+		TEST_METHOD(TestCreateRotationMatrixAxixX1)
+		{
+			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateRotationMatrixAxisX<float>(TinyMathLib::convertToRadians(-22.0f));
+
+			Assert::AreEqual(1.0f, M1.m11);
+			Assert::AreEqual(0.0f, M1.m12);
+			Assert::AreEqual(0.0f, M1.m13);
+			Assert::AreEqual(0.0f, M1.m21);
+			Assert::AreEqual(0.927184f, M1.m22, 0.001f);
+			Assert::AreEqual(-0.3746f, M1.m23, 0.001f);
+			Assert::AreEqual(0.0f, M1.m31);
+			Assert::AreEqual(0.375f, M1.m32, 0.001f);
+			Assert::AreEqual(0.927f, M1.m33, 0.001f);
+		}
+		TEST_METHOD(TestCreateRotationMatrixAxixY1)
+		{
+			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateRotationMatrixAxisY<float>(TinyMathLib::convertToRadians(30.0f));
+
+			const float TOLERANCE = 0.001f;
+			Assert::AreEqual(0.866f, M1.m11, TOLERANCE);
+			Assert::AreEqual(0.0f, M1.m12, TOLERANCE);
+			Assert::AreEqual(-0.5f, M1.m13, TOLERANCE);
+			Assert::AreEqual(0.0f, M1.m21, TOLERANCE);
+			Assert::AreEqual(1.0f, M1.m22, TOLERANCE);
+			Assert::AreEqual(0.0f, M1.m23, TOLERANCE);
+			Assert::AreEqual(0.5f, M1.m31, TOLERANCE);
+			Assert::AreEqual(0.0f, M1.m32, TOLERANCE);
+			Assert::AreEqual(0.866f, M1.m33, TOLERANCE);
+		}
 	};
 
 	TEST_CLASS(GeneralMatrix4x4DTesting)

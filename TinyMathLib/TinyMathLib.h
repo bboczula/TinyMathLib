@@ -26,6 +26,8 @@
 
 // This library uses ROW VECTORS (at leas for now).
 
+// Linear transformation do not contain translation. A transformation that contains translation is known as an affine transformation. 
+
 namespace TinyMathLib
 {
 	constexpr auto PI = 3.141592f;
@@ -405,5 +407,31 @@ namespace TinyMathLib
 	Matrix4x4<T> MakeIdentityMatrix4x4()
 	{
 		return Matrix4x4<T>(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
+	}
+
+	// Consider counterclockwise rotation positive and clockwise rotation negative.
+	template<typename T>
+	Matrix2x2<T> CreateRotationMatrix(float angle)
+	{
+		return Matrix2x2<T>(cos(angle), sin(angle), -sin(angle), cos(angle));
+	}
+
+	// This library is using left-hand rule for determining "positive" and "negative" rotation
+	template<typename T>
+	Matrix3x3<T> CreateRotationMatrixAxisX(float angle)
+	{
+		return Matrix3x3<T>(1, 0, 0, 0, cos(angle), sin(angle), 0, -sin(angle), cos(angle));
+	}
+
+	template<typename T>
+	Matrix3x3<T> CreateRotationMatrixAxisY(float angle)
+	{
+		return Matrix3x3<T>(cos(angle), 0, -sin(angle), 0, 1, 0, sin(angle), 0, cos(angle));
+	}
+
+	template<typename T>
+	Matrix3x3<T> CreateRotationMatrixAxisZ(float angle)
+	{
+		return Matrix3x3<T>(cos(angle), sin(angle), 0, -sin(angle), cos(angle), 0, 0, 0, 1);
 	}
 }
