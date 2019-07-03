@@ -26,7 +26,11 @@
 
 // This library uses ROW VECTORS (at leas for now).
 
-// Linear transformation do not contain translation. A transformation that contains translation is known as an affine transformation. 
+// Linear transformation do not contain translation. A transformation that contains translation is known as an affine transformation.
+
+// TODO:
+// - add printing for matrices
+// - add possiblility to multiply integer vectors by float matrices
 
 namespace TinyMathLib
 {
