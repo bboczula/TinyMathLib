@@ -438,4 +438,14 @@ namespace TinyMathLib
 	{
 		return Matrix3x3<T>(cos(angle), sin(angle), 0, -sin(angle), cos(angle), 0, 0, 0, 1);
 	}
+
+	template<typename T>
+	Matrix3x3<T> CreateRotationMatrix(float angle, Vector3D<T> unitAxis)
+	{
+		return Matrix3x3<T>(
+			(unitAxis.x * unitAxis.x) * (1 - cos(angle)) +                cos(angle), (unitAxis.x * unitAxis.y) * (1 - cos(angle)) + (unitAxis.z * sin(angle)), (unitAxis.x * unitAxis.z) * (1 - cos(angle)) - (unitAxis.y * sin(angle)),
+			(unitAxis.x * unitAxis.y) * (1 - cos(angle)) - (unitAxis.z * sin(angle)), (unitAxis.y * unitAxis.y) * (1 - cos(angle)) +                cos(angle), (unitAxis.y * unitAxis.z) * (1 - cos(angle)) + (unitAxis.x * sin(angle)),
+			(unitAxis.x * unitAxis.z) * (1 - cos(angle)) + (unitAxis.y * sin(angle)), (unitAxis.y * unitAxis.z) * (1 - cos(angle)) - (unitAxis.x * sin(angle)), (unitAxis.z * unitAxis.z) * (1 - cos(angle)) + cos(angle)
+			);
+	}
 }
