@@ -428,24 +428,59 @@ namespace TinyMathLib
 	}
 
 	template<typename T>
-	Matrix3x3<T> CreateRotationMatrixAxisY(float angle)
+	Matrix3x3<T> CreateRotationMatrix3x3AxisY(float angle)
 	{
 		return Matrix3x3<T>(cos(angle), 0, -sin(angle), 0, 1, 0, sin(angle), 0, cos(angle));
 	}
 
 	template<typename T>
-	Matrix3x3<T> CreateRotationMatrixAxisZ(float angle)
+	Matrix3x3<T> CreateRotationMatrix3x3AxisZ(float angle)
 	{
 		return Matrix3x3<T>(cos(angle), sin(angle), 0, -sin(angle), cos(angle), 0, 0, 0, 1);
 	}
 
 	template<typename T>
-	Matrix3x3<T> CreateRotationMatrix(float angle, Vector3D<T> unitAxis)
+	Matrix3x3<T> CreateRotationMatrix3x3(float angle, Vector3D<T> unitAxis)
 	{
 		return Matrix3x3<T>(
 			(unitAxis.x * unitAxis.x) * (1 - cos(angle)) +                cos(angle), (unitAxis.x * unitAxis.y) * (1 - cos(angle)) + (unitAxis.z * sin(angle)), (unitAxis.x * unitAxis.z) * (1 - cos(angle)) - (unitAxis.y * sin(angle)),
 			(unitAxis.x * unitAxis.y) * (1 - cos(angle)) - (unitAxis.z * sin(angle)), (unitAxis.y * unitAxis.y) * (1 - cos(angle)) +                cos(angle), (unitAxis.y * unitAxis.z) * (1 - cos(angle)) + (unitAxis.x * sin(angle)),
 			(unitAxis.x * unitAxis.z) * (1 - cos(angle)) + (unitAxis.y * sin(angle)), (unitAxis.y * unitAxis.z) * (1 - cos(angle)) - (unitAxis.x * sin(angle)), (unitAxis.z * unitAxis.z) * (1 - cos(angle)) + cos(angle)
-			);
+		);
+	}
+
+	template<typename T>
+	Matrix2x2<T> CreateScaleMatrix2x2(float scaleX, float scaleY)
+	{
+		return Matrix2x2<T>(scaleX, 0, 0, scaleY);
+	}
+
+	template<typename T>
+	Matrix3x3<T> CreateScaleMatrix3x3(float scaleX, float scaleY, float scaleZ)
+	{
+		return Matrix3x3<T>(
+			scaleX, 0, 0,
+			0, scaleY, 0,
+			0, 0, scaleZ
+		);
+	}
+
+	template<typename T>
+	Matrix2x2<T> CreateScaleMatrix2x2(float scale, TinyMathLib::Vector2D<T> direction)
+	{
+		return Matrix2x2<T>(
+			1 + (scale - 1) * direction.x * direction.x,     (scale - 1) * direction.x * direction.y,
+			    (scale - 1) * direction.x * direction.y, 1 + (scale - 1) * direction.y * direction.y
+		);
+	}
+
+	template<typename T>
+	Matrix3x3<T> CreateScaleMatrix3x3(float scale, TinyMathLib::Vector3D<T> direction)
+	{
+		return Matrix3x3<T>(
+			1 + (scale - 1) * direction.x * direction.x, (scale - 1) * direction.x * direction.y, (scale - 1) * direction.x * direction.z,
+			(scale - 1) * direction.y * direction.x, 1 + (scale - 1) * direction.y * direction.y, (scale - 1) * direction.y * direction.z,
+			(scale - 1) * direction.z * direction.x, (scale - 1) * direction.z * direction.y, 1 + (scale - 1) * direction.z * direction.z
+		);
 	}
 }

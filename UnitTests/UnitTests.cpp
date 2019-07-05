@@ -324,6 +324,35 @@ namespace UnitTests
 			Assert::AreEqual(M3.m21, M1.m21);
 			Assert::AreEqual(M3.m22, M1.m22);
 		}
+		TEST_METHOD(TestMatrixScaleing1)
+		{
+			TinyMathLib::Vector2D<float> V1(1.0f, 1.0f);
+			TinyMathLib::Matrix2x2<float> M1 = TinyMathLib::CreateScaleMatrix2x2<float>(1.5f, 2.25f);
+			TinyMathLib::Vector2D<float> V = V1 * M1;
+
+			Assert::AreEqual(1.5f, V.x);
+			Assert::AreEqual(2.25f, V.y);
+		}
+		TEST_METHOD(TestMatrixScalingPairity1)
+		{
+			TinyMathLib::Matrix2x2<float> M1 = TinyMathLib::CreateScaleMatrix2x2<float>(2.0f, 1.0f);
+			TinyMathLib::Matrix2x2<float> M2 = TinyMathLib::CreateScaleMatrix2x2<float>(2.0f, TinyMathLib::Vector2D<float>(1.0f, 0.0f));
+
+			Assert::AreEqual(M1.m11, M2.m11);
+			Assert::AreEqual(M1.m12, M2.m12);
+			Assert::AreEqual(M1.m21, M2.m21);
+			Assert::AreEqual(M1.m22, M2.m22);
+		}
+		TEST_METHOD(TestMatrixScalingPairity2)
+		{
+			TinyMathLib::Matrix2x2<float> M1 = TinyMathLib::CreateScaleMatrix2x2<float>(1.0f, 2.0f);
+			TinyMathLib::Matrix2x2<float> M2 = TinyMathLib::CreateScaleMatrix2x2<float>(2.0f, TinyMathLib::Vector2D<float>(0.0f, 1.0f));
+
+			Assert::AreEqual(M1.m11, M2.m11);
+			Assert::AreEqual(M1.m12, M2.m12);
+			Assert::AreEqual(M1.m21, M2.m21);
+			Assert::AreEqual(M1.m22, M2.m22);
+		}
 	};
 
 	TEST_CLASS(GeneralMatrix3x3DTesting)
@@ -474,7 +503,7 @@ namespace UnitTests
 		}
 		TEST_METHOD(TestCreateRotationMatrixAxixY1)
 		{
-			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateRotationMatrixAxisY<float>(TinyMathLib::convertToRadians(30.0f));
+			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateRotationMatrix3x3AxisY<float>(TinyMathLib::convertToRadians(30.0f));
 
 			const float TOLERANCE = 0.001f;
 			Assert::AreEqual(0.866f, M1.m11, TOLERANCE);
@@ -490,7 +519,7 @@ namespace UnitTests
 		TEST_METHOD(TestMatrixRotationEquasion1)
 		{
 			TinyMathLib::Vector3D<float> V1(1.0f, 1.0f, 0.0f);
-			TinyMathLib::Matrix3x3<float> RZ1 = TinyMathLib::CreateRotationMatrixAxisZ<float>(TinyMathLib::convertToRadians(90.0f));
+			TinyMathLib::Matrix3x3<float> RZ1 = TinyMathLib::CreateRotationMatrix3x3AxisZ<float>(TinyMathLib::convertToRadians(90.0f));
 			TinyMathLib::Vector3D<float> V = V1 * RZ1;
 
 			const float TOLERANCE = 0.001f;
@@ -501,7 +530,7 @@ namespace UnitTests
 		TEST_METHOD(TestMatrixRotationEquasion2)
 		{
 			TinyMathLib::Matrix3x3<float> RX1 = TinyMathLib::CreateRotationMatrixAxisX<float>(TinyMathLib::convertToRadians(-12.3f));
-			TinyMathLib::Matrix3x3<float> RX2 = TinyMathLib::CreateRotationMatrix<float>(TinyMathLib::convertToRadians(-12.3f), TinyMathLib::Vector3D<float>(1.0f, 0.0f, 0.0f));
+			TinyMathLib::Matrix3x3<float> RX2 = TinyMathLib::CreateRotationMatrix3x3<float>(TinyMathLib::convertToRadians(-12.3f), TinyMathLib::Vector3D<float>(1.0f, 0.0f, 0.0f));
 
 			const float TOLERANCE = 0.001f;
 			Assert::AreEqual(RX1.m11, RX2.m11, TOLERANCE);
@@ -518,8 +547,8 @@ namespace UnitTests
 		}
 		TEST_METHOD(TestMatrixRotationEquasion3)
 		{
-			TinyMathLib::Matrix3x3<float> RY1 = TinyMathLib::CreateRotationMatrixAxisY<float>(TinyMathLib::convertToRadians(32.11f));
-			TinyMathLib::Matrix3x3<float> RY2 = TinyMathLib::CreateRotationMatrix<float>(TinyMathLib::convertToRadians(32.11f), TinyMathLib::Vector3D<float>(0.0f, 1.0f, 0.0f));
+			TinyMathLib::Matrix3x3<float> RY1 = TinyMathLib::CreateRotationMatrix3x3AxisY<float>(TinyMathLib::convertToRadians(32.11f));
+			TinyMathLib::Matrix3x3<float> RY2 = TinyMathLib::CreateRotationMatrix3x3<float>(TinyMathLib::convertToRadians(32.11f), TinyMathLib::Vector3D<float>(0.0f, 1.0f, 0.0f));
 
 			const float TOLERANCE = 0.001f;
 			Assert::AreEqual(RY1.m11, RY2.m11, TOLERANCE);
@@ -536,8 +565,8 @@ namespace UnitTests
 		}
 		TEST_METHOD(TestMatrixRotationEquasion4)
 		{
-			TinyMathLib::Matrix3x3<float> RZ1 = TinyMathLib::CreateRotationMatrixAxisZ<float>(TinyMathLib::convertToRadians(73.1f));
-			TinyMathLib::Matrix3x3<float> RZ2 = TinyMathLib::CreateRotationMatrix<float>(TinyMathLib::convertToRadians(73.1f), TinyMathLib::Vector3D<float>(0.0f, 0.0f, 1.0f));
+			TinyMathLib::Matrix3x3<float> RZ1 = TinyMathLib::CreateRotationMatrix3x3AxisZ<float>(TinyMathLib::convertToRadians(73.1f));
+			TinyMathLib::Matrix3x3<float> RZ2 = TinyMathLib::CreateRotationMatrix3x3<float>(TinyMathLib::convertToRadians(73.1f), TinyMathLib::Vector3D<float>(0.0f, 0.0f, 1.0f));
 
 			const float TOLERANCE = 0.001f;
 			Assert::AreEqual(RZ1.m11, RZ2.m11, TOLERANCE);
@@ -551,6 +580,67 @@ namespace UnitTests
 			Assert::AreEqual(RZ1.m31, RZ2.m31, TOLERANCE);
 			Assert::AreEqual(RZ1.m32, RZ2.m32, TOLERANCE);
 			Assert::AreEqual(RZ1.m33, RZ2.m33, TOLERANCE);
+		}
+		TEST_METHOD(TestMatrixScaling1)
+		{
+			TinyMathLib::Vector3D<float> V1(1.0f, 1.0f, 0.5f);
+			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateScaleMatrix3x3<float>(0.5f, 2.0f, 3.0f);
+			TinyMathLib::Vector3D<float> V = V1 * M1;
+
+			Assert::AreEqual(0.5f, V.x);
+			Assert::AreEqual(2.0f, V.y);
+			Assert::AreEqual(1.5f, V.z);
+		}
+		TEST_METHOD(TestMatrixScalingPairity1)
+		{
+			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateScaleMatrix3x3<float>(2.0f, 1.0f, 1.0f);
+			TinyMathLib::Matrix3x3<float> M2 = TinyMathLib::CreateScaleMatrix3x3<float>(2.0f, TinyMathLib::Vector3D<float>(1.0f, 0.0f, 0.0f));
+
+			Assert::AreEqual(M1.m11, M2.m11);
+			Assert::AreEqual(M1.m12, M2.m12);
+			Assert::AreEqual(M1.m13, M2.m13);
+
+			Assert::AreEqual(M1.m21, M2.m21);
+			Assert::AreEqual(M1.m22, M2.m22);
+			Assert::AreEqual(M1.m23, M2.m23);
+
+			Assert::AreEqual(M1.m31, M2.m31);
+			Assert::AreEqual(M1.m32, M2.m32);
+			Assert::AreEqual(M1.m33, M2.m33);
+		}
+		TEST_METHOD(TestMatrixScalingPairity2)
+		{
+			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateScaleMatrix3x3<float>(1.0f, 2.0f, 1.0f);
+			TinyMathLib::Matrix3x3<float> M2 = TinyMathLib::CreateScaleMatrix3x3<float>(2.0f, TinyMathLib::Vector3D<float>(0.0f, 1.0f, 0.0f));
+
+			Assert::AreEqual(M1.m11, M2.m11);
+			Assert::AreEqual(M1.m12, M2.m12);
+			Assert::AreEqual(M1.m13, M2.m13);
+
+			Assert::AreEqual(M1.m21, M2.m21);
+			Assert::AreEqual(M1.m22, M2.m22);
+			Assert::AreEqual(M1.m23, M2.m23);
+
+			Assert::AreEqual(M1.m31, M2.m31);
+			Assert::AreEqual(M1.m32, M2.m32);
+			Assert::AreEqual(M1.m33, M2.m33);
+		}
+		TEST_METHOD(TestMatrixScalingPairity3)
+		{
+			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateScaleMatrix3x3<float>(1.0f, 1.0f, 2.0f);
+			TinyMathLib::Matrix3x3<float> M2 = TinyMathLib::CreateScaleMatrix3x3<float>(2.0f, TinyMathLib::Vector3D<float>(0.0f, 0.0f, 1.0f));
+
+			Assert::AreEqual(M1.m11, M2.m11);
+			Assert::AreEqual(M1.m12, M2.m12);
+			Assert::AreEqual(M1.m13, M2.m13);
+
+			Assert::AreEqual(M1.m21, M2.m21);
+			Assert::AreEqual(M1.m22, M2.m22);
+			Assert::AreEqual(M1.m23, M2.m23);
+
+			Assert::AreEqual(M1.m31, M2.m31);
+			Assert::AreEqual(M1.m32, M2.m32);
+			Assert::AreEqual(M1.m33, M2.m33);
 		}
 	};
 
