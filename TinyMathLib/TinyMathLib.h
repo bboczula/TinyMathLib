@@ -483,4 +483,36 @@ namespace TinyMathLib
 			(scale - 1) * direction.z * direction.x, (scale - 1) * direction.z * direction.y, 1 + (scale - 1) * direction.z * direction.z
 		);
 	}
+
+	template<typename T>
+	Matrix3x3<T> CreateOrtographicProjectionMatrixXY3x3()
+	{
+		return Matrix3x3<T>(1, 0, 0, 0, 1, 0, 0, 0, 0);
+	}
+
+	template<typename T>
+	Matrix3x3<T> CreateOrtographicProjectionMatrixXZ3x3()
+	{
+		return Matrix3x3<T>(1, 0, 0, 0, 0, 0, 0, 0, 1);
+	}
+
+	template<typename T>
+	Matrix3x3<T> CreateOrtographicProjectionMatrixYZ3x3()
+	{
+		return Matrix3x3<T>(
+			0, 0, 0,
+			0, 1, 0,
+			0, 0, 1
+		);
+	}
+
+	template<typename T>
+	Matrix3x3<T> CreateOrtographicProjectionMatrix3x3(TinyMathLib::Vector3D<T> normal)
+	{
+		return Matrix3x3<T>(
+			+1 - normal.x * normal.x, -1 * normal.x * normal.y, -1 * normal.x * normal.z,
+			-1 * normal.y * normal.x, +1 - normal.y * normal.y, -1 * normal.y * normal.z,
+			-1 * normal.z * normal.x, -1 * normal.z * normal.y, +1 - normal.z * normal.z
+		);
+	}
 }

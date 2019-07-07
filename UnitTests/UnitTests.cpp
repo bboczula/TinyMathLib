@@ -642,6 +642,51 @@ namespace UnitTests
 			Assert::AreEqual(M1.m32, M2.m32);
 			Assert::AreEqual(M1.m33, M2.m33);
 		}
+		TEST_METHOD(TestOrtographicProjectionParity1)
+		{
+			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateOrtographicProjectionMatrixXY3x3<float>();
+			TinyMathLib::Matrix3x3<float> M2 = TinyMathLib::CreateOrtographicProjectionMatrix3x3<float>(TinyMathLib::Vector3D<float>(0.0f, 0.0f, 1.0f));
+
+			Assert::AreEqual(M1.m11, M2.m11);
+			Assert::AreEqual(M1.m12, M2.m12);
+			Assert::AreEqual(M1.m13, M2.m13);
+			Assert::AreEqual(M1.m21, M2.m21);
+			Assert::AreEqual(M1.m22, M2.m22);
+			Assert::AreEqual(M1.m23, M2.m23);
+			Assert::AreEqual(M1.m31, M2.m31);
+			Assert::AreEqual(M1.m32, M2.m32);
+			Assert::AreEqual(M1.m33, M2.m33);
+		}
+		TEST_METHOD(TestOrtographicProjectionParity2)
+		{
+			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateOrtographicProjectionMatrixXZ3x3<float>();
+			TinyMathLib::Matrix3x3<float> M2 = TinyMathLib::CreateOrtographicProjectionMatrix3x3<float>(TinyMathLib::Vector3D<float>(0.0f, 1.0f, 0.0f));
+
+			Assert::AreEqual(M1.m11, M2.m11);
+			Assert::AreEqual(M1.m12, M2.m12);
+			Assert::AreEqual(M1.m13, M2.m13);
+			Assert::AreEqual(M1.m21, M2.m21);
+			Assert::AreEqual(M1.m22, M2.m22);
+			Assert::AreEqual(M1.m23, M2.m23);
+			Assert::AreEqual(M1.m31, M2.m31);
+			Assert::AreEqual(M1.m32, M2.m32);
+			Assert::AreEqual(M1.m33, M2.m33);
+		}
+		TEST_METHOD(TestOrtographicProjectionParity3)
+		{
+			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateOrtographicProjectionMatrixYZ3x3<float>();
+			TinyMathLib::Matrix3x3<float> M2 = TinyMathLib::CreateOrtographicProjectionMatrix3x3<float>(TinyMathLib::Vector3D<float>(1.0f, 0.0f, 0.0f));
+
+			Assert::AreEqual(M1.m11, M2.m11);
+			Assert::AreEqual(M1.m12, M2.m12);
+			Assert::AreEqual(M1.m13, M2.m13);
+			Assert::AreEqual(M1.m21, M2.m21);
+			Assert::AreEqual(M1.m22, M2.m22);
+			Assert::AreEqual(M1.m23, M2.m23);
+			Assert::AreEqual(M1.m31, M2.m31);
+			Assert::AreEqual(M1.m32, M2.m32);
+			Assert::AreEqual(M1.m33, M2.m33);
+		}
 	};
 
 	TEST_CLASS(GeneralMatrix4x4DTesting)
