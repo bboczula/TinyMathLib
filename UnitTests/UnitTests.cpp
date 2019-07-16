@@ -353,6 +353,26 @@ namespace UnitTests
 			Assert::AreEqual(M1.m21, M2.m21);
 			Assert::AreEqual(M1.m22, M2.m22);
 		}
+		TEST_METHOD(TestOrtographicProjectionParity1)
+		{
+			TinyMathLib::Matrix2x2<float> M1 = TinyMathLib::CreateOrtographicProjectionMatrix2x2<float>(TinyMathLib::Vector2D<float>(0.0f, 1.0f));
+			TinyMathLib::Matrix2x2<float> M2 = TinyMathLib::CreateOrtographicProjectionMatrixX2x2<float>();
+
+			Assert::AreEqual(M2.m11, M1.m11);
+			Assert::AreEqual(M2.m12, M1.m12);
+			Assert::AreEqual(M2.m21, M1.m21);
+			Assert::AreEqual(M2.m22, M1.m22);
+		}
+		TEST_METHOD(TestOrtographicProjectionParity2)
+		{
+			TinyMathLib::Matrix2x2<float> M1 = TinyMathLib::CreateOrtographicProjectionMatrix2x2<float>(TinyMathLib::Vector2D<float>(1.0f, 0.0f));
+			TinyMathLib::Matrix2x2<float> M2 = TinyMathLib::CreateOrtographicProjectionMatrixY2x2<float>();
+
+			Assert::AreEqual(M2.m11, M1.m11);
+			Assert::AreEqual(M2.m12, M1.m12);
+			Assert::AreEqual(M2.m21, M1.m21);
+			Assert::AreEqual(M2.m22, M1.m22);
+		}
 	};
 
 	TEST_CLASS(GeneralMatrix3x3DTesting)

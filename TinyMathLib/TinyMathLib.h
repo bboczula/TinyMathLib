@@ -485,6 +485,27 @@ namespace TinyMathLib
 	}
 
 	template<typename T>
+	Matrix2x2<T> CreateOrtographicProjectionMatrixX2x2()
+	{
+		return Matrix2x2<T>(1, 0, 0, 0);
+	}
+
+	template<typename T>
+	Matrix2x2<T> CreateOrtographicProjectionMatrixY2x2()
+	{
+		return Matrix2x2<T>(0, 0, 0, 1);
+	}
+
+	template<typename T>
+	Matrix2x2<T> CreateOrtographicProjectionMatrix2x2(TinyMathLib::Vector2D<T> line)
+	{
+		return Matrix2x2<T>(
+			1 - line.x * line.x, -line.x * line.y,
+			-line.x * line.y, 1 - line.y * line.y
+			);
+	}
+
+	template<typename T>
 	Matrix3x3<T> CreateOrtographicProjectionMatrixXY3x3()
 	{
 		return Matrix3x3<T>(1, 0, 0, 0, 1, 0, 0, 0, 0);
@@ -514,5 +535,15 @@ namespace TinyMathLib
 			-1 * normal.y * normal.x, +1 - normal.y * normal.y, -1 * normal.y * normal.z,
 			-1 * normal.z * normal.x, -1 * normal.z * normal.y, +1 - normal.z * normal.z
 		);
+	}
+
+	template<typename T>
+	Matrix2x2<T> CreateReflectionMatrix2x2()
+	{
+	}
+
+	template<typename T>
+	Matrix3x3<T> CreateReflectionMatrix3x3()
+	{
 	}
 }
