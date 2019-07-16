@@ -727,6 +727,51 @@ namespace UnitTests
 			Assert::AreEqual(M1.m32, M2.m32);
 			Assert::AreEqual(M1.m33, M2.m33);
 		}
+		TEST_METHOD(TestReflectionParity1)
+		{
+			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateReflectionMatrix3x3<float>(TinyMathLib::Vector3D<float>(1.0f, 0.0f, 0.0f));
+			TinyMathLib::Matrix3x3<float> M2 = TinyMathLib::CreateScaleMatrix3x3(-1.0f, TinyMathLib::Vector3D<float>(1.0f, 0.0f, 0.0f));
+
+			Assert::AreEqual(M2.m11, M1.m11);
+			Assert::AreEqual(M2.m12, M1.m12);
+			Assert::AreEqual(M2.m13, M1.m13);
+			Assert::AreEqual(M2.m21, M1.m21);
+			Assert::AreEqual(M2.m22, M1.m22);
+			Assert::AreEqual(M2.m23, M1.m23);
+			Assert::AreEqual(M2.m31, M1.m31);
+			Assert::AreEqual(M2.m32, M1.m32);
+			Assert::AreEqual(M2.m33, M1.m33);
+		}
+		TEST_METHOD(TestReflectionParity2)
+		{
+			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateReflectionMatrix3x3<float>(TinyMathLib::Vector3D<float>(0.0f, 1.0f, 0.0f));
+			TinyMathLib::Matrix3x3<float> M2 = TinyMathLib::CreateScaleMatrix3x3(-1.0f, TinyMathLib::Vector3D<float>(0.0f, 1.0f, 0.0f));
+
+			Assert::AreEqual(M2.m11, M1.m11);
+			Assert::AreEqual(M2.m12, M1.m12);
+			Assert::AreEqual(M2.m13, M1.m13);
+			Assert::AreEqual(M2.m21, M1.m21);
+			Assert::AreEqual(M2.m22, M1.m22);
+			Assert::AreEqual(M2.m23, M1.m23);
+			Assert::AreEqual(M2.m31, M1.m31);
+			Assert::AreEqual(M2.m32, M1.m32);
+			Assert::AreEqual(M2.m33, M1.m33);
+		}
+		TEST_METHOD(TestReflectionParity3)
+		{
+			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateReflectionMatrix3x3<float>(TinyMathLib::Vector3D<float>(0.0f, 0.0f, 1.0f));
+			TinyMathLib::Matrix3x3<float> M2 = TinyMathLib::CreateScaleMatrix3x3(-1.0f, TinyMathLib::Vector3D<float>(0.0f, 0.0f, 1.0f));
+
+			Assert::AreEqual(M2.m11, M1.m11);
+			Assert::AreEqual(M2.m12, M1.m12);
+			Assert::AreEqual(M2.m13, M1.m13);
+			Assert::AreEqual(M2.m21, M1.m21);
+			Assert::AreEqual(M2.m22, M1.m22);
+			Assert::AreEqual(M2.m23, M1.m23);
+			Assert::AreEqual(M2.m31, M1.m31);
+			Assert::AreEqual(M2.m32, M1.m32);
+			Assert::AreEqual(M2.m33, M1.m33);
+		}
 	};
 
 	TEST_CLASS(GeneralMatrix4x4DTesting)

@@ -547,7 +547,12 @@ namespace TinyMathLib
 	}
 
 	template<typename T>
-	Matrix3x3<T> CreateReflectionMatrix3x3()
+	Matrix3x3<T> CreateReflectionMatrix3x3(TinyMathLib::Vector3D<T> plane)
 	{
+		return Matrix3x3<T>(
+			1 - 2 * plane.x * plane.x,    -2 * plane.y * plane.x,    -2 * plane.z * plane.x,
+			   -2 * plane.x * plane.y, 1 - 2 * plane.y * plane.y,    -2 * plane.z * plane.y,
+			   -2 * plane.x * plane.z,    -2 * plane.y * plane.z, 1 - 2 * plane.z * plane.z
+			);
 	}
 }
