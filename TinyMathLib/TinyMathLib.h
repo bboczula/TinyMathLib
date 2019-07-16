@@ -555,4 +555,46 @@ namespace TinyMathLib
 			   -2 * plane.x * plane.z,    -2 * plane.y * plane.z, 1 - 2 * plane.z * plane.z
 			);
 	}
+
+	template<typename T>
+	Matrix2x2<T> CreateShearingMatrixX2x2(T s)
+	{
+		return Matrix2x2<T>(1, 0, s, 1);
+	}
+
+	template<typename T>
+	Matrix2x2<T> CreateShearingMatrixY2x2(T s)
+	{
+		return Matrix2x2<T>(1, s, 0, 1);
+	}
+
+	template<typename T>
+	Matrix3x3<T> CreatingShearingMatrixXY3x3(T s, T t)
+	{
+		return Matrix3x3<T>(
+			1, 0, 0
+			0, 1, 0,
+			s, t, 1
+			)
+	}
+
+	template<typename T>
+	Matrix3x3<T> CreatingShearingMatrixXZ3x3(T s, T t)
+	{
+		return Matrix3x3<T>(
+			1, 0, 0
+			s, 1, t,
+			0, 0, 1
+			)
+	}
+
+	template<typename T>
+	Matrix3x3<T> CreatingShearingMatrixYZ3x3(T s, T t)
+	{
+		return Matrix3x3<T>(
+			1, s, t
+			0, 1, 0,
+			0, 0, 1
+			)
+	}
 }
