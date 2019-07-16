@@ -538,8 +538,12 @@ namespace TinyMathLib
 	}
 
 	template<typename T>
-	Matrix2x2<T> CreateReflectionMatrix2x2()
+	Matrix2x2<T> CreateReflectionMatrix2x2(TinyMathLib::Vector2D<T> axis)
 	{
+		return Matrix2x2<T>(
+			1 - 2 * axis.x * axis.x, -2 * axis.x * axis.y,
+			-2 * axis.x * axis.y, 1 - 2 * axis.y * axis.y
+			);
 	}
 
 	template<typename T>
