@@ -12,3 +12,4 @@ Problems to address:
  - One Declaration Rule problems
  - there is only one way to mulitply (a.k.a A * B exist, but B * A doesn't)
  - do I really need to inline everything?
+ - is the "tolerance" problem really a problem? Or should values be literally equal?
