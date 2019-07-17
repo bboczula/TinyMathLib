@@ -384,31 +384,31 @@ namespace TinyMathLib
 	}
 
 	template<typename T>
-	Vector3D<T> MakeZeroVector3D()
+	Vector3D<T> CreateZeroVector3D()
 	{
 		return Vector3D<T>(0, 0, 0);
 	}
 
 	template<typename T>
-	Vector2D<T> MakeZeroVector2D()
+	Vector2D<T> CreateZeroVector2D()
 	{
 		return Vector2D<T>(0, 0, 0);
 	}
 
 	template<typename T>
-	Matrix2x2<T> MakeIdentityMatrix2x2()
+	Matrix2x2<T> CreateIdentityMatrix2x2()
 	{
 		return Matrix2x2<T>(1.0f, 0.0f, 0.0f, 1.0f);
 	}
 
 	template<typename T>
-	Matrix3x3<T> MakeIdentityMatrix3x3()
+	Matrix3x3<T> CreateIdentityMatrix3x3()
 	{
 		return Matrix3x3<T>(1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f);
 	}
 
 	template<typename T>
-	Matrix4x4<T> MakeIdentityMatrix4x4()
+	Matrix4x4<T> CreateIdentityMatrix4x4()
 	{
 		return Matrix4x4<T>(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
 	}

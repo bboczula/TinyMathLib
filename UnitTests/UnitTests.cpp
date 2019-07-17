@@ -316,7 +316,7 @@ namespace UnitTests
 		TEST_METHOD(TestMatrixMultiplicationByIdentity1)
 		{
 			TinyMathLib::Matrix2x2<float> M1(-3.0f, 0.0f, 5.0f, 0.5f);
-			TinyMathLib::Matrix2x2<float> M2 = TinyMathLib::MakeIdentityMatrix2x2<float>();
+			TinyMathLib::Matrix2x2<float> M2 = TinyMathLib::CreateIdentityMatrix2x2<float>();
 			TinyMathLib::Matrix2x2<float> M3 = M1 * M2;
 
 			Assert::AreEqual(M3.m11, M1.m11);
@@ -514,7 +514,7 @@ namespace UnitTests
 		TEST_METHOD(TestMatrixMultiplicationByIndentity1)
 		{
 			TinyMathLib::Matrix3x3<float> M1(0.25f, 0.5f, 0.75f, -1.0f, -2.0f, -3.0f, 1.0f, 1.0f, 1.0f);
-			TinyMathLib::Matrix3x3<float> M2 = TinyMathLib::MakeIdentityMatrix3x3<float>();
+			TinyMathLib::Matrix3x3<float> M2 = TinyMathLib::CreateIdentityMatrix3x3<float>();
 			TinyMathLib::Matrix3x3<float> M3 = M1 * M2;
 
 			Assert::AreEqual(M3.m11, M1.m11);
@@ -943,7 +943,7 @@ namespace UnitTests
 		TEST_METHOD(TestMatrixMultiplicationByIdentity1)
 		{
 			TinyMathLib::Matrix4x4<float> M1(1.25f, 2.25f, 3.35f, 4.25f, 0.1f, 0.2f, 0.3f, 0.4f, 1.0f, 2.0f, 3.0f, 4.0f, -1.0f, -2.0f, -3.0f, -4.0f);
-			TinyMathLib::Matrix4x4<float> M2 = TinyMathLib::MakeIdentityMatrix4x4<float>();
+			TinyMathLib::Matrix4x4<float> M2 = TinyMathLib::CreateIdentityMatrix4x4<float>();
 			TinyMathLib::Matrix4x4<float> M3 = M1 * M2;
 
 			Assert::AreEqual(M3.m11, M1.m11);
