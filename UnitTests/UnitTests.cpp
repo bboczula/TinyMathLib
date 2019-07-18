@@ -625,6 +625,59 @@ namespace UnitTests
 			Assert::AreEqual(0.0f, M1.m32, TOLERANCE);
 			Assert::AreEqual(0.866f, M1.m33, TOLERANCE);
 		}
+		TEST_METHOD(TestCreateRotationMatrixAxis1)
+		{
+			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateRotationMatrix3x3<float>(TinyMathLib::convertToRadians(-15.0f), TinyMathLib::Vector3D<float>(0.267f, -0.535, 0.802));
+
+			const float TOLERANCE = 0.001f;
+			Assert::AreEqual(0.968f, M1.m11, TOLERANCE);
+			Assert::AreEqual(-0.212f, M1.m12, TOLERANCE);
+			Assert::AreEqual(-0.131f, M1.m13, TOLERANCE);
+			Assert::AreEqual(0.203f, M1.m21, TOLERANCE);
+			Assert::AreEqual(0.976f, M1.m22, TOLERANCE);
+			Assert::AreEqual(-0.084f, M1.m23, TOLERANCE);
+			Assert::AreEqual(0.146f, M1.m31, TOLERANCE);
+			Assert::AreEqual(0.054f, M1.m32, TOLERANCE);
+			Assert::AreEqual(0.988f, M1.m33, TOLERANCE);
+		}
+		TEST_METHOD(TestRotationMatrixMultiplication1)
+		{
+			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateRotationMatrix3x3AxisY<float>(TinyMathLib::convertToRadians(30.0f));
+			TinyMathLib::Matrix3x3<float> M2 = TinyMathLib::CreateRotationMatrixAxisX<float>(TinyMathLib::convertToRadians(-22.0f));
+			TinyMathLib::Matrix3x3<float> M3 = M1 * M2;
+
+			const float TOLERANCE = 0.001f;
+			Assert::AreEqual(0.866f, M3.m11, TOLERANCE);
+			Assert::AreEqual(-0.187f, M3.m12, TOLERANCE);
+			Assert::AreEqual(-0.464f, M3.m13, TOLERANCE);
+
+			Assert::AreEqual(0.000f, M3.m21, TOLERANCE);
+			Assert::AreEqual(0.927f, M3.m22, TOLERANCE);
+			Assert::AreEqual(-0.375f, M3.m23, TOLERANCE);
+
+			Assert::AreEqual(0.500f, M3.m31, TOLERANCE);
+			Assert::AreEqual(0.324f, M3.m32, TOLERANCE);
+			Assert::AreEqual(0.803f, M3.m33, TOLERANCE);
+		}
+		TEST_METHOD(TestRoatationMatrixMultiplication2)
+		{
+			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateRotationMatrix3x3AxisY<float>(TinyMathLib::convertToRadians(-30.0f));
+			TinyMathLib::Matrix3x3<float> M2 = TinyMathLib::CreateRotationMatrixAxisX<float>(TinyMathLib::convertToRadians(22.0f));
+			TinyMathLib::Matrix3x3<float> M3 = M2 * M1;
+
+			const float TOLERANCE = 0.001f;
+			Assert::AreEqual(0.866f, M3.m11, TOLERANCE);
+			Assert::AreEqual(0.000f, M3.m12, TOLERANCE);
+			Assert::AreEqual(0.500f, M3.m13, TOLERANCE);
+
+			Assert::AreEqual(-0.187f, M3.m21, TOLERANCE);
+			Assert::AreEqual(0.927f, M3.m22, TOLERANCE);
+			Assert::AreEqual(0.324f, M3.m23, TOLERANCE);
+
+			Assert::AreEqual(-0.464f, M3.m31, TOLERANCE);
+			Assert::AreEqual(-0.375f, M3.m32, TOLERANCE);
+			Assert::AreEqual(0.803f, M3.m33, TOLERANCE);
+		}
 		TEST_METHOD(TestMatrixRotationEquasion1)
 		{
 			TinyMathLib::Vector3D<float> V1(1.0f, 1.0f, 0.0f);
@@ -700,6 +753,35 @@ namespace UnitTests
 			Assert::AreEqual(2.0f, V.y);
 			Assert::AreEqual(1.5f, V.z);
 		}
+		TEST_METHOD(TestMatrixScaling2)
+		{
+			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateScaleMatrix3x3<float>(2.0f, 2.0f, 2.0f);
+
+			Assert::AreEqual(2.0f, M1.m11);
+			Assert::AreEqual(0.0f, M1.m12);
+			Assert::AreEqual(0.0f, M1.m13);
+			Assert::AreEqual(0.0f, M1.m21);
+			Assert::AreEqual(2.0f, M1.m22);
+			Assert::AreEqual(0.0f, M1.m23);
+			Assert::AreEqual(0.0f, M1.m31);
+			Assert::AreEqual(0.0f, M1.m32);
+			Assert::AreEqual(2.0f, M1.m33);
+		}
+		TEST_METHOD(TestMatrixScaling3)
+		{
+			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateScaleMatrix3x3<float>(5.0f, TinyMathLib::Vector3D<float>(0.267f, -0.535, 0.802));
+
+			const float TOLERANCE = 0.001f;
+			Assert::AreEqual(1.285f, M1.m11, TOLERANCE);
+			Assert::AreEqual(-0.571f, M1.m12, TOLERANCE);
+			Assert::AreEqual(0.857f, M1.m13, TOLERANCE);
+			Assert::AreEqual(-0.571f, M1.m21, TOLERANCE);
+			Assert::AreEqual(2.145f, M1.m22, TOLERANCE);
+			Assert::AreEqual(-1.716f, M1.m23, TOLERANCE);
+			Assert::AreEqual(0.857f, M1.m31, TOLERANCE);
+			Assert::AreEqual(-1.716f, M1.m32, TOLERANCE);
+			Assert::AreEqual(3.573f, M1.m33, TOLERANCE);
+		}
 		TEST_METHOD(TestMatrixScalingPairity1)
 		{
 			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateScaleMatrix3x3<float>(2.0f, 1.0f, 1.0f);
@@ -751,6 +833,21 @@ namespace UnitTests
 			Assert::AreEqual(M1.m32, M2.m32);
 			Assert::AreEqual(M1.m33, M2.m33);
 		}
+		TEST_METHOD(TestOrtographicProjectionMatrix1)
+		{
+			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateOrtographicProjectionMatrix3x3<float>(TinyMathLib::Vector3D<float>(0.267, -0.535, 0.802));
+
+			const float TOLERANCE = 0.001f;
+			Assert::AreEqual(0.929f, M1.m11, TOLERANCE);
+			Assert::AreEqual(0.143f, M1.m12, TOLERANCE);
+			Assert::AreEqual(-0.214f, M1.m13, TOLERANCE);
+			Assert::AreEqual(0.143f, M1.m21, TOLERANCE);
+			Assert::AreEqual(0.714f, M1.m22, TOLERANCE);
+			Assert::AreEqual(0.429f, M1.m23, TOLERANCE);
+			Assert::AreEqual(-0.214f, M1.m31, TOLERANCE);
+			Assert::AreEqual(0.429f, M1.m32, TOLERANCE);
+			Assert::AreEqual(0.356f, M1.m33, TOLERANCE);
+		}
 		TEST_METHOD(TestOrtographicProjectionParity1)
 		{
 			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateOrtographicProjectionMatrixXY3x3<float>();
@@ -786,15 +883,31 @@ namespace UnitTests
 			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateOrtographicProjectionMatrixYZ3x3<float>();
 			TinyMathLib::Matrix3x3<float> M2 = TinyMathLib::CreateOrtographicProjectionMatrix3x3<float>(TinyMathLib::Vector3D<float>(1.0f, 0.0f, 0.0f));
 
-			Assert::AreEqual(M1.m11, M2.m11);
-			Assert::AreEqual(M1.m12, M2.m12);
-			Assert::AreEqual(M1.m13, M2.m13);
-			Assert::AreEqual(M1.m21, M2.m21);
-			Assert::AreEqual(M1.m22, M2.m22);
-			Assert::AreEqual(M1.m23, M2.m23);
-			Assert::AreEqual(M1.m31, M2.m31);
-			Assert::AreEqual(M1.m32, M2.m32);
-			Assert::AreEqual(M1.m33, M2.m33);
+			const float TOLERANCE = 0.001f;
+			Assert::AreEqual(M1.m11, M2.m11, TOLERANCE);
+			Assert::AreEqual(M1.m12, M2.m12, TOLERANCE);
+			Assert::AreEqual(M1.m13, M2.m13, TOLERANCE);
+			Assert::AreEqual(M1.m21, M2.m21, TOLERANCE);
+			Assert::AreEqual(M1.m22, M2.m22, TOLERANCE);
+			Assert::AreEqual(M1.m23, M2.m23, TOLERANCE);
+			Assert::AreEqual(M1.m31, M2.m31, TOLERANCE);
+			Assert::AreEqual(M1.m32, M2.m32, TOLERANCE);
+			Assert::AreEqual(M1.m33, M2.m33, TOLERANCE);
+		}
+		TEST_METHOD(TestReflectionMatrix1)
+		{
+			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateReflectionMatrix3x3(TinyMathLib::Vector3D<float>(0.267f, -0.535f, 0.802));
+
+			const float TOLERANCE = 0.001f;
+			Assert::AreEqual(0.857f, M1.m11, TOLERANCE);
+			Assert::AreEqual(0.286f, M1.m12, TOLERANCE);
+			Assert::AreEqual(-0.428f, M1.m13, TOLERANCE);
+			Assert::AreEqual(0.286f, M1.m21, TOLERANCE);
+			Assert::AreEqual(0.428f, M1.m22, TOLERANCE);
+			Assert::AreEqual(0.858f, M1.m23, TOLERANCE);
+			Assert::AreEqual(-0.428f, M1.m31, TOLERANCE);
+			Assert::AreEqual(0.858f, M1.m32, TOLERANCE);
+			Assert::AreEqual(-0.286f, M1.m33, TOLERANCE);
 		}
 		TEST_METHOD(TestReflectionParity1)
 		{
