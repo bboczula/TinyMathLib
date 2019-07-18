@@ -462,6 +462,20 @@ namespace UnitTests
 			Assert::AreEqual(V4.x, V3.x);
 			Assert::AreEqual(V4.y, V3.y);
 		}
+		TEST_METHOD(TestDeterminant1)
+		{
+			TinyMathLib::Matrix2x2<float> M1(2.0f, 1.0f, -1.0f, 2.0f);
+			float S1 = M1.determinant();
+
+			Assert::AreEqual(5.0f, S1);
+		}
+		TEST_METHOD(TestDeterminant2)
+		{
+			TinyMathLib::Matrix2x2<float> M1(-3.0f, 4.0f, 2.0f, 5.0f);
+			float S1 = M1.determinant();
+
+			Assert::AreEqual(-23.0f, S1);
+		}
 	};
 
 	TEST_CLASS(GeneralMatrix3x3DTesting)
@@ -1015,6 +1029,13 @@ namespace UnitTests
 			Assert::AreEqual(V4.x, V3.x);
 			Assert::AreEqual(V4.y, V3.y);
 			Assert::AreEqual(V4.z, V3.z);
+		}
+		TEST_METHOD(TestDeterminant1)
+		{
+			TinyMathLib::Matrix3x3<float> M1(-4.0f, -3.0f, 3.0f, 0.0f, 2.0f, -2.0f, 1.0f, 4.0f, -1.0f);
+			float S1 = M1.determinant();
+
+			Assert::AreEqual(-24.0f, S1);
 		}
 	};
 

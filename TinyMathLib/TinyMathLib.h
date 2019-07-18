@@ -59,6 +59,10 @@ namespace TinyMathLib
 		{
 			return Matrix2x2((m11 * matrix.m11 + m12 * matrix.m21), (m11 * matrix.m12 + m12 * matrix.m22), (m21 * matrix.m11 + m22 * matrix.m21), (m21 * matrix.m12 + m22 * matrix.m22));
 		}
+		T determinant()
+		{
+			return (m11 * m22) - (m12 * m21);
+		}
 	public:
 		T m11, m12, m21, m22;
 	};
@@ -98,6 +102,10 @@ namespace TinyMathLib
 				(m31 * matrix.m12 + m32 * matrix.m22 + m33 * matrix.m32),
 				(m31 * matrix.m13 + m32 * matrix.m23 + m33 * matrix.m33)
 			);
+		}
+		T determinant()
+		{
+			return m11 * (m22 * m33 - m23 * m32) + m12 * (m23 * m31 - m21 * m33) + m13 * (m21 * m32 - m22 * m31);
 		}
 	public:
 		T m11, m12, m13, m21, m22, m23, m31, m32, m33;
