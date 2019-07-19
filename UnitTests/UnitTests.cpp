@@ -186,15 +186,35 @@ namespace UnitTests
 			Assert::AreEqual(result.x, 102.0f);
 			Assert::AreEqual(result.y, 93.0f);
 		}
-		TEST_METHOD(TestVectorAddition2)
+		TEST_METHOD(TestVectorAdditionCommutative1)
 		{
-			TinyMathLib::Vector2D<float> vectorA(100.0f, 90.0f);
-			TinyMathLib::Vector2D<float> vectorB(2.0f, 3.0f);
-			TinyMathLib::Vector2D<float> resultA = vectorA + vectorB;
-			TinyMathLib::Vector2D<float> resultB = vectorA + vectorB;
+			TinyMathLib::Vector2D<float> V1(100.0f, 90.0f);
+			TinyMathLib::Vector2D<float> V2(2.0f, 3.0f);
+			TinyMathLib::Vector2D<float> V3 = V1 + V2;
+			TinyMathLib::Vector2D<float> V4 = V2 + V1;
 
-			Assert::AreEqual(resultA.x, resultB.x);
-			Assert::AreEqual(resultA.y, resultB.y);
+			Assert::AreEqual(V4.x, V3.x);
+			Assert::AreEqual(V4.y, V3.y);
+		}
+		TEST_METHOD(TestVectorAdditionAssociative1)
+		{
+			TinyMathLib::Vector2D<float> V1(100.0f, 90.0f);
+			TinyMathLib::Vector2D<float> V2(2.0f, 3.0f);
+			TinyMathLib::Vector2D<float> V3(1.23f, 3.45f);
+			TinyMathLib::Vector2D<float> V4 = (V1 + V2) + V3;
+			TinyMathLib::Vector2D<float> V5 = V1 + (V2 + V3);
+
+			Assert::AreEqual(V5.x, V4.x);
+			Assert::AreEqual(V5.y, V4.y);
+		}
+		TEST_METHOD(TestVectorAdditionZero1)
+		{
+			TinyMathLib::Vector2D<float> V1(100.0f, 90.0f);
+			TinyMathLib::Vector2D<float> V2 = TinyMathLib::CreateZeroVector2D<float>();
+			TinyMathLib::Vector2D<float> V3 = V1 + V2;
+
+			Assert::AreEqual(V3.x, V1.x);
+			Assert::AreEqual(V3.y, V1.y);
 		}
 		TEST_METHOD(TestVectorSubstraction1)
 		{
@@ -205,10 +225,60 @@ namespace UnitTests
 			Assert::AreEqual(result.x, 98.0f);
 			Assert::AreEqual(result.y, 87.0f);
 		}
+		TEST_METHOD(TestVectorSelfSubstraction1)
+		{
+			TinyMathLib::Vector2D<float> V1(100.0f, 90.0f);
+			TinyMathLib::Vector2D<float> V2 = V1 - V1;
+
+			Assert::AreEqual(0.0f, V2.x);
+			Assert::AreEqual(0.0f, V2.y);
+		}
 	};
 
 	TEST_CLASS(GeneralVector3DTesting)
 	{
+		TEST_METHOD(TestVectorAdditionCommutative1)
+		{
+			TinyMathLib::Vector3D<float> V1(100.0f, 90.0f, 80.0f);
+			TinyMathLib::Vector3D<float> V2(2.0f, 3.0f, 4.0f);
+			TinyMathLib::Vector3D<float> V3 = V1 + V2;
+			TinyMathLib::Vector3D<float> V4 = V2 + V1;
+
+			Assert::AreEqual(V4.x, V3.x);
+			Assert::AreEqual(V4.y, V3.y);
+			Assert::AreEqual(V4.z, V3.z);
+		}
+		TEST_METHOD(TestVectorAdditionAssociative1)
+		{
+			TinyMathLib::Vector3D<float> V1(100.0f, 90.0f, 80.0f);
+			TinyMathLib::Vector3D<float> V2(2.0f, 3.0f, 4.0f);
+			TinyMathLib::Vector3D<float> V3(1.23f, 3.45f, 6.78f);
+			TinyMathLib::Vector3D<float> V4 = (V1 + V2) + V3;
+			TinyMathLib::Vector3D<float> V5 = V1 + (V2 + V3);
+
+			Assert::AreEqual(V5.x, V4.x);
+			Assert::AreEqual(V5.y, V4.y);
+			Assert::AreEqual(V5.z, V4.z);
+		}
+		TEST_METHOD(TestVectorAdditionZero1)
+		{
+			TinyMathLib::Vector3D<float> V1(100.0f, 90.0f, 7.98f);
+			TinyMathLib::Vector3D<float> V2 = TinyMathLib::CreateZeroVector3D<float>();
+			TinyMathLib::Vector3D<float> V3 = V1 + V2;
+
+			Assert::AreEqual(V3.x, V1.x);
+			Assert::AreEqual(V3.y, V1.y);
+			Assert::AreEqual(V3.z, V1.z);
+		}
+		TEST_METHOD(TestVectorSelfSubstraction1)
+		{
+			TinyMathLib::Vector3D<float> V1(100.0f, 90.0f, -0.123f);
+			TinyMathLib::Vector3D<float> V2 = V1 - V1;
+
+			Assert::AreEqual(0.0f, V2.x);
+			Assert::AreEqual(0.0f, V2.y);
+			Assert::AreEqual(0.0f, V2.z);
+		}
 		TEST_METHOD(TestVectorMultiplicationByMatrix1)
 		{
 			TinyMathLib::Vector3D<float> V1(2.0f, 3.0f, 1.5f);
@@ -475,6 +545,64 @@ namespace UnitTests
 			float S1 = M1.determinant();
 
 			Assert::AreEqual(-23.0f, S1);
+		}
+		TEST_METHOD(TestDeterminant3)
+		{
+			// The determinant of an identity matrix of any dimension is 1
+			TinyMathLib::Matrix2x2<float> M1 = TinyMathLib::CreateIdentityMatrix2x2<float>();
+			float S1 = M1.determinant();
+
+			Assert::AreEqual(1.0f, S1);
+		}
+		TEST_METHOD(TestDeterminant4)
+		{
+			// The determinant of a matrix product is equal to the product of the determinants.
+			TinyMathLib::Matrix2x2<float> M1(1.0f, 2.0f, 3.0f, 4.0f);
+			TinyMathLib::Matrix2x2<float> M2(99.0f, 98.0f, 97.0f, 96.0f);
+			TinyMathLib::Matrix2x2<float> M3 = M1 * M2;
+			float S1 = M3.determinant();
+			float S2 = M1.determinant() * M2.determinant();
+
+			Assert::AreEqual(S1, S2);
+		}
+		TEST_METHOD(TestDeterminant5)
+		{
+			// The determinant of the transpose of a matrix is equal to the original determinant.
+			TinyMathLib::Matrix2x2<float> M1(1.23f, 2.34f, 3.45f, 4.56f);
+			TinyMathLib::Matrix2x2<float> M2 = M1.transpose();
+			float S1 = M1.determinant();
+			float S2 = M2.determinant();
+
+			Assert::AreEqual(S1, S2);
+		}
+		TEST_METHOD(TestDeterminant6)
+		{
+			// If any row or column in a matrix contains all 0s, then the determinant of that matrix is 0
+			TinyMathLib::Matrix2x2<float> M1(0.0f, 0.0f, 3.14f, 6.28f);
+			float S1 = M1.determinant();
+
+			Assert::AreEqual(0.0f, S1);
+		}
+		TEST_METHOD(TestDeterminant7)
+		{
+			// Exchanging any pair of rows negates the determinant
+			TinyMathLib::Matrix2x2<float> M1(1.23f, 4.56f, 98.7f, 65.4f);
+			TinyMathLib::Matrix2x2<float> M2(98.7f, 65.4f, 1.23f, 4.56f);
+			float S1 = M1.determinant();
+			float S2 = M2.determinant();
+
+			Assert::AreEqual(-S1, S2);
+		}
+		TEST_METHOD(TestDeterminant8)
+		{
+			// Adding any multiple of a row (column) to another row (column) does not change the value of the determinant
+			TinyMathLib::Matrix2x2<float> M1(1.23f, 4.56f, 7.89f, -3.14f);
+			TinyMathLib::Matrix2x2<float> M2(2.0f * M1.m21 + M1.m11, 2.0f * M1.m22 + M1.m12, M1.m21, M1.m22);
+			float S1 = M1.determinant();
+			float S2 = M2.determinant();
+			
+			const float TOLERANCE = 0.001f;
+			Assert::AreEqual(S1, S2, TOLERANCE);
 		}
 	};
 
@@ -1036,6 +1164,66 @@ namespace UnitTests
 			float S1 = M1.determinant();
 
 			Assert::AreEqual(-24.0f, S1);
+		}
+		TEST_METHOD(TestDeterminant3)
+		{
+			// The determinant of an identity matrix of any dimension is 1
+			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateIdentityMatrix3x3<float>();
+			float S1 = M1.determinant();
+
+			Assert::AreEqual(1.0f, S1);
+		}
+		TEST_METHOD(TestDeterminant4)
+		{
+			// The determinant of a matrix product is equal to the product of the determinants.
+			TinyMathLib::Matrix3x3<float> M1(1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f);
+			TinyMathLib::Matrix3x3<float> M2(99.0f, 98.0f, 97.0f, 96.0f, 95.0f, 94.0f, 93.0f, 92.0f, 91.0f);
+			TinyMathLib::Matrix3x3<float> M3 = M1 * M2;
+			float S1 = M3.determinant();
+			float S2 = M1.determinant() * M2.determinant();
+
+			Assert::AreEqual(S1, S2);
+		}
+		TEST_METHOD(TestDeterminant5)
+		{
+			// The determinant of the transpose of a matrix is equal to the original determinant.
+			TinyMathLib::Matrix3x3<float> M1(1.23f, 2.34f, 3.45f, 4.56f, 5.67f, 6.78f, 7.89f, 8.90f, 9.01f);
+			TinyMathLib::Matrix3x3<float> M2 = M1.transpose();
+			float S1 = M1.determinant();
+			float S2 = M2.determinant();
+
+			const float TOLERANCE = 0.001f;
+			Assert::AreEqual(S1, S2, TOLERANCE);
+		}
+		TEST_METHOD(TestDeterminant6)
+		{
+			// If any row or column in a matrix contains all 0s, then the determinant of that matrix is 0
+			TinyMathLib::Matrix3x3<float> M1(0.0f, 0.0f, 0.0f, 3.14f, 6.28f, 1.0f, 2.0f, 3.0f, 4.0f);
+			float S1 = M1.determinant();
+
+			Assert::AreEqual(0.0f, S1);
+		}
+		TEST_METHOD(TestDeterminant7)
+		{
+			// Exchanging any pair of rows negates the determinant
+			TinyMathLib::Matrix3x3<float> M1(1.23f, 4.56f, 7.89f, 98.7f, 65.4f, 32.1f, 1.0f, 2.0f, 3.0f);
+			TinyMathLib::Matrix3x3<float> M2(M1.m21, M1.m22, M1.m23, M1.m11, M1.m12, M1.m13, M1.m31, M1.m32, M1.m33);
+			float S1 = M1.determinant();
+			float S2 = M2.determinant();
+
+			const float TOLERANCE = 0.001f;
+			Assert::AreEqual(-S1, S2, TOLERANCE);
+		}
+		TEST_METHOD(TestDeterminant8)
+		{
+			// Adding any multiple of a row (column) to another row (column) does not change the value of the determinant
+			TinyMathLib::Matrix3x3<float> M1(1.23f, 4.56f, 7.89f, 98.7f, 65.4f, 32.1f, 1.0f, 2.0f, 3.0f);
+			TinyMathLib::Matrix3x3<float> M2(M1.m31 + M1.m11, M1.m32 + M1.m12, M1.m33 + M1.m13, M1.m21, M1.m22, M1.m23, M1.m31, M1.m32, M1.m33);
+			float S1 = M1.determinant();
+			float S2 = M2.determinant();
+
+			const float TOLERANCE = 0.001f;
+			Assert::AreEqual(S1, S2, TOLERANCE);
 		}
 	};
 

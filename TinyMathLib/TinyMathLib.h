@@ -400,7 +400,7 @@ namespace TinyMathLib
 	template<typename T>
 	Vector2D<T> CreateZeroVector2D()
 	{
-		return Vector2D<T>(0, 0, 0);
+		return Vector2D<T>(0, 0);
 	}
 
 	template<typename T>
