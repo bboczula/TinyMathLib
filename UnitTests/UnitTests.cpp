@@ -1225,6 +1225,85 @@ namespace UnitTests
 			const float TOLERANCE = 0.001f;
 			Assert::AreEqual(S1, S2, TOLERANCE);
 		}
+		TEST_METHOD(TestMinor1)
+		{
+			TinyMathLib::Matrix3x3<float> M1(-4.0f, -3.0f, 3.0f, 0.0f, 2.0f, -2.0f, 1.0f, 4.0f, -1.0f);
+			float S1 = M1.minor(1, 2);
+
+			Assert::AreEqual(2.0f, S1);
+		}
+		TEST_METHOD(TestMinor2)
+		{
+			TinyMathLib::Matrix3x3<float> M1(-4.0f, -3.0f, 3.0f, 0.0f, 2.0f, -2.0f, 1.0f, 4.0f, -1.0f);
+			TinyMathLib::Matrix2x2<float> M2(M1.m22, M1.m23, M1.m32, M1.m33);
+			float S1 = M1.minor(1, 1);
+			float S2 = M2.determinant();
+
+			Assert::AreEqual(S2, S1);
+		}
+		TEST_METHOD(TestMinor3)
+		{
+			TinyMathLib::Matrix3x3<float> M1(-4.0f, -3.0f, 3.0f, 0.0f, 2.0f, -2.0f, 1.0f, 4.0f, -1.0f);
+			TinyMathLib::Matrix2x2<float> M2(M1.m21, M1.m22, M1.m31, M1.m32);
+			float S1 = M1.minor(1, 3);
+			float S2 = M2.determinant();
+
+			Assert::AreEqual(S2, S1);
+		}
+		TEST_METHOD(TestMinor4)
+		{
+			TinyMathLib::Matrix3x3<float> M1(-4.0f, -3.0f, 3.0f, 0.0f, 2.0f, -2.0f, 1.0f, 4.0f, -1.0f);
+			TinyMathLib::Matrix2x2<float> M2(M1.m12, M1.m13, M1.m32, M1.m33);
+			float S1 = M1.minor(2, 1);
+			float S2 = M2.determinant();
+
+			Assert::AreEqual(S2, S1);
+		}
+		TEST_METHOD(TestMinor5)
+		{
+			TinyMathLib::Matrix3x3<float> M1(-4.0f, -3.0f, 3.0f, 0.0f, 2.0f, -2.0f, 1.0f, 4.0f, -1.0f);
+			TinyMathLib::Matrix2x2<float> M2(M1.m11, M1.m13, M1.m31, M1.m33);
+			float S1 = M1.minor(2, 2);
+			float S2 = M2.determinant();
+
+			Assert::AreEqual(S2, S1);
+		}
+		TEST_METHOD(TestMinor6)
+		{
+			TinyMathLib::Matrix3x3<float> M1(-4.0f, -3.0f, 3.0f, 0.0f, 2.0f, -2.0f, 1.0f, 4.0f, -1.0f);
+			TinyMathLib::Matrix2x2<float> M2(M1.m11, M1.m12, M1.m31, M1.m32);
+			float S1 = M1.minor(2, 3);
+			float S2 = M2.determinant();
+
+			Assert::AreEqual(S2, S1);
+		}
+		TEST_METHOD(TestMinor7)
+		{
+			TinyMathLib::Matrix3x3<float> M1(-4.0f, -3.0f, 3.0f, 0.0f, 2.0f, -2.0f, 1.0f, 4.0f, -1.0f);
+			TinyMathLib::Matrix2x2<float> M2(M1.m12, M1.m13, M1.m22, M1.m23);
+			float S1 = M1.minor(3, 1);
+			float S2 = M2.determinant();
+
+			Assert::AreEqual(S2, S1);
+		}
+		TEST_METHOD(TestMinor8)
+		{
+			TinyMathLib::Matrix3x3<float> M1(-4.0f, -3.0f, 3.0f, 0.0f, 2.0f, -2.0f, 1.0f, 4.0f, -1.0f);
+			TinyMathLib::Matrix2x2<float> M2(M1.m11, M1.m13, M1.m21, M1.m23);
+			float S1 = M1.minor(3, 2);
+			float S2 = M2.determinant();
+
+			Assert::AreEqual(S2, S1);
+		}
+		TEST_METHOD(TestMinor9)
+		{
+			TinyMathLib::Matrix3x3<float> M1(-4.0f, -3.0f, 3.0f, 0.0f, 2.0f, -2.0f, 1.0f, 4.0f, -1.0f);
+			TinyMathLib::Matrix2x2<float> M2(M1.m11, M1.m12, M1.m21, M1.m22);
+			float S1 = M1.minor(3, 3);
+			float S2 = M2.determinant();
+
+			Assert::AreEqual(S2, S1);
+		}
 	};
 
 	TEST_CLASS(GeneralMatrix4x4DTesting)

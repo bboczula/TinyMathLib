@@ -107,6 +107,72 @@ namespace TinyMathLib
 		{
 			return m11 * (m22 * m33 - m23 * m32) + m12 * (m23 * m31 - m21 * m33) + m13 * (m21 * m32 - m22 * m31);
 		}
+		T minor(unsigned rowIndex, unsigned columnIndex)
+		{
+			TinyMathLib::Matrix2x2<T> subMatrix;
+			if (rowIndex == 1)
+			{
+				if (columnIndex == 1)
+				{
+					subMatrix = TinyMathLib::Matrix2x2<T>(m22, m23, m32, m33);
+				}
+				else if (columnIndex == 2)
+				{
+					subMatrix = TinyMathLib::Matrix2x2<T>(m21, m23, m31, m33);
+				}
+				else if(columnIndex == 3)
+				{
+					subMatrix = TinyMathLib::Matrix2x2<T>(m21, m22, m31, m32);
+				}
+				else
+				{
+					// Handle error
+				}
+			}
+			else if (rowIndex == 2)
+			{
+				if (columnIndex == 1)
+				{
+					subMatrix = TinyMathLib::Matrix2x2<T>(m12, m13, m32, m33);
+				}
+				else if (columnIndex == 2)
+				{
+					subMatrix = TinyMathLib::Matrix2x2<T>(m11, m13, m31, m33);
+				}
+				else if (columnIndex == 3)
+				{
+					subMatrix = TinyMathLib::Matrix2x2<T>(m11, m12, m31, m32);
+				}
+				else
+				{
+					// Handle error
+				}
+			}
+			else if (rowIndex == 3)
+			{
+				if (columnIndex == 1)
+				{
+					subMatrix = TinyMathLib::Matrix2x2<T>(m12, m13, m22, m23);
+				}
+				else if (columnIndex == 2)
+				{
+					subMatrix = TinyMathLib::Matrix2x2<T>(m11, m13, m21, m23);
+				}
+				else if (columnIndex == 3)
+				{
+					subMatrix = TinyMathLib::Matrix2x2<T>(m11, m12, m21, m22);
+				}
+				else
+				{
+					// Handle error
+				}
+			}
+			else
+			{
+				// Handle error
+			}
+			return subMatrix.determinant();
+		}
 	public:
 		T m11, m12, m13, m21, m22, m23, m31, m32, m33;
 	};
