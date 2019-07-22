@@ -103,6 +103,10 @@ namespace TinyMathLib
 				(m31 * matrix.m13 + m32 * matrix.m23 + m33 * matrix.m33)
 			);
 		}
+		Matrix3x3<T> operator/(T scalar)
+		{
+			return Matrix3x3(m11 / scalar, m12 / scalar, m13 / scalar, m21 / scalar, m22 / scalar, m23 / scalar, m31 / scalar, m32 / scalar, m33 / scalar);
+		}
 		T determinant()
 		{
 			return m11 * (m22 * m33 - m23 * m32) + m12 * (m23 * m31 - m21 * m33) + m13 * (m21 * m32 - m22 * m31);
@@ -176,6 +180,25 @@ namespace TinyMathLib
 		T cofactor(unsigned rowIndex, unsigned columnIndex)
 		{
 			return pow(-1, rowIndex + columnIndex) * minor(rowIndex, columnIndex);
+		}
+		Matrix3x3<T> adjoint()
+		{
+			return Matrix3x3<T>(
+				cofactor(1, 1), cofactor(1, 2), cofactor(1, 3),
+				cofactor(2, 1), cofactor(2, 2), cofactor(2, 3),
+				cofactor(3, 1), cofactor(3, 2), cofactor(3, 3)
+				);
+		}
+		Matrix3x3<T> classicalAdjoint()
+		{
+			// This method is based on the classical adjoint
+			Matrix3x3<float> temp = adjoint();
+			return temp.transpose();
+		}
+		Matrix3x3<T> inverse()
+		{
+			Matrix3x3<float> temp = classicalAdjoint();
+			return temp / determinant();
 		}
 	public:
 		T m11, m12, m13, m21, m22, m23, m31, m32, m33;

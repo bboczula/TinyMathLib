@@ -706,6 +706,21 @@ namespace UnitTests
 			Assert::AreEqual(matrixB.m32, 4.0f);
 			Assert::AreEqual(matrixB.m33, 6.0f);
 		}
+		TEST_METHOD(TestMatrixDivisionByScalar1)
+		{
+			TinyMathLib::Matrix3x3<float> M1(10.0f, 12.0f, 23.0f, 14.0f, 8.0f, 6.0f, 27.0f, 8.0f, 9.0f);
+			TinyMathLib::Matrix3x3<float> M2 = M1 / 2.0f;
+
+			Assert::AreEqual(5.0f, M2.m11);
+			Assert::AreEqual(6.0f, M2.m12);
+			Assert::AreEqual(11.5f, M2.m13);
+			Assert::AreEqual(7.0f, M2.m21);
+			Assert::AreEqual(4.0f, M2.m22);
+			Assert::AreEqual(3.0f, M2.m23);
+			Assert::AreEqual(13.5f, M2.m31);
+			Assert::AreEqual(4.0f, M2.m32);
+			Assert::AreEqual(4.5f, M2.m33);
+		}
 		TEST_METHOD(TestMatrixMultiplicationByMatrix)
 		{
 			TinyMathLib::Matrix3x3<float> M1(1.0f, -5.0f, 3.0f, 0.0f, -2.0f, 6.0f, 7.0f, 2.0f, -4.0f);
@@ -1384,6 +1399,157 @@ namespace UnitTests
 			float S2 = M1.cofactor(3, 3);
 
 			Assert::AreEqual(S1, S2);
+		}
+		TEST_METHOD(TestAdjoint1)
+		{
+			TinyMathLib::Matrix3x3<float> M1(-4.0f, -3.0f, 3.0f, 0.0f, 2.0f, -2.0f, 1.0f, 4.0f, -1.0f);
+			TinyMathLib::Matrix3x3<float> M2 = M1.adjoint();
+
+			Assert::AreEqual(6.0f, M2.m11);
+			Assert::AreEqual(-2.0f, M2.m12);
+			Assert::AreEqual(-2.0f, M2.m13);
+			Assert::AreEqual(9.0f, M2.m21);
+			Assert::AreEqual(1.0f, M2.m22);
+			Assert::AreEqual(13.0f, M2.m23);
+			Assert::AreEqual(0.0f, M2.m31);
+			Assert::AreEqual(-8.0f, M2.m32);
+			Assert::AreEqual(-8.0f, M2.m33);
+		}
+		TEST_METHOD(TestClassicalAdjoint1)
+		{
+			TinyMathLib::Matrix3x3<float> M1(-4.0f, -3.0f, 3.0f, 0.0f, 2.0f, -2.0f, 1.0f, 4.0f, -1.0f);
+			TinyMathLib::Matrix3x3<float> M2 = M1.classicalAdjoint();
+
+			Assert::AreEqual(6.0f, M2.m11);
+			Assert::AreEqual(9.0f, M2.m12);
+			Assert::AreEqual(0.0f, M2.m13);
+			Assert::AreEqual(-2.0f, M2.m21);
+			Assert::AreEqual(1.0f, M2.m22);
+			Assert::AreEqual(-8.0f, M2.m23);
+			Assert::AreEqual(-2.0f, M2.m31);
+			Assert::AreEqual(13.0f, M2.m32);
+			Assert::AreEqual(-8.0f, M2.m33);
+		}
+		TEST_METHOD(TestInverse1)
+		{
+			TinyMathLib::Matrix3x3<float> M1(-4.0f, -3.0f, 3.0f, 0.0f, 2.0f, -2.0f, 1.0f, 4.0f, -1.0f);
+			TinyMathLib::Matrix3x3<float> M2 = M1.inverse();
+
+			const float TOLERANCE = 0.001f;
+			Assert::AreEqual(-0.25f, M2.m11, TOLERANCE);
+			Assert::AreEqual(-0.375f, M2.m12, TOLERANCE);
+			Assert::AreEqual(0.0f, M2.m13, TOLERANCE);
+			Assert::AreEqual(0.083333f, M2.m21, TOLERANCE);
+			Assert::AreEqual(-0.0416667f, M2.m22, TOLERANCE);
+			Assert::AreEqual(0.33333f, M2.m23, TOLERANCE);
+			Assert::AreEqual(0.083333f, M2.m31, TOLERANCE);
+			Assert::AreEqual(-0.541666f, M2.m32, TOLERANCE);
+			Assert::AreEqual(0.33333f, M2.m33, TOLERANCE);
+		}
+		TEST_METHOD(TestInverse2)
+		{
+			// Multiplication by matrix inversion is identity matrix
+			TinyMathLib::Matrix3x3<float> M1(-4.0f, -3.0f, 3.0f, 0.0f, 2.0f, -2.0f, 1.0f, 4.0f, -1.0f);
+			TinyMathLib::Matrix3x3<float> M2 = M1.inverse();
+			TinyMathLib::Matrix3x3<float> M3 = M1 * M2;
+			TinyMathLib::Matrix3x3<float> M4 = TinyMathLib::CreateIdentityMatrix3x3<float>();
+
+			const float TOLERANCE = 0.001f;
+			Assert::AreEqual(M4.m11, M3.m11, TOLERANCE);
+			Assert::AreEqual(M4.m12, M3.m12, TOLERANCE);
+			Assert::AreEqual(M4.m13, M3.m13, TOLERANCE);
+			Assert::AreEqual(M4.m21, M3.m21, TOLERANCE);
+			Assert::AreEqual(M4.m22, M3.m22, TOLERANCE);
+			Assert::AreEqual(M4.m23, M3.m23, TOLERANCE);
+			Assert::AreEqual(M4.m31, M3.m31, TOLERANCE);
+			Assert::AreEqual(M4.m32, M3.m32, TOLERANCE);
+			Assert::AreEqual(M4.m33, M3.m33, TOLERANCE);
+		}
+		TEST_METHOD(TestInverse3)
+		{
+			// The inverse of the inverse of a matrix is the orginal matrix
+			TinyMathLib::Matrix3x3<float> M1(-4.0f, -3.0f, 3.0f, 0.0f, 2.0f, -2.0f, 1.0f, 4.0f, -1.0f);
+			TinyMathLib::Matrix3x3<float> M2 = M1.inverse();
+			TinyMathLib::Matrix3x3<float> M3 = M2.inverse();
+
+			const float TOLERANCE = 0.001f;
+			Assert::AreEqual(M1.m11, M3.m11, TOLERANCE);
+			Assert::AreEqual(M1.m12, M3.m12, TOLERANCE);
+			Assert::AreEqual(M1.m13, M3.m13, TOLERANCE);
+			Assert::AreEqual(M1.m21, M3.m21, TOLERANCE);
+			Assert::AreEqual(M1.m22, M3.m22, TOLERANCE);
+			Assert::AreEqual(M1.m23, M3.m23, TOLERANCE);
+			Assert::AreEqual(M1.m31, M3.m31, TOLERANCE);
+			Assert::AreEqual(M1.m32, M3.m32, TOLERANCE);
+			Assert::AreEqual(M1.m33, M3.m33, TOLERANCE);
+		}
+		TEST_METHOD(TestInverse4)
+		{
+			// The identity matrix is its own inverse
+			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateIdentityMatrix3x3<float>();
+			TinyMathLib::Matrix3x3<float> M2 = M1.inverse();
+
+			const float TOLERANCE = 0.001f;
+			Assert::AreEqual(M1.m11, M2.m11, TOLERANCE);
+			Assert::AreEqual(M1.m12, M2.m12, TOLERANCE);
+			Assert::AreEqual(M1.m13, M2.m13, TOLERANCE);
+			Assert::AreEqual(M1.m21, M2.m21, TOLERANCE);
+			Assert::AreEqual(M1.m22, M2.m22, TOLERANCE);
+			Assert::AreEqual(M1.m23, M2.m23, TOLERANCE);
+			Assert::AreEqual(M1.m31, M2.m31, TOLERANCE);
+			Assert::AreEqual(M1.m32, M2.m32, TOLERANCE);
+			Assert::AreEqual(M1.m33, M2.m33, TOLERANCE);
+		}
+		TEST_METHOD(TestInverse5)
+		{
+			// The inverse fo the transpose of a matrix is the transpose of the inverse of the matrix
+			TinyMathLib::Matrix3x3<float> M1(-4.0f, -3.0f, 3.0f, 0.0f, 2.0f, -2.0f, 1.0f, 4.0f, -1.0f);
+			TinyMathLib::Matrix3x3<float> M2 = M1.transpose();
+			TinyMathLib::Matrix3x3<float> M3 = M2.inverse();
+			TinyMathLib::Matrix3x3<float> M4 = M1.inverse();
+			TinyMathLib::Matrix3x3<float> M5 = M4.transpose();
+
+			const float TOLERANCE = 0.001f;
+			Assert::AreEqual(M3.m11, M5.m11, TOLERANCE);
+			Assert::AreEqual(M3.m12, M5.m12, TOLERANCE);
+			Assert::AreEqual(M3.m13, M5.m13, TOLERANCE);
+			Assert::AreEqual(M3.m21, M5.m21, TOLERANCE);
+			Assert::AreEqual(M3.m22, M5.m22, TOLERANCE);
+			Assert::AreEqual(M3.m23, M5.m23, TOLERANCE);
+			Assert::AreEqual(M3.m31, M5.m31, TOLERANCE);
+			Assert::AreEqual(M3.m32, M5.m32, TOLERANCE);
+			Assert::AreEqual(M3.m33, M5.m33, TOLERANCE);
+		}
+		TEST_METHOD(TestInverse6)
+		{
+			// The inverse of a matrix product is equal to the product of the inverses of the matrices, taken in reverse order
+			TinyMathLib::Matrix3x3<float> M1(-4.0f, -3.0f, 3.0f, 0.0f, 2.0f, -2.0f, 1.0f, 4.0f, -1.0f);
+			TinyMathLib::Matrix3x3<float> M2(1.0f, 2.0f, 3.0f, 1.23f, 4.56f, 6.78f, -1.0f, -3.14f, 3.141592f);
+			TinyMathLib::Matrix3x3<float> M3 = M1 * M2;
+			TinyMathLib::Matrix3x3<float> M4 = M3.inverse();
+			TinyMathLib::Matrix3x3<float> M5 = M2.inverse() * M1.inverse();
+
+			const float TOLERANCE = 0.001f;
+			Assert::AreEqual(M4.m11, M5.m11, TOLERANCE);
+			Assert::AreEqual(M4.m12, M5.m12, TOLERANCE);
+			Assert::AreEqual(M4.m13, M5.m13, TOLERANCE);
+			Assert::AreEqual(M4.m21, M5.m21, TOLERANCE);
+			Assert::AreEqual(M4.m22, M5.m22, TOLERANCE);
+			Assert::AreEqual(M4.m23, M5.m23, TOLERANCE);
+			Assert::AreEqual(M4.m31, M5.m31, TOLERANCE);
+			Assert::AreEqual(M4.m32, M5.m32, TOLERANCE);
+			Assert::AreEqual(M4.m33, M5.m33, TOLERANCE);
+		}
+		TEST_METHOD(TestInverse7)
+		{
+			// The determinant of the inverse is reciprocal of the determinat of the orginal matrix
+			TinyMathLib::Matrix3x3<float> M1(-4.0f, -3.0f, 3.0f, 0.0f, 2.0f, -2.0f, 1.0f, 4.0f, -1.0f);
+			TinyMathLib::Matrix3x3<float> M2 = M1.inverse();
+			float S1 = M2.determinant();
+			float S2 = 1.0f / M1.determinant();
+
+			const float TOLERANCE = 0.001f;
+			Assert::AreEqual(S1, S2, TOLERANCE);
 		}
 	};
 
