@@ -1304,6 +1304,87 @@ namespace UnitTests
 
 			Assert::AreEqual(S2, S1);
 		}
+		TEST_METHOD(TestCofactor1)
+		{
+			TinyMathLib::Matrix3x3<float> M1(-4.0f, -3.0f, 3.0f, 0.0f, 2.0f, -2.0f, 1.0f, 4.0f, -1.0f);
+			TinyMathLib::Matrix3x3<float> M2 = M1;
+			float S1 = M1.minor(1, 1);
+			float S2 = M1.cofactor(1, 1);
+
+			Assert::AreEqual(S1, S2);
+		}
+		TEST_METHOD(TestCofactor2)
+		{
+			TinyMathLib::Matrix3x3<float> M1(-4.0f, -3.0f, 3.0f, 0.0f, 2.0f, -2.0f, 1.0f, 4.0f, -1.0f);
+			TinyMathLib::Matrix3x3<float> M2 = M1;
+			float S1 = M1.minor(1, 2);
+			float S2 = M1.cofactor(1, 2);
+
+			Assert::AreEqual(S1, -S2);
+		}
+		TEST_METHOD(TestCofactor3)
+		{
+			TinyMathLib::Matrix3x3<float> M1(-4.0f, -3.0f, 3.0f, 0.0f, 2.0f, -2.0f, 1.0f, 4.0f, -1.0f);
+			TinyMathLib::Matrix3x3<float> M2 = M1;
+			float S1 = M1.minor(1, 3);
+			float S2 = M1.cofactor(1, 3);
+
+			Assert::AreEqual(S1, S2);
+		}
+		TEST_METHOD(TestCofactor4)
+		{
+			TinyMathLib::Matrix3x3<float> M1(-4.0f, -3.0f, 3.0f, 0.0f, 2.0f, -2.0f, 1.0f, 4.0f, -1.0f);
+			TinyMathLib::Matrix3x3<float> M2 = M1;
+			float S1 = M1.minor(2, 1);
+			float S2 = M1.cofactor(2, 1);
+
+			Assert::AreEqual(S1, -S2);
+		}
+		TEST_METHOD(TestCofactor5)
+		{
+			TinyMathLib::Matrix3x3<float> M1(-4.0f, -3.0f, 3.0f, 0.0f, 2.0f, -2.0f, 1.0f, 4.0f, -1.0f);
+			TinyMathLib::Matrix3x3<float> M2 = M1;
+			float S1 = M1.minor(2, 2);
+			float S2 = M1.cofactor(2, 2);
+
+			Assert::AreEqual(S1, S2);
+		}
+		TEST_METHOD(TestCofactor6)
+		{
+			TinyMathLib::Matrix3x3<float> M1(-4.0f, -3.0f, 3.0f, 0.0f, 2.0f, -2.0f, 1.0f, 4.0f, -1.0f);
+			TinyMathLib::Matrix3x3<float> M2 = M1;
+			float S1 = M1.minor(2, 3);
+			float S2 = M1.cofactor(2, 3);
+
+			Assert::AreEqual(S1, -S2);
+		}
+		TEST_METHOD(TestCofactor7)
+		{
+			TinyMathLib::Matrix3x3<float> M1(-4.0f, -3.0f, 3.0f, 0.0f, 2.0f, -2.0f, 1.0f, 4.0f, -1.0f);
+			TinyMathLib::Matrix3x3<float> M2 = M1;
+			float S1 = M1.minor(3, 1);
+			float S2 = M1.cofactor(3, 1);
+
+			Assert::AreEqual(S1, S2);
+		}
+		TEST_METHOD(TestCofactor8)
+		{
+			TinyMathLib::Matrix3x3<float> M1(-4.0f, -3.0f, 3.0f, 0.0f, 2.0f, -2.0f, 1.0f, 4.0f, -1.0f);
+			TinyMathLib::Matrix3x3<float> M2 = M1;
+			float S1 = M1.minor(3, 2);
+			float S2 = M1.cofactor(3, 2);
+
+			Assert::AreEqual(S1, -S2);
+		}
+		TEST_METHOD(TestCofactor9)
+		{
+			TinyMathLib::Matrix3x3<float> M1(-4.0f, -3.0f, 3.0f, 0.0f, 2.0f, -2.0f, 1.0f, 4.0f, -1.0f);
+			TinyMathLib::Matrix3x3<float> M2 = M1;
+			float S1 = M1.minor(3, 3);
+			float S2 = M1.cofactor(3, 3);
+
+			Assert::AreEqual(S1, S2);
+		}
 	};
 
 	TEST_CLASS(GeneralMatrix4x4DTesting)
