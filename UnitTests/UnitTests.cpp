@@ -103,6 +103,15 @@ namespace UnitTests
 			Assert::AreEqual(result.x, 50.0f);
 			Assert::AreEqual(result.y, 25.0f);
 		}
+		TEST_METHOD(TestVectorMultiplicationByScalarCommutative1)
+		{
+			TinyMathLib::Vector2D<float> V1(100.0f, 50.0f);
+			TinyMathLib::Vector2D<float> V2 = V1 * 0.5f;
+			TinyMathLib::Vector2D<float> V3 = 0.5f * V1;
+
+			Assert::AreEqual(V3.x, V2.x);
+			Assert::AreEqual(V3.y, V2.y);
+		}
 		TEST_METHOD(TestVectorMultiplicationByVector1)
 		{
 			TinyMathLib::Vector2D<float> vectorA(100.0f, 50.0f);
@@ -237,6 +246,16 @@ namespace UnitTests
 
 	TEST_CLASS(GeneralVector3DTesting)
 	{
+		TEST_METHOD(TestVectorMultiplicationByScalarCommutative1)
+		{
+			TinyMathLib::Vector3D<float> V1(100.0f, 50.0f, 25.0f);
+			TinyMathLib::Vector3D<float> V2 = V1 * 0.5f;
+			TinyMathLib::Vector3D<float> V3 = 0.5f * V1;
+
+			Assert::AreEqual(V3.x, V2.x);
+			Assert::AreEqual(V3.y, V2.y);
+			Assert::AreEqual(V3.z, V2.z);
+		}
 		TEST_METHOD(TestVectorAdditionCommutative1)
 		{
 			TinyMathLib::Vector3D<float> V1(100.0f, 90.0f, 80.0f);

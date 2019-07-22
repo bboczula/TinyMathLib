@@ -271,6 +271,11 @@ namespace TinyMathLib
 		{
 			return Vector2D(x * scalar, y * scalar);
 		}
+		// Different Multiplication by Scalar (commutative property)
+		friend Vector2D<T> operator*(T scalar, Vector2D<T> vector)
+		{
+			return Vector2D(vector.x * scalar, vector.y * scalar);
+		}
 		// Vector Multiplcation by Vector
 		Vector2D operator*(const Vector2D& vector) const
 		{
@@ -346,6 +351,11 @@ namespace TinyMathLib
 		Vector3D operator*(T scalar) const
 		{
 			return Vector3D(x * scalar, y * scalar, z * scalar);
+		}
+		// Different Multiplication by Scalar (commutative property)
+		friend Vector3D<T> operator*(T scalar, Vector3D<T> vector)
+		{
+			return Vector3D(vector.x * scalar, vector.y * scalar, vector.z * scalar);
 		}
 		// Vector Multiplication by Vector
 		Vector3D operator*(const Vector3D& vector) const
