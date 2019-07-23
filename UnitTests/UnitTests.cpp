@@ -256,6 +256,16 @@ namespace UnitTests
 			Assert::AreEqual(V3.y, V2.y);
 			Assert::AreEqual(V3.z, V2.z);
 		}
+		TEST_METHOD(TestVectorAddition1)
+		{
+			TinyMathLib::Vector3<float> V1(100.0f, 90.0f, 80.0f);
+			TinyMathLib::Vector3<float> V2(2.0f, 3.0f, 4.0f);
+			TinyMathLib::Vector3<float> V3 = V1 + V2;
+
+			Assert::AreEqual(102.0f, V3.x);
+			Assert::AreEqual(93.0f, V3.y);
+			Assert::AreEqual(84.0f, V3.z);
+		}
 		TEST_METHOD(TestVectorAdditionCommutative1)
 		{
 			TinyMathLib::Vector3<float> V1(100.0f, 90.0f, 80.0f);
