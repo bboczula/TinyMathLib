@@ -417,6 +417,20 @@ namespace TinyMathLib
 		T x, y, z;
 	};
 
+	template<typename T>
+	class Vector4
+	{
+	public:
+		Vector4() : x(0), y(0), z(0), w(0)
+		{
+		}
+		Vector4(T _x, T _y, T _z, T _w) : x(_x), y(_y), z(_z), w(_w)
+		{
+		}
+	public:
+		T x, y, z, w;
+	};
+
 	// Converts Degrees to Radians
 	float convertToRadians(float degrees)
 	{

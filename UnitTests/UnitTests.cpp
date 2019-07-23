@@ -353,6 +353,28 @@ namespace UnitTests
 		}
 	};
 
+	TEST_CLASS(GeneralVector4DTesting)
+	{
+		TEST_METHOD(TestInitialization1)
+		{
+			TinyMathLib::Vector4<float> V1;
+
+			Assert::AreEqual(0.0f, V1.x);
+			Assert::AreEqual(0.0f, V1.y);
+			Assert::AreEqual(0.0f, V1.z);
+			Assert::AreEqual(0.0f, V1.w);
+		}
+		TEST_METHOD(TestInitialization2)
+		{
+			TinyMathLib::Vector4<float> V1(3.1415f, 6.28f, -102.f, -0.0025f);
+
+			Assert::AreEqual(3.1415f, V1.x);
+			Assert::AreEqual(6.28f, V1.y);
+			Assert::AreEqual(-102.f, V1.z);
+			Assert::AreEqual(-0.0025f, V1.w);
+		}
+	};
+
 	TEST_CLASS(GeneralMatrix2x2DTesting)
 	{
 	public:
