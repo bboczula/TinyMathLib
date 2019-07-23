@@ -427,6 +427,10 @@ namespace TinyMathLib
 		Vector4(T _x, T _y, T _z, T _w) : x(_x), y(_y), z(_z), w(_w)
 		{
 		}
+		Vector4 operator+(const Vector4& vector)
+		{
+			return Vector4(x + vector.x, y + vector.y, z + vector.z, w + vector.w);
+		}
 	public:
 		T x, y, z, w;
 	};

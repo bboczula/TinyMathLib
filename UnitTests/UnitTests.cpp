@@ -383,6 +383,43 @@ namespace UnitTests
 			Assert::AreEqual(-102.f, V1.z);
 			Assert::AreEqual(-0.0025f, V1.w);
 		}
+		TEST_METHOD(TestVectorAddition1)
+		{
+			TinyMathLib::Vector4<float> V1(3.1415f, 6.28f, -102.0f, -0.0025f);
+			TinyMathLib::Vector4<float> V2(-3.1415f, 0.22f, 107.0f, -0.0025f);
+			TinyMathLib::Vector4<float> V3 = V1 + V2;
+
+			Assert::AreEqual(0.0f, V3.x);
+			Assert::AreEqual(6.5f, V3.y);
+			Assert::AreEqual(5.0f, V3.z);
+			Assert::AreEqual(-0.005f, V3.w);
+		}
+		TEST_METHOD(TestVectorAdditionCommutative1)
+		{
+			TinyMathLib::Vector4<float> V1(100.0f, 90.0f, 80.0f, 3.1415f);
+			TinyMathLib::Vector4<float> V2(2.0f, 3.0f, 4.0f, -3.14f);
+			TinyMathLib::Vector4<float> V3 = V1 + V2;
+			TinyMathLib::Vector4<float> V4 = V2 + V1;
+
+			Assert::AreEqual(V4.x, V3.x);
+			Assert::AreEqual(V4.y, V3.y);
+			Assert::AreEqual(V4.z, V3.z);
+			Assert::AreEqual(V4.w, V3.w);
+		}
+		TEST_METHOD(TestVectorAdditionAssociative1)
+		{
+			TinyMathLib::Vector4<float> V1(100.0f, 90.0f, 80.0f, 3.1415f);
+			TinyMathLib::Vector4<float> V2(2.0f, 3.0f, 4.0f, 3.14f);
+			TinyMathLib::Vector4<float> V3(1.23f, 3.45f, 6.78f, -0.255f);
+			TinyMathLib::Vector4<float> V4 = (V1 + V2) + V3;
+			TinyMathLib::Vector4<float> V5 = V1 + (V2 + V3);
+
+			const float TOLERANCE = 0.001f;
+			Assert::AreEqual(V5.x, V4.x, TOLERANCE);
+			Assert::AreEqual(V5.y, V4.y, TOLERANCE);
+			Assert::AreEqual(V5.z, V4.z, TOLERANCE);
+			Assert::AreEqual(V5.w, V4.w, TOLERANCE);
+		}
 	};
 
 	TEST_CLASS(GeneralMatrix2x2DTesting)
