@@ -261,66 +261,65 @@ namespace TinyMathLib
 		Vector2(T _x, T _y) : x(_x), y(_y)
 		{
 		}
-		// Vector Negation
 		Vector2 operator-()
 		{
+			// Vector Negation
 			return Vector2(-x, -y);
 		}
-		// Vector Multiplication by Scalar
 		Vector2 operator*(T scalar) const
 		{
+			// Vector Multiplication by Scalar
 			return Vector2(x * scalar, y * scalar);
 		}
-		// Different Multiplication by Scalar (commutative property)
 		friend Vector2<T> operator*(T scalar, Vector2<T> vector)
 		{
+			// Different Multiplication by Scalar (commutative property)
 			return Vector2(vector.x * scalar, vector.y * scalar);
 		}
-		// Vector Multiplcation by Vector
 		Vector2 operator*(const Vector2& vector) const
 		{
+			// Vector Multiplcation by Vector
 			return Vector2(x * vector.x, y * vector.y);
 		}
-		// Vector Multiplication by Matrix
 		Vector2 operator*(const Matrix2x2<T>& matrix)
 		{
+			// Vector Multiplication by Matrix
 			return Vector2((x * matrix.m11 + y * matrix.m21), (x * matrix.m12 + y * matrix.m22));
 		}
-		// Vector Division by Scalar
 		Vector2 operator/(T scalar) const
 		{
+			// Vector Division by Scalar
 			return Vector2(x / scalar, y / scalar);
 		}
-		// Vector Division by Vector
 		Vector2 operator/(const Vector2& vector) const
 		{
+			// Vector Division by Vector
 			return Vector2(x / vector.x, y / vector.y);
 		}
-		// Vector Addition
 		Vector2 operator+(const Vector2& vector)
 		{
+			// Vector Addition
 			return Vector2(x + vector.x, y + vector.y);
 		}
-		// Vector Substraction
 		Vector2 operator-(const Vector2& vector) const
 		{
+			// Vector Substraction
 			return Vector2(x - vector.x, y - vector.y);
 		}
-		// Dot Product
 		T dotProduct(const Vector2& vector) const
 		{
+			// Dot Product
 			return (x * vector.x) + (y * vector.y);
 		}
-		// Vector Magnitude (length)
-		// - why float and not double??
 		float length() const
 		{
+			// Vector Magnitude (length)
+			// - why float and not double??
 			return sqrt((x * x) + (y * y));
 		}
-		// Normalizing a Vector
-		// - do we return or operate on the vector itself??
 		Vector2 normalize()
 		{
+			// Normalizing a Vector
 			return *this / this->length();
 		}
 		friend std::ostream& operator<< (std::ostream& out, const Vector2& obj)
