@@ -252,62 +252,62 @@ namespace TinyMathLib
 	};
 
 	template<typename T>
-	class Vector2D
+	class Vector2
 	{
 	public:
-		Vector2D() : x(0), y(0)
+		Vector2() : x(0), y(0)
 		{
 		}
-		Vector2D(T _x, T _y) : x(_x), y(_y)
+		Vector2(T _x, T _y) : x(_x), y(_y)
 		{
 		}
 		// Vector Negation
-		Vector2D operator-()
+		Vector2 operator-()
 		{
-			return Vector2D(-x, -y);
+			return Vector2(-x, -y);
 		}
 		// Vector Multiplication by Scalar
-		Vector2D operator*(T scalar) const
+		Vector2 operator*(T scalar) const
 		{
-			return Vector2D(x * scalar, y * scalar);
+			return Vector2(x * scalar, y * scalar);
 		}
 		// Different Multiplication by Scalar (commutative property)
-		friend Vector2D<T> operator*(T scalar, Vector2D<T> vector)
+		friend Vector2<T> operator*(T scalar, Vector2<T> vector)
 		{
-			return Vector2D(vector.x * scalar, vector.y * scalar);
+			return Vector2(vector.x * scalar, vector.y * scalar);
 		}
 		// Vector Multiplcation by Vector
-		Vector2D operator*(const Vector2D& vector) const
+		Vector2 operator*(const Vector2& vector) const
 		{
-			return Vector2D(x * vector.x, y * vector.y);
+			return Vector2(x * vector.x, y * vector.y);
 		}
 		// Vector Multiplication by Matrix
-		Vector2D operator*(const Matrix2x2<T>& matrix)
+		Vector2 operator*(const Matrix2x2<T>& matrix)
 		{
-			return Vector2D((x * matrix.m11 + y * matrix.m21), (x * matrix.m12 + y * matrix.m22));
+			return Vector2((x * matrix.m11 + y * matrix.m21), (x * matrix.m12 + y * matrix.m22));
 		}
 		// Vector Division by Scalar
-		Vector2D operator/(T scalar) const
+		Vector2 operator/(T scalar) const
 		{
-			return Vector2D(x / scalar, y / scalar);
+			return Vector2(x / scalar, y / scalar);
 		}
 		// Vector Division by Vector
-		Vector2D operator/(const Vector2D& vector) const
+		Vector2 operator/(const Vector2& vector) const
 		{
-			return Vector2D(x / vector.x, y / vector.y);
+			return Vector2(x / vector.x, y / vector.y);
 		}
 		// Vector Addition
-		Vector2D operator+(const Vector2D& vector)
+		Vector2 operator+(const Vector2& vector)
 		{
-			return Vector2D(x + vector.x, y + vector.y);
+			return Vector2(x + vector.x, y + vector.y);
 		}
 		// Vector Substraction
-		Vector2D operator-(const Vector2D& vector) const
+		Vector2 operator-(const Vector2& vector) const
 		{
-			return Vector2D(x - vector.x, y - vector.y);
+			return Vector2(x - vector.x, y - vector.y);
 		}
 		// Dot Product
-		T dotProduct(const Vector2D& vector) const
+		T dotProduct(const Vector2& vector) const
 		{
 			return (x * vector.x) + (y * vector.y);
 		}
@@ -319,11 +319,11 @@ namespace TinyMathLib
 		}
 		// Normalizing a Vector
 		// - do we return or operate on the vector itself??
-		Vector2D normalize()
+		Vector2 normalize()
 		{
 			return *this / this->length();
 		}
-		friend std::ostream& operator<< (std::ostream& out, const Vector2D& obj)
+		friend std::ostream& operator<< (std::ostream& out, const Vector2& obj)
 		{
 			out << "[" << obj.x << ", " << obj.y << "]";
 			return out;
@@ -333,69 +333,69 @@ namespace TinyMathLib
 	};
 
 	template<typename T>
-	class Vector3D
+	class Vector3
 	{
 	public:
-		Vector3D() : x(0), y(0), z(0)
+		Vector3() : x(0), y(0), z(0)
 		{
 		}
-		Vector3D(T _x, T _y, T _z) : x(_x), y(_y), z(_z)
+		Vector3(T _x, T _y, T _z) : x(_x), y(_y), z(_z)
 		{
 		}
 		// Vector Negation
-		Vector3D operator-()
+		Vector3 operator-()
 		{
-			return Vector3D(-x, -y, -z);
+			return Vector3(-x, -y, -z);
 		}
 		// Vector Multiplicaton by Scalar
-		Vector3D operator*(T scalar) const
+		Vector3 operator*(T scalar) const
 		{
-			return Vector3D(x * scalar, y * scalar, z * scalar);
+			return Vector3(x * scalar, y * scalar, z * scalar);
 		}
 		// Different Multiplication by Scalar (commutative property)
-		friend Vector3D<T> operator*(T scalar, Vector3D<T> vector)
+		friend Vector3<T> operator*(T scalar, Vector3<T> vector)
 		{
-			return Vector3D(vector.x * scalar, vector.y * scalar, vector.z * scalar);
+			return Vector3(vector.x * scalar, vector.y * scalar, vector.z * scalar);
 		}
 		// Vector Multiplication by Vector
-		Vector3D operator*(const Vector3D& vector) const
+		Vector3 operator*(const Vector3& vector) const
 		{
-			return Vector3D(x * vector.x, y * vector.y, z * vector.z);
+			return Vector3(x * vector.x, y * vector.y, z * vector.z);
 		}
 		// Vector Multiplication by Matrix3x3
-		Vector3D operator*(const Matrix3x3<T>& matrix)
+		Vector3 operator*(const Matrix3x3<T>& matrix)
 		{
-			return Vector3D((x * matrix.m11 + y * matrix.m21 + z * matrix.m31), (x * matrix.m12 + y * matrix.m22 + z * matrix.m32), (x * matrix.m13 + y * matrix.m23 + z * matrix.m33));
+			return Vector3((x * matrix.m11 + y * matrix.m21 + z * matrix.m31), (x * matrix.m12 + y * matrix.m22 + z * matrix.m32), (x * matrix.m13 + y * matrix.m23 + z * matrix.m33));
 		}
 		// Vector Division by Scalar
-		Vector3D operator/(T scalar) const
+		Vector3 operator/(T scalar) const
 		{
-			return Vector3D(x / scalar, y / scalar, z / scalar);
+			return Vector3(x / scalar, y / scalar, z / scalar);
 		}
 		// Vector Division by Vector
-		Vector3D operator/(const Vector3D& vector) const
+		Vector3 operator/(const Vector3& vector) const
 		{
-			return Vector3D(x / vector.x, y / vector.y, z / vector.z);
+			return Vector3(x / vector.x, y / vector.y, z / vector.z);
 		}
 		// Vector Addition
-		Vector3D operator+(const Vector3D& vector)
+		Vector3 operator+(const Vector3& vector)
 		{
-			return Vector3D(x + vector.x, y + vector.y, z + vector.z);
+			return Vector3(x + vector.x, y + vector.y, z + vector.z);
 		}
 		// Vector Substraction
-		Vector3D operator-(const Vector3D& vector) const
+		Vector3 operator-(const Vector3& vector) const
 		{
-			return Vector3D(x - vector.x, y - vector.y, z - vector.z);
+			return Vector3(x - vector.x, y - vector.y, z - vector.z);
 		}
 		// Dot Product
-		T dotProduct(const Vector3D& vector)
+		T dotProduct(const Vector3& vector)
 		{
 			return (x * vector.x) + (y * vector.y) + (z * vector.z);
 		}
 		// Cross Product
-		Vector3D crossProduct(const Vector3D& vector) const
+		Vector3 crossProduct(const Vector3& vector) const
 		{
-			return Vector3D((y * vector.z) - (z * vector.y), (z * vector.x) - (x * vector.z), (x * vector.y) - (y * vector.x));
+			return Vector3((y * vector.z) - (z * vector.y), (z * vector.x) - (x * vector.z), (x * vector.y) - (y * vector.x));
 		}
 		// Vector Magnitude (length)
 		// - why float and not double??
@@ -405,11 +405,11 @@ namespace TinyMathLib
 		}
 		// Normalize a Vector
 		// - do we return or operate on the vector itself??
-		Vector3D normalize()
+		Vector3 normalize()
 		{
 			return *this / this->length();
 		}
-		friend std::ostream& operator<< (std::ostream& out, const Vector3D& obj)
+		friend std::ostream& operator<< (std::ostream& out, const Vector3& obj)
 		{
 			out << "[" << obj.x << ", " << obj.y << ", " << obj.z << "]";
 			return out;
@@ -431,37 +431,37 @@ namespace TinyMathLib
 
 	// Same thing here - do we return or operate on the vector??
 	template<typename T>
-	Vector2D<T> normalize(const Vector2D<T>& vector)
+	Vector2<T> normalize(const Vector2<T>& vector)
 	{
 		return vector / vector.length();
 	}
 
 	template<typename T>
-	Vector3D<T> normalize(const Vector3D<T>& vector)
+	Vector3<T> normalize(const Vector3<T>& vector)
 	{
 		return vector / vector.length();
 	}
 
 	template<typename T>
-	float length(const Vector2D<T>& vector)
+	float length(const Vector2<T>& vector)
 	{
 		return sqrt((vector.x * vector.x) + (vector.y * vector.y));
 	}
 
 	template<typename T>
-	float length(const Vector3D<T>& vector)
+	float length(const Vector3<T>& vector)
 	{
 		return sqrt((vector.x * vector.x) + (vector.y * vector.y) + (vector.z * vector.z));
 	}
 
 	template<typename T>
-	float distance(const Vector2D<T>& a, const Vector2D<T>& b)
+	float distance(const Vector2<T>& a, const Vector2<T>& b)
 	{
 		return length(b - a);
 	}
 
 	template<typename T>
-	float distance(const Vector3D<T>& a, const Vector3D<T>& b)
+	float distance(const Vector3<T>& a, const Vector3<T>& b)
 	{
 		return length(b - a);
 	}
@@ -471,7 +471,7 @@ namespace TinyMathLib
 	// The dot product of two vectors is equal to the cosine of the angle between them, multiplied by the lenghts of them.
 	// The dot product measures the length of the projection of second vector onto the first one, multiplied by the lenght of the first one.
 	template<typename T>
-	T dotProduct(const Vector2D<T>& a, const Vector2D<T>& b)
+	T dotProduct(const Vector2<T>& a, const Vector2<T>& b)
 	{
 		return (a.x * b.x) + (a.y * b.y);
 	}
@@ -481,7 +481,7 @@ namespace TinyMathLib
 	// The dot product of two vectors is equal to the cosine of the angle between them, multiplied by the lenghts of them.
 	// The dot product measures the length of the projection of second vector onto the first one, multiplied by the lenght of the first one.
 	template<typename T>
-	T dotProduct(const Vector3D<T>& a, const Vector3D<T>& b)
+	T dotProduct(const Vector3<T>& a, const Vector3<T>& b)
 	{
 		return (a.x * b.x) + (a.y * b.y) + (a.z * b.z);
 	}
@@ -489,21 +489,21 @@ namespace TinyMathLib
 	// Calculated cross product for two 3D vectors.
 	// Cross product yields a vector that is parpendicular to the orginal two vectors.
 	template<typename T>
-	Vector3D<T> crossProduct(const Vector3D<T>& a, const Vector3D<T>& b)
+	Vector3<T> crossProduct(const Vector3<T>& a, const Vector3<T>& b)
 	{
-		return Vector3D<T>((a.y * b.z) - (a.z * b.y), (a.z * b.x) - (a.x * b.z), (a.x * b.y) - (a.y * b.x));
+		return Vector3<T>((a.y * b.z) - (a.z * b.y), (a.z * b.x) - (a.x * b.z), (a.x * b.y) - (a.y * b.x));
 	}
 
 	template<typename T>
-	Vector3D<T> CreateZeroVector3D()
+	Vector3<T> CreateZeroVector3D()
 	{
-		return Vector3D<T>(0, 0, 0);
+		return Vector3<T>(0, 0, 0);
 	}
 
 	template<typename T>
-	Vector2D<T> CreateZeroVector2D()
+	Vector2<T> CreateZeroVector2D()
 	{
-		return Vector2D<T>(0, 0);
+		return Vector2<T>(0, 0);
 	}
 
 	template<typename T>
@@ -551,7 +551,7 @@ namespace TinyMathLib
 	}
 
 	template<typename T>
-	Matrix3x3<T> CreateRotationMatrix3x3(float angle, Vector3D<T> unitAxis)
+	Matrix3x3<T> CreateRotationMatrix3x3(float angle, Vector3<T> unitAxis)
 	{
 		return Matrix3x3<T>(
 			(unitAxis.x * unitAxis.x) * (1 - cos(angle)) +                cos(angle), (unitAxis.x * unitAxis.y) * (1 - cos(angle)) + (unitAxis.z * sin(angle)), (unitAxis.x * unitAxis.z) * (1 - cos(angle)) - (unitAxis.y * sin(angle)),
@@ -577,7 +577,7 @@ namespace TinyMathLib
 	}
 
 	template<typename T>
-	Matrix2x2<T> CreateScaleMatrix2x2(float scale, TinyMathLib::Vector2D<T> direction)
+	Matrix2x2<T> CreateScaleMatrix2x2(float scale, TinyMathLib::Vector2<T> direction)
 	{
 		return Matrix2x2<T>(
 			1 + (scale - 1) * direction.x * direction.x,     (scale - 1) * direction.x * direction.y,
@@ -586,7 +586,7 @@ namespace TinyMathLib
 	}
 
 	template<typename T>
-	Matrix3x3<T> CreateScaleMatrix3x3(float scale, TinyMathLib::Vector3D<T> direction)
+	Matrix3x3<T> CreateScaleMatrix3x3(float scale, TinyMathLib::Vector3<T> direction)
 	{
 		return Matrix3x3<T>(
 			1 + (scale - 1) * direction.x * direction.x, (scale - 1) * direction.x * direction.y, (scale - 1) * direction.x * direction.z,
@@ -608,7 +608,7 @@ namespace TinyMathLib
 	}
 
 	template<typename T>
-	Matrix2x2<T> CreateOrtographicProjectionMatrix2x2(TinyMathLib::Vector2D<T> line)
+	Matrix2x2<T> CreateOrtographicProjectionMatrix2x2(TinyMathLib::Vector2<T> line)
 	{
 		return Matrix2x2<T>(
 			1 - line.x * line.x, -line.x * line.y,
@@ -639,7 +639,7 @@ namespace TinyMathLib
 	}
 
 	template<typename T>
-	Matrix3x3<T> CreateOrtographicProjectionMatrix3x3(TinyMathLib::Vector3D<T> normal)
+	Matrix3x3<T> CreateOrtographicProjectionMatrix3x3(TinyMathLib::Vector3<T> normal)
 	{
 		return Matrix3x3<T>(
 			+1 - normal.x * normal.x, -1 * normal.x * normal.y, -1 * normal.x * normal.z,
@@ -649,7 +649,7 @@ namespace TinyMathLib
 	}
 
 	template<typename T>
-	Matrix2x2<T> CreateReflectionMatrix2x2(TinyMathLib::Vector2D<T> axis)
+	Matrix2x2<T> CreateReflectionMatrix2x2(TinyMathLib::Vector2<T> axis)
 	{
 		return Matrix2x2<T>(
 			1 - 2 * axis.x * axis.x, -2 * axis.x * axis.y,
@@ -658,7 +658,7 @@ namespace TinyMathLib
 	}
 
 	template<typename T>
-	Matrix3x3<T> CreateReflectionMatrix3x3(TinyMathLib::Vector3D<T> plane)
+	Matrix3x3<T> CreateReflectionMatrix3x3(TinyMathLib::Vector3<T> plane)
 	{
 		return Matrix3x3<T>(
 			1 - 2 * plane.x * plane.x,    -2 * plane.y * plane.x,    -2 * plane.z * plane.x,

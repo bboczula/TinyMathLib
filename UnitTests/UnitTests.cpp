@@ -11,29 +11,29 @@ namespace UnitTests
 	public:
 		TEST_METHOD(TestInitialization1)
 		{
-			TinyMathLib::Vector2D<float> vector;
+			TinyMathLib::Vector2<float> vector;
 
 			Assert::AreEqual(vector.x, 0.0f);
 			Assert::AreEqual(vector.y, 0.0f);
 		}
 		TEST_METHOD(TestInitialization2)
 		{
-			TinyMathLib::Vector2D<float> vector(3.141592f, 6.283184f);
+			TinyMathLib::Vector2<float> vector(3.141592f, 6.283184f);
 
 			Assert::AreEqual(vector.x, 3.141592f);
 			Assert::AreEqual(vector.y, 6.283184f);
 		}
 		TEST_METHOD(TestInitialization3)
 		{
-			TinyMathLib::Vector2D<float> vector = { 3.141592f, 6.283184f };
+			TinyMathLib::Vector2<float> vector = { 3.141592f, 6.283184f };
 
 			Assert::AreEqual(vector.x, 3.141592f);
 			Assert::AreEqual(vector.y, 6.283184f);
 		}
 		TEST_METHOD(TestVectorNegation1)
 		{
-			TinyMathLib::Vector2D<float> vector(4.0f, -5.0f);
-			TinyMathLib::Vector2D<float> result = -vector;
+			TinyMathLib::Vector2<float> vector(4.0f, -5.0f);
+			TinyMathLib::Vector2<float> result = -vector;
 
 			Assert::AreEqual(result.x, -4.0f);
 			Assert::AreEqual(result.y, 5.0f);
@@ -41,216 +41,216 @@ namespace UnitTests
 		}
 		TEST_METHOD(TestVectorNegation2)
 		{
-			TinyMathLib::Vector2D<float> vector(-4.0f, 5.0f);
-			TinyMathLib::Vector2D<float> result = -vector;
+			TinyMathLib::Vector2<float> vector(-4.0f, 5.0f);
+			TinyMathLib::Vector2<float> result = -vector;
 
 			Assert::AreEqual(result.x, 4.0f);
 			Assert::AreEqual(result.y, -5.0f);
 		}
 		TEST_METHOD(TestVectorNegation3)
 		{
-			TinyMathLib::Vector2D<float> vector(-1.0f, -1.0f);
-			TinyMathLib::Vector2D<float> result = -vector;
+			TinyMathLib::Vector2<float> vector(-1.0f, -1.0f);
+			TinyMathLib::Vector2<float> result = -vector;
 
 			Assert::AreEqual(result.x, 1.0f);
 			Assert::AreEqual(result.y, 1.0f);
 		}
 		TEST_METHOD(TestVectorNegation4)
 		{
-			TinyMathLib::Vector2D<float> vector(1.0f, 1.0f);
-			TinyMathLib::Vector2D<float> result = -vector;
+			TinyMathLib::Vector2<float> vector(1.0f, 1.0f);
+			TinyMathLib::Vector2<float> result = -vector;
 
 			Assert::AreEqual(result.x, -1.0f);
 			Assert::AreEqual(result.y, -1.0f);
 		}
 		TEST_METHOD(TestVectorNegation5)
 		{
-			TinyMathLib::Vector2D<float> vector;
-			TinyMathLib::Vector2D<float> result = -vector;
+			TinyMathLib::Vector2<float> vector;
+			TinyMathLib::Vector2<float> result = -vector;
 
 			Assert::AreEqual(result.x, 0.0f);
 			Assert::AreEqual(result.y, 0.0f);
 		}
 		TEST_METHOD(TestVectorMultiplicationByScalar1)
 		{
-			TinyMathLib::Vector2D<float> vector;
-			TinyMathLib::Vector2D<float> result = vector * 2;
+			TinyMathLib::Vector2<float> vector;
+			TinyMathLib::Vector2<float> result = vector * 2;
 
 			Assert::AreEqual(result.x, 0.0f);
 			Assert::AreEqual(result.y, 0.0f);
 		}
 		TEST_METHOD(TestVectorMultiplicationByScalar2)
 		{
-			TinyMathLib::Vector2D<float> vector(3.14f, 3.14f);
-			TinyMathLib::Vector2D<float> result = vector * 2;
+			TinyMathLib::Vector2<float> vector(3.14f, 3.14f);
+			TinyMathLib::Vector2<float> result = vector * 2;
 
 			Assert::AreEqual(result.x, 6.28f);
 			Assert::AreEqual(result.y, 6.28f);
 		}
 		TEST_METHOD(TestVectorMultiplicationByScalar3)
 		{
-			TinyMathLib::Vector2D<float> vector(1.0f, 1.5f);
-			TinyMathLib::Vector2D<float> result = vector * 2;
+			TinyMathLib::Vector2<float> vector(1.0f, 1.5f);
+			TinyMathLib::Vector2<float> result = vector * 2;
 
 			Assert::AreEqual(result.x, 2.0f);
 			Assert::AreEqual(result.y, 3.0f);
 		}
 		TEST_METHOD(TestVectorMultiplicationByScalar4)
 		{
-			TinyMathLib::Vector2D<float> vector(100.0f, 50.0f);
-			TinyMathLib::Vector2D<float> result = vector * 0.5f;
+			TinyMathLib::Vector2<float> vector(100.0f, 50.0f);
+			TinyMathLib::Vector2<float> result = vector * 0.5f;
 
 			Assert::AreEqual(result.x, 50.0f);
 			Assert::AreEqual(result.y, 25.0f);
 		}
 		TEST_METHOD(TestVectorMultiplicationByScalarCommutative1)
 		{
-			TinyMathLib::Vector2D<float> V1(100.0f, 50.0f);
-			TinyMathLib::Vector2D<float> V2 = V1 * 0.5f;
-			TinyMathLib::Vector2D<float> V3 = 0.5f * V1;
+			TinyMathLib::Vector2<float> V1(100.0f, 50.0f);
+			TinyMathLib::Vector2<float> V2 = V1 * 0.5f;
+			TinyMathLib::Vector2<float> V3 = 0.5f * V1;
 
 			Assert::AreEqual(V3.x, V2.x);
 			Assert::AreEqual(V3.y, V2.y);
 		}
 		TEST_METHOD(TestVectorMultiplicationByVector1)
 		{
-			TinyMathLib::Vector2D<float> vectorA(100.0f, 50.0f);
-			TinyMathLib::Vector2D<float> vectorB(2.0f, 0.5f);
-			TinyMathLib::Vector2D<float> result = vectorA * vectorB;
+			TinyMathLib::Vector2<float> vectorA(100.0f, 50.0f);
+			TinyMathLib::Vector2<float> vectorB(2.0f, 0.5f);
+			TinyMathLib::Vector2<float> result = vectorA * vectorB;
 
 			Assert::AreEqual(result.x, 200.0f);
 			Assert::AreEqual(result.y, 25.0f);
 		}
 		TEST_METHOD(TestVectorMultiplicationByVector2)
 		{
-			TinyMathLib::Vector2D<float> vectorA(100.0f, 50.0f);
-			TinyMathLib::Vector2D<float> vectorB;
-			TinyMathLib::Vector2D<float> result = vectorA * vectorB;
+			TinyMathLib::Vector2<float> vectorA(100.0f, 50.0f);
+			TinyMathLib::Vector2<float> vectorB;
+			TinyMathLib::Vector2<float> result = vectorA * vectorB;
 
 			Assert::AreEqual(result.x, 0.0f);
 			Assert::AreEqual(result.y, 0.0f);
 		}
 		TEST_METHOD(TestVectorMultiplicationByMatrix1)
 		{
-			TinyMathLib::Vector2D<float> V1(2.0f, 3.0f);
+			TinyMathLib::Vector2<float> V1(2.0f, 3.0f);
 			TinyMathLib::Matrix2x2<float> M1(0.1f, 0.2f, 1.0f, 2.0f);
-			TinyMathLib::Vector2D<float> V2 = V1 * M1;
+			TinyMathLib::Vector2<float> V2 = V1 * M1;
 			
 			Assert::AreEqual(3.2f, V2.x);
 			Assert::AreEqual(6.4f, V2.y);
 		}
 		TEST_METHOD(TestLinearTransformationAssertion1)
 		{
-			TinyMathLib::Vector2D<float> V1(2.0f, 3.0f);
-			TinyMathLib::Vector2D<float> V2(1.0f, 2.0f);
+			TinyMathLib::Vector2<float> V1(2.0f, 3.0f);
+			TinyMathLib::Vector2<float> V2(1.0f, 2.0f);
 			TinyMathLib::Matrix2x2<float> M1(0.1f, 0.2f, 1.0f, 2.0f);
-			TinyMathLib::Vector2D<float> V3 = (V1 + V2) * M1;
-			TinyMathLib::Vector2D<float> V4 = (V1 * M1) + (V2 * M1);
+			TinyMathLib::Vector2<float> V3 = (V1 + V2) * M1;
+			TinyMathLib::Vector2<float> V4 = (V1 * M1) + (V2 * M1);
 
 			Assert::AreEqual(V4.x, V3.x);
 			Assert::AreEqual(V4.y, V3.y);
 		}
 		TEST_METHOD(TestVectorDivisionByScalar1)
 		{
-			TinyMathLib::Vector2D<float> vector(100.0f, 50.0f);
-			TinyMathLib::Vector2D<float> result = vector / 2.0f;
+			TinyMathLib::Vector2<float> vector(100.0f, 50.0f);
+			TinyMathLib::Vector2<float> result = vector / 2.0f;
 
 			Assert::AreEqual(result.x, 50.0f);
 			Assert::AreEqual(result.y, 25.0f);
 		}
 		TEST_METHOD(TestVectorDivisionByScalar2)
 		{
-			TinyMathLib::Vector2D<float> vector(100.0f, 50.0f);
-			TinyMathLib::Vector2D<float> result = vector / 1.0f;
+			TinyMathLib::Vector2<float> vector(100.0f, 50.0f);
+			TinyMathLib::Vector2<float> result = vector / 1.0f;
 
 			Assert::AreEqual(result.x, 100.0f);
 			Assert::AreEqual(result.y, 50.0f);
 		}
 		TEST_METHOD(TestVectorDivisionByScalar3)
 		{
-			TinyMathLib::Vector2D<float> vectorA(100.0f, 50.0f);
-			TinyMathLib::Vector2D<float> resultA = vectorA / 2.0f;
+			TinyMathLib::Vector2<float> vectorA(100.0f, 50.0f);
+			TinyMathLib::Vector2<float> resultA = vectorA / 2.0f;
 
-			TinyMathLib::Vector2D<float> vectorB(100.0f, 50.0f);
-			TinyMathLib::Vector2D<float> resultB = vectorA * 0.5f;
+			TinyMathLib::Vector2<float> vectorB(100.0f, 50.0f);
+			TinyMathLib::Vector2<float> resultB = vectorA * 0.5f;
 
 			Assert::AreEqual(resultA.x, resultB.x);
 			Assert::AreEqual(resultA.y, resultB.y);
 		}
 		TEST_METHOD(TestVectorDivisionByVector1)
 		{
-			TinyMathLib::Vector2D<float> vectorA(100.0f, 90.0f);
-			TinyMathLib::Vector2D<float> vectorB(2.0f, 3.0f);
-			TinyMathLib::Vector2D<float> result = vectorA / vectorB;
+			TinyMathLib::Vector2<float> vectorA(100.0f, 90.0f);
+			TinyMathLib::Vector2<float> vectorB(2.0f, 3.0f);
+			TinyMathLib::Vector2<float> result = vectorA / vectorB;
 
 			Assert::AreEqual(result.x, 50.0f);
 			Assert::AreEqual(result.y, 30.0f);
 		}
 		TEST_METHOD(TestVectorAddition1)
 		{
-			TinyMathLib::Vector2D<float> vectorA(100.0f, 90.0f);
-			TinyMathLib::Vector2D<float> vectorB(2.0f, 3.0f);
-			TinyMathLib::Vector2D<float> result = vectorA + vectorB;
+			TinyMathLib::Vector2<float> vectorA(100.0f, 90.0f);
+			TinyMathLib::Vector2<float> vectorB(2.0f, 3.0f);
+			TinyMathLib::Vector2<float> result = vectorA + vectorB;
 
 			Assert::AreEqual(result.x, 102.0f);
 			Assert::AreEqual(result.y, 93.0f);
 		}
 		TEST_METHOD(TestVectorAdditionCommutative1)
 		{
-			TinyMathLib::Vector2D<float> V1(100.0f, 90.0f);
-			TinyMathLib::Vector2D<float> V2(2.0f, 3.0f);
-			TinyMathLib::Vector2D<float> V3 = V1 + V2;
-			TinyMathLib::Vector2D<float> V4 = V2 + V1;
+			TinyMathLib::Vector2<float> V1(100.0f, 90.0f);
+			TinyMathLib::Vector2<float> V2(2.0f, 3.0f);
+			TinyMathLib::Vector2<float> V3 = V1 + V2;
+			TinyMathLib::Vector2<float> V4 = V2 + V1;
 
 			Assert::AreEqual(V4.x, V3.x);
 			Assert::AreEqual(V4.y, V3.y);
 		}
 		TEST_METHOD(TestVectorAdditionAssociative1)
 		{
-			TinyMathLib::Vector2D<float> V1(100.0f, 90.0f);
-			TinyMathLib::Vector2D<float> V2(2.0f, 3.0f);
-			TinyMathLib::Vector2D<float> V3(1.23f, 3.45f);
-			TinyMathLib::Vector2D<float> V4 = (V1 + V2) + V3;
-			TinyMathLib::Vector2D<float> V5 = V1 + (V2 + V3);
+			TinyMathLib::Vector2<float> V1(100.0f, 90.0f);
+			TinyMathLib::Vector2<float> V2(2.0f, 3.0f);
+			TinyMathLib::Vector2<float> V3(1.23f, 3.45f);
+			TinyMathLib::Vector2<float> V4 = (V1 + V2) + V3;
+			TinyMathLib::Vector2<float> V5 = V1 + (V2 + V3);
 
 			Assert::AreEqual(V5.x, V4.x);
 			Assert::AreEqual(V5.y, V4.y);
 		}
 		TEST_METHOD(TestVectorAdditionZero1)
 		{
-			TinyMathLib::Vector2D<float> V1(100.0f, 90.0f);
-			TinyMathLib::Vector2D<float> V2 = TinyMathLib::CreateZeroVector2D<float>();
-			TinyMathLib::Vector2D<float> V3 = V1 + V2;
+			TinyMathLib::Vector2<float> V1(100.0f, 90.0f);
+			TinyMathLib::Vector2<float> V2 = TinyMathLib::CreateZeroVector2D<float>();
+			TinyMathLib::Vector2<float> V3 = V1 + V2;
 
 			Assert::AreEqual(V3.x, V1.x);
 			Assert::AreEqual(V3.y, V1.y);
 		}
 		TEST_METHOD(TestVectorSubstraction1)
 		{
-			TinyMathLib::Vector2D<float> vectorA(100.0f, 90.0f);
-			TinyMathLib::Vector2D<float> vectorB(2.0f, 3.0f);
-			TinyMathLib::Vector2D<float> result = vectorA - vectorB;
+			TinyMathLib::Vector2<float> vectorA(100.0f, 90.0f);
+			TinyMathLib::Vector2<float> vectorB(2.0f, 3.0f);
+			TinyMathLib::Vector2<float> result = vectorA - vectorB;
 
 			Assert::AreEqual(result.x, 98.0f);
 			Assert::AreEqual(result.y, 87.0f);
 		}
 		TEST_METHOD(TestVectorSelfSubstraction1)
 		{
-			TinyMathLib::Vector2D<float> V1(100.0f, 90.0f);
-			TinyMathLib::Vector2D<float> V2 = V1 - V1;
+			TinyMathLib::Vector2<float> V1(100.0f, 90.0f);
+			TinyMathLib::Vector2<float> V2 = V1 - V1;
 
 			Assert::AreEqual(0.0f, V2.x);
 			Assert::AreEqual(0.0f, V2.y);
 		}
 	};
 
-	TEST_CLASS(GeneralVector3DTesting)
+	TEST_CLASS(GeneralVector3DTesting) 
 	{
 		TEST_METHOD(TestVectorMultiplicationByScalarCommutative1)
 		{
-			TinyMathLib::Vector3D<float> V1(100.0f, 50.0f, 25.0f);
-			TinyMathLib::Vector3D<float> V2 = V1 * 0.5f;
-			TinyMathLib::Vector3D<float> V3 = 0.5f * V1;
+			TinyMathLib::Vector3<float> V1(100.0f, 50.0f, 25.0f);
+			TinyMathLib::Vector3<float> V2 = V1 * 0.5f;
+			TinyMathLib::Vector3<float> V3 = 0.5f * V1;
 
 			Assert::AreEqual(V3.x, V2.x);
 			Assert::AreEqual(V3.y, V2.y);
@@ -258,10 +258,10 @@ namespace UnitTests
 		}
 		TEST_METHOD(TestVectorAdditionCommutative1)
 		{
-			TinyMathLib::Vector3D<float> V1(100.0f, 90.0f, 80.0f);
-			TinyMathLib::Vector3D<float> V2(2.0f, 3.0f, 4.0f);
-			TinyMathLib::Vector3D<float> V3 = V1 + V2;
-			TinyMathLib::Vector3D<float> V4 = V2 + V1;
+			TinyMathLib::Vector3<float> V1(100.0f, 90.0f, 80.0f);
+			TinyMathLib::Vector3<float> V2(2.0f, 3.0f, 4.0f);
+			TinyMathLib::Vector3<float> V3 = V1 + V2;
+			TinyMathLib::Vector3<float> V4 = V2 + V1;
 
 			Assert::AreEqual(V4.x, V3.x);
 			Assert::AreEqual(V4.y, V3.y);
@@ -269,11 +269,11 @@ namespace UnitTests
 		}
 		TEST_METHOD(TestVectorAdditionAssociative1)
 		{
-			TinyMathLib::Vector3D<float> V1(100.0f, 90.0f, 80.0f);
-			TinyMathLib::Vector3D<float> V2(2.0f, 3.0f, 4.0f);
-			TinyMathLib::Vector3D<float> V3(1.23f, 3.45f, 6.78f);
-			TinyMathLib::Vector3D<float> V4 = (V1 + V2) + V3;
-			TinyMathLib::Vector3D<float> V5 = V1 + (V2 + V3);
+			TinyMathLib::Vector3<float> V1(100.0f, 90.0f, 80.0f);
+			TinyMathLib::Vector3<float> V2(2.0f, 3.0f, 4.0f);
+			TinyMathLib::Vector3<float> V3(1.23f, 3.45f, 6.78f);
+			TinyMathLib::Vector3<float> V4 = (V1 + V2) + V3;
+			TinyMathLib::Vector3<float> V5 = V1 + (V2 + V3);
 
 			Assert::AreEqual(V5.x, V4.x);
 			Assert::AreEqual(V5.y, V4.y);
@@ -281,9 +281,9 @@ namespace UnitTests
 		}
 		TEST_METHOD(TestVectorAdditionZero1)
 		{
-			TinyMathLib::Vector3D<float> V1(100.0f, 90.0f, 7.98f);
-			TinyMathLib::Vector3D<float> V2 = TinyMathLib::CreateZeroVector3D<float>();
-			TinyMathLib::Vector3D<float> V3 = V1 + V2;
+			TinyMathLib::Vector3<float> V1(100.0f, 90.0f, 7.98f);
+			TinyMathLib::Vector3<float> V2 = TinyMathLib::CreateZeroVector3D<float>();
+			TinyMathLib::Vector3<float> V3 = V1 + V2;
 
 			Assert::AreEqual(V3.x, V1.x);
 			Assert::AreEqual(V3.y, V1.y);
@@ -291,8 +291,8 @@ namespace UnitTests
 		}
 		TEST_METHOD(TestVectorSelfSubstraction1)
 		{
-			TinyMathLib::Vector3D<float> V1(100.0f, 90.0f, -0.123f);
-			TinyMathLib::Vector3D<float> V2 = V1 - V1;
+			TinyMathLib::Vector3<float> V1(100.0f, 90.0f, -0.123f);
+			TinyMathLib::Vector3<float> V2 = V1 - V1;
 
 			Assert::AreEqual(0.0f, V2.x);
 			Assert::AreEqual(0.0f, V2.y);
@@ -300,9 +300,9 @@ namespace UnitTests
 		}
 		TEST_METHOD(TestVectorMultiplicationByMatrix1)
 		{
-			TinyMathLib::Vector3D<float> V1(2.0f, 3.0f, 1.5f);
+			TinyMathLib::Vector3<float> V1(2.0f, 3.0f, 1.5f);
 			TinyMathLib::Matrix3x3<float> M1(0.1f, 0.2f, 0.3f, 1.0f, 2.0f, 1.0f, 3.0f, 4.0f, 5.0f);
-			TinyMathLib::Vector3D<float> V2 = V1 * M1;
+			TinyMathLib::Vector3<float> V2 = V1 * M1;
 
 			Assert::AreEqual(7.7f, V2.x);
 			Assert::AreEqual(12.4f, V2.y);
@@ -310,9 +310,9 @@ namespace UnitTests
 		}
 		TEST_METHOD(TestVectorMultiplicationByMatrix2)
 		{
-			TinyMathLib::Vector3D<float> V1(1.0f, 0.0f, 0.0f);
+			TinyMathLib::Vector3<float> V1(1.0f, 0.0f, 0.0f);
 			TinyMathLib::Matrix3x3<float> M1(0.23f, 0.34f, 0.45f, 1.23f, 4.56f, 7.89f, 3.1f, 4.2f, 5.3f);
-			TinyMathLib::Vector3D<float> V2 = V1 * M1;
+			TinyMathLib::Vector3<float> V2 = V1 * M1;
 
 			Assert::AreEqual(M1.m11, V2.x);
 			Assert::AreEqual(M1.m12, V2.y);
@@ -320,9 +320,9 @@ namespace UnitTests
 		}
 		TEST_METHOD(TestVectorMultiplicationByMatrix3)
 		{
-			TinyMathLib::Vector3D<float> V1(0.0f, 1.0f, 0.0f);
+			TinyMathLib::Vector3<float> V1(0.0f, 1.0f, 0.0f);
 			TinyMathLib::Matrix3x3<float> M1(0.23f, 0.34f, 0.45f, 1.23f, 4.56f, 7.89f, 3.1f, 4.2f, 5.3f);
-			TinyMathLib::Vector3D<float> V2 = V1 * M1;
+			TinyMathLib::Vector3<float> V2 = V1 * M1;
 
 			Assert::AreEqual(M1.m21, V2.x);
 			Assert::AreEqual(M1.m22, V2.y);
@@ -330,9 +330,9 @@ namespace UnitTests
 		}
 		TEST_METHOD(TestVectorMultiplicationByMatrix4)
 		{
-			TinyMathLib::Vector3D<float> V1(0.0f, 0.0f, 1.0f);
+			TinyMathLib::Vector3<float> V1(0.0f, 0.0f, 1.0f);
 			TinyMathLib::Matrix3x3<float> M1(0.23f, 0.34f, 0.45f, 1.23f, 4.56f, 7.89f, 3.1f, 4.2f, 5.3f);
-			TinyMathLib::Vector3D<float> V2 = V1 * M1;
+			TinyMathLib::Vector3<float> V2 = V1 * M1;
 
 			Assert::AreEqual(M1.m31, V2.x);
 			Assert::AreEqual(M1.m32, V2.y);
@@ -340,11 +340,11 @@ namespace UnitTests
 		}
 		TEST_METHOD(TestLinearTransformationAssertion1)
 		{
-			TinyMathLib::Vector3D<float> V1(2.0f, 3.0f, 1.5f);
-			TinyMathLib::Vector3D<float> V2(1.0f, 2.0f, 35.0f);
+			TinyMathLib::Vector3<float> V1(2.0f, 3.0f, 1.5f);
+			TinyMathLib::Vector3<float> V2(1.0f, 2.0f, 35.0f);
 			TinyMathLib::Matrix3x3<float> M1(0.1f, 0.2f, 0.3f, 1.0f, 2.0f, 1.0f, 3.0f, 4.0f, 5.0f);
-			TinyMathLib::Vector3D<float> V3 = (V1 + V2) * M1;
-			TinyMathLib::Vector3D<float> V4 = (V1 * M1) + (V2 * M1);
+			TinyMathLib::Vector3<float> V3 = (V1 + V2) * M1;
+			TinyMathLib::Vector3<float> V4 = (V1 * M1) + (V2 * M1);
 
 			const float TOLERANCE = 0.001f;
 			Assert::AreEqual(V4.x, V3.x, TOLERANCE);
@@ -439,9 +439,9 @@ namespace UnitTests
 		}
 		TEST_METHOD(TestMatrixScaleing1)
 		{
-			TinyMathLib::Vector2D<float> V1(1.0f, 1.0f);
+			TinyMathLib::Vector2<float> V1(1.0f, 1.0f);
 			TinyMathLib::Matrix2x2<float> M1 = TinyMathLib::CreateScaleMatrix2x2<float>(1.5f, 2.25f);
-			TinyMathLib::Vector2D<float> V = V1 * M1;
+			TinyMathLib::Vector2<float> V = V1 * M1;
 
 			Assert::AreEqual(1.5f, V.x);
 			Assert::AreEqual(2.25f, V.y);
@@ -449,7 +449,7 @@ namespace UnitTests
 		TEST_METHOD(TestMatrixScalingPairity1)
 		{
 			TinyMathLib::Matrix2x2<float> M1 = TinyMathLib::CreateScaleMatrix2x2<float>(2.0f, 1.0f);
-			TinyMathLib::Matrix2x2<float> M2 = TinyMathLib::CreateScaleMatrix2x2<float>(2.0f, TinyMathLib::Vector2D<float>(1.0f, 0.0f));
+			TinyMathLib::Matrix2x2<float> M2 = TinyMathLib::CreateScaleMatrix2x2<float>(2.0f, TinyMathLib::Vector2<float>(1.0f, 0.0f));
 
 			Assert::AreEqual(M1.m11, M2.m11);
 			Assert::AreEqual(M1.m12, M2.m12);
@@ -459,7 +459,7 @@ namespace UnitTests
 		TEST_METHOD(TestMatrixScalingPairity2)
 		{
 			TinyMathLib::Matrix2x2<float> M1 = TinyMathLib::CreateScaleMatrix2x2<float>(1.0f, 2.0f);
-			TinyMathLib::Matrix2x2<float> M2 = TinyMathLib::CreateScaleMatrix2x2<float>(2.0f, TinyMathLib::Vector2D<float>(0.0f, 1.0f));
+			TinyMathLib::Matrix2x2<float> M2 = TinyMathLib::CreateScaleMatrix2x2<float>(2.0f, TinyMathLib::Vector2<float>(0.0f, 1.0f));
 
 			Assert::AreEqual(M1.m11, M2.m11);
 			Assert::AreEqual(M1.m12, M2.m12);
@@ -468,7 +468,7 @@ namespace UnitTests
 		}
 		TEST_METHOD(TestOrtographicProjectionParity1)
 		{
-			TinyMathLib::Matrix2x2<float> M1 = TinyMathLib::CreateOrtographicProjectionMatrix2x2<float>(TinyMathLib::Vector2D<float>(0.0f, 1.0f));
+			TinyMathLib::Matrix2x2<float> M1 = TinyMathLib::CreateOrtographicProjectionMatrix2x2<float>(TinyMathLib::Vector2<float>(0.0f, 1.0f));
 			TinyMathLib::Matrix2x2<float> M2 = TinyMathLib::CreateOrtographicProjectionMatrixX2x2<float>();
 
 			Assert::AreEqual(M2.m11, M1.m11);
@@ -478,7 +478,7 @@ namespace UnitTests
 		}
 		TEST_METHOD(TestOrtographicProjectionParity2)
 		{
-			TinyMathLib::Matrix2x2<float> M1 = TinyMathLib::CreateOrtographicProjectionMatrix2x2<float>(TinyMathLib::Vector2D<float>(1.0f, 0.0f));
+			TinyMathLib::Matrix2x2<float> M1 = TinyMathLib::CreateOrtographicProjectionMatrix2x2<float>(TinyMathLib::Vector2<float>(1.0f, 0.0f));
 			TinyMathLib::Matrix2x2<float> M2 = TinyMathLib::CreateOrtographicProjectionMatrixY2x2<float>();
 
 			Assert::AreEqual(M2.m11, M1.m11);
@@ -488,8 +488,8 @@ namespace UnitTests
 		}
 		TEST_METHOD(TestReflectionParity1)
 		{
-			TinyMathLib::Matrix2x2<float> M1 = TinyMathLib::CreateReflectionMatrix2x2<float>(TinyMathLib::Vector2D<float>(1.0f, 0.0f));
-			TinyMathLib::Matrix2x2<float> M2 = TinyMathLib::CreateScaleMatrix2x2<float>(-1.0f, TinyMathLib::Vector2D<float>(1.0f, 0.0f));
+			TinyMathLib::Matrix2x2<float> M1 = TinyMathLib::CreateReflectionMatrix2x2<float>(TinyMathLib::Vector2<float>(1.0f, 0.0f));
+			TinyMathLib::Matrix2x2<float> M2 = TinyMathLib::CreateScaleMatrix2x2<float>(-1.0f, TinyMathLib::Vector2<float>(1.0f, 0.0f));
 
 			Assert::AreEqual(M2.m11, M1.m11);
 			Assert::AreEqual(M2.m12, M1.m12);
@@ -498,8 +498,8 @@ namespace UnitTests
 		}
 		TEST_METHOD(TestReflectionParity2)
 		{
-			TinyMathLib::Matrix2x2<float> M1 = TinyMathLib::CreateReflectionMatrix2x2<float>(TinyMathLib::Vector2D<float>(0.0f, 1.0f));
-			TinyMathLib::Matrix2x2<float> M2 = TinyMathLib::CreateScaleMatrix2x2<float>(-1.0f, TinyMathLib::Vector2D<float>(0.0f, 1.0f));
+			TinyMathLib::Matrix2x2<float> M1 = TinyMathLib::CreateReflectionMatrix2x2<float>(TinyMathLib::Vector2<float>(0.0f, 1.0f));
+			TinyMathLib::Matrix2x2<float> M2 = TinyMathLib::CreateScaleMatrix2x2<float>(-1.0f, TinyMathLib::Vector2<float>(0.0f, 1.0f));
 
 			Assert::AreEqual(M2.m11, M1.m11);
 			Assert::AreEqual(M2.m12, M1.m12);
@@ -509,10 +509,10 @@ namespace UnitTests
 		TEST_METHOD(TestLinearTransformationAssertion1)
 		{
 			float S1 = 2.5f;
-			TinyMathLib::Vector2D<float> V1(1.2f, 3.4f);
+			TinyMathLib::Vector2<float> V1(1.2f, 3.4f);
 			TinyMathLib::Matrix2x2<float> M1(1.2f, 3.4f, 4.5f, 6.7f);
-			TinyMathLib::Vector2D<float> V2 = (V1 * S1) * M1;
-			TinyMathLib::Vector2D<float> V3 = (V1 * M1) * S1;
+			TinyMathLib::Vector2<float> V2 = (V1 * S1) * M1;
+			TinyMathLib::Vector2<float> V3 = (V1 * M1) * S1;
 
 			float TOLERANCE = 0.001;
 			Assert::AreEqual(V3.x, V2.x, TOLERANCE);
@@ -520,33 +520,33 @@ namespace UnitTests
 		}
 		TEST_METHOD(TestLinearTransformationAssertion2)
 		{
-			TinyMathLib::Vector2D<float> V1(1.0f, 1.0f);
-			TinyMathLib::Vector2D<float> V2(2.3f, 7.8f);
+			TinyMathLib::Vector2<float> V1(1.0f, 1.0f);
+			TinyMathLib::Vector2<float> V2(2.3f, 7.8f);
 			TinyMathLib::Matrix2x2<float> M1 = TinyMathLib::CreateScaleMatrix2x2<float>(1.5f, 2.25f);
-			TinyMathLib::Vector2D<float> V3 = (V1 + V2) * M1;
-			TinyMathLib::Vector2D<float> V4 = (V1 * M1) + (V2 * M1);
+			TinyMathLib::Vector2<float> V3 = (V1 + V2) * M1;
+			TinyMathLib::Vector2<float> V4 = (V1 * M1) + (V2 * M1);
 
 			Assert::AreEqual(V4.x, V3.x);
 			Assert::AreEqual(V4.y, V3.y);
 		}
 		TEST_METHOD(TestLinearTransformationAssertion3)
 		{
-			TinyMathLib::Vector2D<float> V1(1.0f, 1.0f);
-			TinyMathLib::Vector2D<float> V2(2.3f, 7.8f);
+			TinyMathLib::Vector2<float> V1(1.0f, 1.0f);
+			TinyMathLib::Vector2<float> V2(2.3f, 7.8f);
 			TinyMathLib::Matrix2x2<float> M1 = TinyMathLib::CreateOrtographicProjectionMatrixX2x2<float>();
-			TinyMathLib::Vector2D<float> V3 = (V1 + V2) * M1;
-			TinyMathLib::Vector2D<float> V4 = (V1 * M1) + (V2 * M1);
+			TinyMathLib::Vector2<float> V3 = (V1 + V2) * M1;
+			TinyMathLib::Vector2<float> V4 = (V1 * M1) + (V2 * M1);
 
 			Assert::AreEqual(V4.x, V3.x);
 			Assert::AreEqual(V4.y, V3.y);
 		}
 		TEST_METHOD(TestLinearTransformationAssertion4)
 		{
-			TinyMathLib::Vector2D<float> V1(1.0f, 1.0f);
-			TinyMathLib::Vector2D<float> V2(2.3f, 7.8f);
-			TinyMathLib::Matrix2x2<float> M1 = TinyMathLib::CreateReflectionMatrix2x2<float>(TinyMathLib::Vector2D<float>(1.0f, 0.0f));
-			TinyMathLib::Vector2D<float> V3 = (V1 + V2) * M1;
-			TinyMathLib::Vector2D<float> V4 = (V1 * M1) + (V2 * M1);
+			TinyMathLib::Vector2<float> V1(1.0f, 1.0f);
+			TinyMathLib::Vector2<float> V2(2.3f, 7.8f);
+			TinyMathLib::Matrix2x2<float> M1 = TinyMathLib::CreateReflectionMatrix2x2<float>(TinyMathLib::Vector2<float>(1.0f, 0.0f));
+			TinyMathLib::Vector2<float> V3 = (V1 + V2) * M1;
+			TinyMathLib::Vector2<float> V4 = (V1 * M1) + (V2 * M1);
 
 			Assert::AreEqual(V4.x, V3.x);
 			Assert::AreEqual(V4.y, V3.y);
@@ -803,7 +803,7 @@ namespace UnitTests
 		}
 		TEST_METHOD(TestCreateRotationMatrixAxis1)
 		{
-			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateRotationMatrix3x3<float>(TinyMathLib::convertToRadians(-15.0f), TinyMathLib::Vector3D<float>(0.267f, -0.535, 0.802));
+			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateRotationMatrix3x3<float>(TinyMathLib::convertToRadians(-15.0f), TinyMathLib::Vector3<float>(0.267f, -0.535, 0.802));
 
 			const float TOLERANCE = 0.001f;
 			Assert::AreEqual(0.968f, M1.m11, TOLERANCE);
@@ -856,9 +856,9 @@ namespace UnitTests
 		}
 		TEST_METHOD(TestMatrixRotationEquasion1)
 		{
-			TinyMathLib::Vector3D<float> V1(1.0f, 1.0f, 0.0f);
+			TinyMathLib::Vector3<float> V1(1.0f, 1.0f, 0.0f);
 			TinyMathLib::Matrix3x3<float> RZ1 = TinyMathLib::CreateRotationMatrix3x3AxisZ<float>(TinyMathLib::convertToRadians(90.0f));
-			TinyMathLib::Vector3D<float> V = V1 * RZ1;
+			TinyMathLib::Vector3<float> V = V1 * RZ1;
 
 			const float TOLERANCE = 0.001f;
 			Assert::AreEqual(-1.0f, V.x, TOLERANCE);
@@ -868,7 +868,7 @@ namespace UnitTests
 		TEST_METHOD(TestMatrixRotationEquasion2)
 		{
 			TinyMathLib::Matrix3x3<float> RX1 = TinyMathLib::CreateRotationMatrixAxisX<float>(TinyMathLib::convertToRadians(-12.3f));
-			TinyMathLib::Matrix3x3<float> RX2 = TinyMathLib::CreateRotationMatrix3x3<float>(TinyMathLib::convertToRadians(-12.3f), TinyMathLib::Vector3D<float>(1.0f, 0.0f, 0.0f));
+			TinyMathLib::Matrix3x3<float> RX2 = TinyMathLib::CreateRotationMatrix3x3<float>(TinyMathLib::convertToRadians(-12.3f), TinyMathLib::Vector3<float>(1.0f, 0.0f, 0.0f));
 
 			const float TOLERANCE = 0.001f;
 			Assert::AreEqual(RX1.m11, RX2.m11, TOLERANCE);
@@ -886,7 +886,7 @@ namespace UnitTests
 		TEST_METHOD(TestMatrixRotationEquasion3)
 		{
 			TinyMathLib::Matrix3x3<float> RY1 = TinyMathLib::CreateRotationMatrix3x3AxisY<float>(TinyMathLib::convertToRadians(32.11f));
-			TinyMathLib::Matrix3x3<float> RY2 = TinyMathLib::CreateRotationMatrix3x3<float>(TinyMathLib::convertToRadians(32.11f), TinyMathLib::Vector3D<float>(0.0f, 1.0f, 0.0f));
+			TinyMathLib::Matrix3x3<float> RY2 = TinyMathLib::CreateRotationMatrix3x3<float>(TinyMathLib::convertToRadians(32.11f), TinyMathLib::Vector3<float>(0.0f, 1.0f, 0.0f));
 
 			const float TOLERANCE = 0.001f;
 			Assert::AreEqual(RY1.m11, RY2.m11, TOLERANCE);
@@ -904,7 +904,7 @@ namespace UnitTests
 		TEST_METHOD(TestMatrixRotationEquasion4)
 		{
 			TinyMathLib::Matrix3x3<float> RZ1 = TinyMathLib::CreateRotationMatrix3x3AxisZ<float>(TinyMathLib::convertToRadians(73.1f));
-			TinyMathLib::Matrix3x3<float> RZ2 = TinyMathLib::CreateRotationMatrix3x3<float>(TinyMathLib::convertToRadians(73.1f), TinyMathLib::Vector3D<float>(0.0f, 0.0f, 1.0f));
+			TinyMathLib::Matrix3x3<float> RZ2 = TinyMathLib::CreateRotationMatrix3x3<float>(TinyMathLib::convertToRadians(73.1f), TinyMathLib::Vector3<float>(0.0f, 0.0f, 1.0f));
 
 			const float TOLERANCE = 0.001f;
 			Assert::AreEqual(RZ1.m11, RZ2.m11, TOLERANCE);
@@ -921,9 +921,9 @@ namespace UnitTests
 		}
 		TEST_METHOD(TestMatrixScaling1)
 		{
-			TinyMathLib::Vector3D<float> V1(1.0f, 1.0f, 0.5f);
+			TinyMathLib::Vector3<float> V1(1.0f, 1.0f, 0.5f);
 			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateScaleMatrix3x3<float>(0.5f, 2.0f, 3.0f);
-			TinyMathLib::Vector3D<float> V = V1 * M1;
+			TinyMathLib::Vector3<float> V = V1 * M1;
 
 			Assert::AreEqual(0.5f, V.x);
 			Assert::AreEqual(2.0f, V.y);
@@ -945,7 +945,7 @@ namespace UnitTests
 		}
 		TEST_METHOD(TestMatrixScaling3)
 		{
-			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateScaleMatrix3x3<float>(5.0f, TinyMathLib::Vector3D<float>(0.267f, -0.535, 0.802));
+			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateScaleMatrix3x3<float>(5.0f, TinyMathLib::Vector3<float>(0.267f, -0.535, 0.802));
 
 			const float TOLERANCE = 0.001f;
 			Assert::AreEqual(1.285f, M1.m11, TOLERANCE);
@@ -961,7 +961,7 @@ namespace UnitTests
 		TEST_METHOD(TestMatrixScalingPairity1)
 		{
 			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateScaleMatrix3x3<float>(2.0f, 1.0f, 1.0f);
-			TinyMathLib::Matrix3x3<float> M2 = TinyMathLib::CreateScaleMatrix3x3<float>(2.0f, TinyMathLib::Vector3D<float>(1.0f, 0.0f, 0.0f));
+			TinyMathLib::Matrix3x3<float> M2 = TinyMathLib::CreateScaleMatrix3x3<float>(2.0f, TinyMathLib::Vector3<float>(1.0f, 0.0f, 0.0f));
 
 			Assert::AreEqual(M1.m11, M2.m11);
 			Assert::AreEqual(M1.m12, M2.m12);
@@ -978,7 +978,7 @@ namespace UnitTests
 		TEST_METHOD(TestMatrixScalingPairity2)
 		{
 			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateScaleMatrix3x3<float>(1.0f, 2.0f, 1.0f);
-			TinyMathLib::Matrix3x3<float> M2 = TinyMathLib::CreateScaleMatrix3x3<float>(2.0f, TinyMathLib::Vector3D<float>(0.0f, 1.0f, 0.0f));
+			TinyMathLib::Matrix3x3<float> M2 = TinyMathLib::CreateScaleMatrix3x3<float>(2.0f, TinyMathLib::Vector3<float>(0.0f, 1.0f, 0.0f));
 
 			Assert::AreEqual(M1.m11, M2.m11);
 			Assert::AreEqual(M1.m12, M2.m12);
@@ -995,7 +995,7 @@ namespace UnitTests
 		TEST_METHOD(TestMatrixScalingPairity3)
 		{
 			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateScaleMatrix3x3<float>(1.0f, 1.0f, 2.0f);
-			TinyMathLib::Matrix3x3<float> M2 = TinyMathLib::CreateScaleMatrix3x3<float>(2.0f, TinyMathLib::Vector3D<float>(0.0f, 0.0f, 1.0f));
+			TinyMathLib::Matrix3x3<float> M2 = TinyMathLib::CreateScaleMatrix3x3<float>(2.0f, TinyMathLib::Vector3<float>(0.0f, 0.0f, 1.0f));
 
 			Assert::AreEqual(M1.m11, M2.m11);
 			Assert::AreEqual(M1.m12, M2.m12);
@@ -1011,7 +1011,7 @@ namespace UnitTests
 		}
 		TEST_METHOD(TestOrtographicProjectionMatrix1)
 		{
-			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateOrtographicProjectionMatrix3x3<float>(TinyMathLib::Vector3D<float>(0.267, -0.535, 0.802));
+			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateOrtographicProjectionMatrix3x3<float>(TinyMathLib::Vector3<float>(0.267, -0.535, 0.802));
 
 			const float TOLERANCE = 0.001f;
 			Assert::AreEqual(0.929f, M1.m11, TOLERANCE);
@@ -1027,7 +1027,7 @@ namespace UnitTests
 		TEST_METHOD(TestOrtographicProjectionParity1)
 		{
 			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateOrtographicProjectionMatrixXY3x3<float>();
-			TinyMathLib::Matrix3x3<float> M2 = TinyMathLib::CreateOrtographicProjectionMatrix3x3<float>(TinyMathLib::Vector3D<float>(0.0f, 0.0f, 1.0f));
+			TinyMathLib::Matrix3x3<float> M2 = TinyMathLib::CreateOrtographicProjectionMatrix3x3<float>(TinyMathLib::Vector3<float>(0.0f, 0.0f, 1.0f));
 
 			Assert::AreEqual(M1.m11, M2.m11);
 			Assert::AreEqual(M1.m12, M2.m12);
@@ -1042,7 +1042,7 @@ namespace UnitTests
 		TEST_METHOD(TestOrtographicProjectionParity2)
 		{
 			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateOrtographicProjectionMatrixXZ3x3<float>();
-			TinyMathLib::Matrix3x3<float> M2 = TinyMathLib::CreateOrtographicProjectionMatrix3x3<float>(TinyMathLib::Vector3D<float>(0.0f, 1.0f, 0.0f));
+			TinyMathLib::Matrix3x3<float> M2 = TinyMathLib::CreateOrtographicProjectionMatrix3x3<float>(TinyMathLib::Vector3<float>(0.0f, 1.0f, 0.0f));
 
 			Assert::AreEqual(M1.m11, M2.m11);
 			Assert::AreEqual(M1.m12, M2.m12);
@@ -1057,7 +1057,7 @@ namespace UnitTests
 		TEST_METHOD(TestOrtographicProjectionParity3)
 		{
 			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateOrtographicProjectionMatrixYZ3x3<float>();
-			TinyMathLib::Matrix3x3<float> M2 = TinyMathLib::CreateOrtographicProjectionMatrix3x3<float>(TinyMathLib::Vector3D<float>(1.0f, 0.0f, 0.0f));
+			TinyMathLib::Matrix3x3<float> M2 = TinyMathLib::CreateOrtographicProjectionMatrix3x3<float>(TinyMathLib::Vector3<float>(1.0f, 0.0f, 0.0f));
 
 			const float TOLERANCE = 0.001f;
 			Assert::AreEqual(M1.m11, M2.m11, TOLERANCE);
@@ -1072,7 +1072,7 @@ namespace UnitTests
 		}
 		TEST_METHOD(TestReflectionMatrix1)
 		{
-			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateReflectionMatrix3x3(TinyMathLib::Vector3D<float>(0.267f, -0.535f, 0.802));
+			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateReflectionMatrix3x3(TinyMathLib::Vector3<float>(0.267f, -0.535f, 0.802));
 
 			const float TOLERANCE = 0.001f;
 			Assert::AreEqual(0.857f, M1.m11, TOLERANCE);
@@ -1087,8 +1087,8 @@ namespace UnitTests
 		}
 		TEST_METHOD(TestReflectionParity1)
 		{
-			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateReflectionMatrix3x3<float>(TinyMathLib::Vector3D<float>(1.0f, 0.0f, 0.0f));
-			TinyMathLib::Matrix3x3<float> M2 = TinyMathLib::CreateScaleMatrix3x3(-1.0f, TinyMathLib::Vector3D<float>(1.0f, 0.0f, 0.0f));
+			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateReflectionMatrix3x3<float>(TinyMathLib::Vector3<float>(1.0f, 0.0f, 0.0f));
+			TinyMathLib::Matrix3x3<float> M2 = TinyMathLib::CreateScaleMatrix3x3(-1.0f, TinyMathLib::Vector3<float>(1.0f, 0.0f, 0.0f));
 
 			Assert::AreEqual(M2.m11, M1.m11);
 			Assert::AreEqual(M2.m12, M1.m12);
@@ -1102,8 +1102,8 @@ namespace UnitTests
 		}
 		TEST_METHOD(TestReflectionParity2)
 		{
-			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateReflectionMatrix3x3<float>(TinyMathLib::Vector3D<float>(0.0f, 1.0f, 0.0f));
-			TinyMathLib::Matrix3x3<float> M2 = TinyMathLib::CreateScaleMatrix3x3(-1.0f, TinyMathLib::Vector3D<float>(0.0f, 1.0f, 0.0f));
+			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateReflectionMatrix3x3<float>(TinyMathLib::Vector3<float>(0.0f, 1.0f, 0.0f));
+			TinyMathLib::Matrix3x3<float> M2 = TinyMathLib::CreateScaleMatrix3x3(-1.0f, TinyMathLib::Vector3<float>(0.0f, 1.0f, 0.0f));
 
 			Assert::AreEqual(M2.m11, M1.m11);
 			Assert::AreEqual(M2.m12, M1.m12);
@@ -1117,8 +1117,8 @@ namespace UnitTests
 		}
 		TEST_METHOD(TestReflectionParity3)
 		{
-			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateReflectionMatrix3x3<float>(TinyMathLib::Vector3D<float>(0.0f, 0.0f, 1.0f));
-			TinyMathLib::Matrix3x3<float> M2 = TinyMathLib::CreateScaleMatrix3x3(-1.0f, TinyMathLib::Vector3D<float>(0.0f, 0.0f, 1.0f));
+			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateReflectionMatrix3x3<float>(TinyMathLib::Vector3<float>(0.0f, 0.0f, 1.0f));
+			TinyMathLib::Matrix3x3<float> M2 = TinyMathLib::CreateScaleMatrix3x3(-1.0f, TinyMathLib::Vector3<float>(0.0f, 0.0f, 1.0f));
 
 			Assert::AreEqual(M2.m11, M1.m11);
 			Assert::AreEqual(M2.m12, M1.m12);
@@ -1133,10 +1133,10 @@ namespace UnitTests
 		TEST_METHOD(TestLinearTransformationAssertion1)
 		{
 			float S1 = 3.14f;
-			TinyMathLib::Vector3D<float> V1(1.0f, 2.0f, 3.0f);
+			TinyMathLib::Vector3<float> V1(1.0f, 2.0f, 3.0f);
 			TinyMathLib::Matrix3x3<float> M1(1.0f, 2.0f, 3.0f, 1.0f, 2.0f, 3.0f, 1.0f, 2.0f, 3.0f);
-			TinyMathLib::Vector3D<float> V2 = (V1 * S1) * M1;
-			TinyMathLib::Vector3D<float> V3 = (V1 * M1) * S1;
+			TinyMathLib::Vector3<float> V2 = (V1 * S1) * M1;
+			TinyMathLib::Vector3<float> V3 = (V1 * M1) * S1;
 
 			Assert::AreEqual(V3.x, V2.x);
 			Assert::AreEqual(V3.y, V2.y);
@@ -1144,11 +1144,11 @@ namespace UnitTests
 		}
 		TEST_METHOD(TestLinearTransformationAssertion2)
 		{
-			TinyMathLib::Vector3D<float> V1(1.0f, 1.0f, 0.0f);
-			TinyMathLib::Vector3D<float> V2(1.2f, 3.4f, 5.6f);
+			TinyMathLib::Vector3<float> V1(1.0f, 1.0f, 0.0f);
+			TinyMathLib::Vector3<float> V2(1.2f, 3.4f, 5.6f);
 			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateRotationMatrix3x3AxisZ<float>(TinyMathLib::convertToRadians(90.0f));
-			TinyMathLib::Vector3D<float> V3 = (V1 + V2) * M1;
-			TinyMathLib::Vector3D<float> V4 = (V1 * M1) + (V2 * M1);
+			TinyMathLib::Vector3<float> V3 = (V1 + V2) * M1;
+			TinyMathLib::Vector3<float> V4 = (V1 * M1) + (V2 * M1);
 
 			const float TOLERANCE = 0.001f;
 			Assert::AreEqual(V4.x, V3.x, TOLERANCE);
@@ -1157,11 +1157,11 @@ namespace UnitTests
 		}
 		TEST_METHOD(TestLinearTransformationAssertion3)
 		{
-			TinyMathLib::Vector3D<float> V1(1.0f, 1.0f, 0.5f);
-			TinyMathLib::Vector3D<float> V2(1.2f, 3.4f, 5.6f);
+			TinyMathLib::Vector3<float> V1(1.0f, 1.0f, 0.5f);
+			TinyMathLib::Vector3<float> V2(1.2f, 3.4f, 5.6f);
 			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateScaleMatrix3x3<float>(0.5f, 2.0f, 3.0f);
-			TinyMathLib::Vector3D<float> V3 = (V1 + V2) * M1;
-			TinyMathLib::Vector3D<float> V4 = (V1 * M1) + (V2 * M1);
+			TinyMathLib::Vector3<float> V3 = (V1 + V2) * M1;
+			TinyMathLib::Vector3<float> V4 = (V1 * M1) + (V2 * M1);
 
 			Assert::AreEqual(V4.x, V3.x);
 			Assert::AreEqual(V4.y, V3.y);
@@ -1169,11 +1169,11 @@ namespace UnitTests
 		}
 		TEST_METHOD(TestLinearTransformationAssertion4)
 		{
-			TinyMathLib::Vector3D<float> V1(1.0f, 1.0f, 0.5f);
-			TinyMathLib::Vector3D<float> V2(1.2f, 3.4f, 5.6f);
+			TinyMathLib::Vector3<float> V1(1.0f, 1.0f, 0.5f);
+			TinyMathLib::Vector3<float> V2(1.2f, 3.4f, 5.6f);
 			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateOrtographicProjectionMatrixXY3x3<float>();
-			TinyMathLib::Vector3D<float> V3 = (V1 + V2) * M1;
-			TinyMathLib::Vector3D<float> V4 = (V1 * M1) + (V2 * M1);
+			TinyMathLib::Vector3<float> V3 = (V1 + V2) * M1;
+			TinyMathLib::Vector3<float> V4 = (V1 * M1) + (V2 * M1);
 
 			Assert::AreEqual(V4.x, V3.x);
 			Assert::AreEqual(V4.y, V3.y);
@@ -1181,12 +1181,12 @@ namespace UnitTests
 		}
 		TEST_METHOD(TestLinearTransformationAssertion5)
 		{
-			TinyMathLib::Vector3D<float> V1(1.0f, 1.0f, 0.5f);
-			TinyMathLib::Vector3D<float> V2(1.2f, 3.4f, 5.6f);
-			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateReflectionMatrix3x3<float>(TinyMathLib::Vector3D<float>(1.0f, 0.0f, 0.0f));
+			TinyMathLib::Vector3<float> V1(1.0f, 1.0f, 0.5f);
+			TinyMathLib::Vector3<float> V2(1.2f, 3.4f, 5.6f);
+			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateReflectionMatrix3x3<float>(TinyMathLib::Vector3<float>(1.0f, 0.0f, 0.0f));
 
-			TinyMathLib::Vector3D<float> V3 = (V1 + V2) * M1;
-			TinyMathLib::Vector3D<float> V4 = (V1 * M1) + (V2 * M1);
+			TinyMathLib::Vector3<float> V3 = (V1 + V2) * M1;
+			TinyMathLib::Vector3<float> V4 = (V1 * M1) + (V2 * M1);
 
 			Assert::AreEqual(V4.x, V3.x);
 			Assert::AreEqual(V4.y, V3.y);
