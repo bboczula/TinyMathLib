@@ -121,6 +121,25 @@ namespace UnitTests
 			Assert::AreEqual(V3.x, V2.x);
 			Assert::AreEqual(V3.y, V2.y);
 		}
+		TEST_METHOD(TestVectorMultiplicationByScalarLeftDistributive1)
+		{
+			TinyMathLib::Vector2<float> V1(100.0f, 50.0f);
+			TinyMathLib::Vector2<float> V2 = V1 * (0.5f + 1.25f);
+			TinyMathLib::Vector2<float> V3 = (V1 * 0.5f) + (V1 * 1.25f);
+
+			Assert::AreEqual(V3.x, V2.x);
+			Assert::AreEqual(V3.y, V2.y);
+		}
+		TEST_METHOD(TestVectorMultiplicationByScalarRightDistributive1)
+		{
+			TinyMathLib::Vector2<float> V1(100.0f, 50.0f);
+			TinyMathLib::Vector2<float> V2(3.14f, -2.0f);
+			TinyMathLib::Vector2<float> V3 = 0.5f * (V1 + V2);
+			TinyMathLib::Vector2<float> V4 = (0.5f * V1) + (0.5f * V2);
+
+			Assert::AreEqual(V3.x, V4.x);
+			Assert::AreEqual(V3.y, V4.y);
+		}
 		TEST_METHOD(TestVectorMultiplicationByVector1)
 		{
 			TinyMathLib::Vector2<float> vectorA(100.0f, 50.0f);
@@ -311,6 +330,27 @@ namespace UnitTests
 			Assert::AreEqual(V3.y, V2.y);
 			Assert::AreEqual(V3.z, V2.z);
 		}
+		TEST_METHOD(TestVectorMultiplicationByScalarLeftDistributive1)
+		{
+			TinyMathLib::Vector3<float> V1(100.0f, 50.0f, 25.0f);
+			TinyMathLib::Vector3<float> V2 = (0.5f + 1.25f) * V1;
+			TinyMathLib::Vector3<float> V3 = (0.5f * V1) + (1.25f * V1);
+
+			Assert::AreEqual(V3.x, V2.x);
+			Assert::AreEqual(V3.y, V2.y);
+			Assert::AreEqual(V3.z, V2.z);
+		}
+		TEST_METHOD(TestVectorMultiplicationByScalarRightDistributive1)
+		{
+			TinyMathLib::Vector3<float> V1(100.0f, 50.0f, 25.0f);
+			TinyMathLib::Vector3<float> V2(1.0f, 2.0f, -3.0f);
+			TinyMathLib::Vector3<float> V3 = 0.5f * (V1 + V2);
+			TinyMathLib::Vector3<float> V4 = (0.5f * V1) + (0.5f * V2);
+
+			Assert::AreEqual(V3.x, V4.x);
+			Assert::AreEqual(V3.y, V4.y);
+			Assert::AreEqual(V3.z, V4.z);
+		}
 		TEST_METHOD(TestVectorAddition1)
 		{
 			TinyMathLib::Vector3<float> V1(100.0f, 90.0f, 80.0f);
@@ -497,6 +537,29 @@ namespace UnitTests
 			Assert::AreEqual(V3.y, V2.y);
 			Assert::AreEqual(V3.z, V2.z);
 			Assert::AreEqual(V3.w, V2.w);
+		}
+		TEST_METHOD(TestVectorMultiplicationByScalarLeftDistributive1)
+		{
+			TinyMathLib::Vector4<float> V1(100.0f, 50.0f, 25.0f, 10.0f);
+			TinyMathLib::Vector4<float> V2 = (0.5f + 1.25f) * V1;
+			TinyMathLib::Vector4<float> V3 = (0.5f * V1) + (1.25f * V1);
+
+			Assert::AreEqual(V3.x, V2.x);
+			Assert::AreEqual(V3.y, V2.y);
+			Assert::AreEqual(V3.z, V2.z);
+			Assert::AreEqual(V3.w, V2.w);
+		}
+		TEST_METHOD(TestVectorMultiplicationByScalarRightDistributive1)
+		{
+			TinyMathLib::Vector4<float> V1(100.0f, 50.0f, 25.0f, 10.0f);
+			TinyMathLib::Vector4<float> V2(1.0f, 2.0f, 3.0f, 4.0f);
+			TinyMathLib::Vector4<float> V3 = 0.5f * (V1 + V2);
+			TinyMathLib::Vector4<float> V4 = (0.5f * V1) + (0.5f * V2);
+
+			Assert::AreEqual(V3.x, V4.x);
+			Assert::AreEqual(V3.y, V4.y);
+			Assert::AreEqual(V3.z, V4.z);
+			Assert::AreEqual(V3.w, V4.w);
 		}
 		TEST_METHOD(TestVectorMultiplicationByVector1)
 		{
