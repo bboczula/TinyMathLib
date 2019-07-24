@@ -246,6 +246,42 @@ namespace UnitTests
 
 	TEST_CLASS(GeneralVector3DTesting) 
 	{
+		TEST_METHOD(TestVectorMultiplicationByScalar1)
+		{
+			TinyMathLib::Vector3<float> V1;
+			TinyMathLib::Vector3<float> V2 = V1 * 2;
+
+			Assert::AreEqual(V2.x, 0.0f);
+			Assert::AreEqual(V2.y, 0.0f);
+			Assert::AreEqual(V2.z, 0.0f);
+		}
+		TEST_METHOD(TestVectorMultiplicationByScalar2)
+		{
+			TinyMathLib::Vector3<float> V1(3.14f, 3.14f, -1.0f);
+			TinyMathLib::Vector3<float> V2 = V1 * 2;
+
+			Assert::AreEqual(V2.x, 6.28f);
+			Assert::AreEqual(V2.y, 6.28f);
+			Assert::AreEqual(V2.z, -2.0f);
+		}
+		TEST_METHOD(TestVectorMultiplicationByScalar3)
+		{
+			TinyMathLib::Vector3<float> V1(1.0f, 1.5f, 2.0f);
+			TinyMathLib::Vector3<float> V2 = V1 * 2;
+
+			Assert::AreEqual(V2.x, 2.0f);
+			Assert::AreEqual(V2.y, 3.0f);
+			Assert::AreEqual(V2.z, 4.0f);
+		}
+		TEST_METHOD(TestVectorMultiplicationByScalar4)
+		{
+			TinyMathLib::Vector3<float> V1(100.0f, 50.0f, -200.0f);
+			TinyMathLib::Vector3<float> V2 = V1 * 0.5f;
+
+			Assert::AreEqual(V2.x, 50.0f);
+			Assert::AreEqual(V2.y, 25.0f);
+			Assert::AreEqual(V2.z, -100.0f);
+		}
 		TEST_METHOD(TestVectorMultiplicationByScalarCommutative1)
 		{
 			TinyMathLib::Vector3<float> V1(100.0f, 50.0f, 25.0f);

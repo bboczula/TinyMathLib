@@ -268,12 +268,10 @@ namespace TinyMathLib
 		}
 		Vector2 operator*(T scalar) const
 		{
-			// Vector Multiplication by Scalar
 			return Vector2(x * scalar, y * scalar);
 		}
 		friend Vector2<T> operator*(T scalar, Vector2<T> vector)
 		{
-			// Different Multiplication by Scalar (commutative property)
 			return Vector2(vector.x * scalar, vector.y * scalar);
 		}
 		Vector2 operator*(const Vector2& vector) const
