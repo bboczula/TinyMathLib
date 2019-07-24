@@ -439,6 +439,10 @@ namespace TinyMathLib
 		{
 			return Vector4(vector.x * scalar, vector.y * scalar, vector.z * scalar, vector.w * scalar);
 		}
+		Vector4 operator*(const Vector4& vector) const
+		{
+			return Vector4(x * vector.x, y * vector.y, z * vector.z, w * vector.w);
+		}
 		Vector4 operator+(const Vector4& vector)
 		{
 			return Vector4(x + vector.x, y + vector.y, z + vector.z, w + vector.w);

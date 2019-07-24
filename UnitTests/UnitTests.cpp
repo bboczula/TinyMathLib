@@ -432,6 +432,28 @@ namespace UnitTests
 			Assert::AreEqual(V3.z, V2.z);
 			Assert::AreEqual(V3.w, V2.w);
 		}
+		TEST_METHOD(TestVectorMultiplicationByVector1)
+		{
+			TinyMathLib::Vector4<float> V1(100.0f, 50.0f, 25.0f, -3.14f);
+			TinyMathLib::Vector4<float> V2(2.0f, 0.5f, 2.0f, 1.0f);
+			TinyMathLib::Vector4<float> V3 = V1 * V2;
+
+			Assert::AreEqual(V3.x, 200.0f);
+			Assert::AreEqual(V3.y, 25.0f);
+			Assert::AreEqual(V3.z, 50.0f);
+			Assert::AreEqual(V3.w, -3.14f);
+		}
+		TEST_METHOD(TestVectorMultiplicationByVector2)
+		{
+			TinyMathLib::Vector4<float> V1(100.0f, 50.0f, 25.0f, -3.14f);
+			TinyMathLib::Vector4<float> V2;
+			TinyMathLib::Vector4<float> V3 = V1 * V2;
+
+			Assert::AreEqual(V3.x, 0.0f);
+			Assert::AreEqual(V3.y, 0.0f);
+			Assert::AreEqual(V3.z, 0.0f);
+			Assert::AreEqual(V3.w, 0.0f);
+		}
 		TEST_METHOD(TestVectorAddition1)
 		{
 			TinyMathLib::Vector4<float> V1(3.1415f, 6.28f, -102.0f, -0.0025f);
