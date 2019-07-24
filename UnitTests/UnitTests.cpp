@@ -383,6 +383,16 @@ namespace UnitTests
 			Assert::AreEqual(-102.f, V1.z);
 			Assert::AreEqual(-0.0025f, V1.w);
 		}
+		TEST_METHOD(TestNegation1)
+		{
+			TinyMathLib::Vector4<float> V1(0.0f, -3.14f, 3.14f, 1.0f);
+			TinyMathLib::Vector4<float> V2 = -V1;
+
+			Assert::AreEqual(0.0f, V2.x);
+			Assert::AreEqual(3.14f, V2.y);
+			Assert::AreEqual(-3.14f, V2.z);
+			Assert::AreEqual(-1.0f, V2.w);
+		}
 		TEST_METHOD(TestVectorAddition1)
 		{
 			TinyMathLib::Vector4<float> V1(3.1415f, 6.28f, -102.0f, -0.0025f);
