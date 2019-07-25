@@ -270,6 +270,14 @@ namespace UnitTests
 			Assert::AreEqual(0.0f, V2.x);
 			Assert::AreEqual(0.0f, V2.y);
 		}
+		TEST_METHOD(TestDotProduct1)
+		{
+			TinyMathLib::Vector2<float> V1(3.14f, 6.28f);
+			TinyMathLib::Vector2<float> V2(1.23f, 4.56f);
+			float S1 = V1.dotProduct(V2);
+
+			Assert::AreEqual(32.499f, S1);
+		}
 	};
 
 	TEST_CLASS(GeneralVector3DTesting) 
@@ -456,6 +464,14 @@ namespace UnitTests
 			Assert::AreEqual(V4.y, V3.y, TOLERANCE);
 			Assert::AreEqual(V4.z, V3.z, TOLERANCE);
 		}
+		TEST_METHOD(TestDotProduct1)
+		{
+			TinyMathLib::Vector3<float> V1(3.14f, 6.28f, 5.11f);
+			TinyMathLib::Vector3<float> V2(1.23f, 4.56f, -1.0f);
+			float S1 = V1.dotProduct(V2);
+
+			Assert::AreEqual(27.389f, S1);
+		}
 	};
 
 	TEST_CLASS(GeneralVector4DTesting)
@@ -631,6 +647,15 @@ namespace UnitTests
 			Assert::AreEqual(V5.y, V4.y, TOLERANCE);
 			Assert::AreEqual(V5.z, V4.z, TOLERANCE);
 			Assert::AreEqual(V5.w, V4.w, TOLERANCE);
+		}
+		TEST_METHOD(TestDotProduct1)
+		{
+			TinyMathLib::Vector4<float> V1(3.14f, 6.28f, 5.11f, -5.11f);
+			TinyMathLib::Vector4<float> V2(1.23f, 4.56f, -1.0f, 7.89f);
+			float S1 = V1.dotProduct(V2);
+
+			const float TOLERANCE = 0.001f;
+			Assert::AreEqual(-12.9289f, S1, TOLERANCE);
 		}
 	};
 
