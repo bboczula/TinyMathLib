@@ -441,6 +441,15 @@ namespace TinyMathLib
 		{
 			return Vector4(x * vector.x, y * vector.y, z * vector.z, w * vector.w);
 		}
+		Vector4 operator*(const Matrix4x4<T>& matrix)
+		{
+			return Vector4(
+				(x * matrix.m11 + y * matrix.m21 + z * matrix.m31 + w * matrix.m41),
+				(x * matrix.m12 + y * matrix.m22 + z * matrix.m32 + w * matrix.m42),
+				(x * matrix.m13 + y * matrix.m23 + z * matrix.m33 + w * matrix.m43),
+				(x * matrix.m14 + y * matrix.m24 + z * matrix.m34 + w * matrix.m44)
+			);
+		}
 		Vector4 operator+(const Vector4& vector)
 		{
 			return Vector4(x + vector.x, y + vector.y, z + vector.z, w + vector.w);
@@ -624,6 +633,12 @@ namespace TinyMathLib
 			(scale - 1) * direction.y * direction.x, 1 + (scale - 1) * direction.y * direction.y, (scale - 1) * direction.y * direction.z,
 			(scale - 1) * direction.z * direction.x, (scale - 1) * direction.z * direction.y, 1 + (scale - 1) * direction.z * direction.z
 		);
+	}
+
+	template<typename T>
+	Matrix4x4<T> CreateTranslationMatrix4x4(float dx, float dy, float dz)
+	{
+		return Matrix4x4<T>(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, dx, dy, dz, 1);
 	}
 
 	template<typename T>

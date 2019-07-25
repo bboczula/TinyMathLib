@@ -583,6 +583,18 @@ namespace UnitTests
 			Assert::AreEqual(V3.z, 0.0f);
 			Assert::AreEqual(V3.w, 0.0f);
 		}
+		TEST_METHOD(TestVectorMultiplicationByMatrix4x4)
+		{
+			TinyMathLib::Matrix4x4<float> M1(1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f, -1.0f, -2.0f, -3.0f, -4.0f, -5.0f, -6.0f, -7.0f);
+			TinyMathLib::Vector4<float> V1(3.14f, 6.28f, -1.23f, 4.56f);
+			TinyMathLib::Vector4<float> V2 = V1 * M1;
+
+			const float TOLERANCE = 0.001f;
+			Assert::AreEqual(5.23f, V2.x, TOLERANCE);
+			Assert::AreEqual(22.39f, V2.y, TOLERANCE);
+			Assert::AreEqual(28.48f, V2.z, TOLERANCE);
+			Assert::AreEqual(34.57f, V2.w, TOLERANCE);
+		}
 		TEST_METHOD(TestVectorAddition1)
 		{
 			TinyMathLib::Vector4<float> V1(3.1415f, 6.28f, -102.0f, -0.0025f);
@@ -2029,6 +2041,17 @@ namespace UnitTests
 			Assert::AreEqual(M3.m42, M1.m42);
 			Assert::AreEqual(M3.m43, M1.m43);
 			Assert::AreEqual(M3.m44, M1.m44);
+		}
+		TEST_METHOD(TestMatrixTranslation1)
+		{
+			TinyMathLib::Matrix4x4<float> M1 = TinyMathLib::CreateTranslationMatrix4x4<float>(10.0f, 1.0f, 1.0f);
+			TinyMathLib::Vector4<float> V1(1.0f, 1.0f, 1.0f, 1.0f);
+			TinyMathLib::Vector4<float> V2 = V1 * M1;
+
+			Assert::AreEqual(11.0f, V2.x);
+			Assert::AreEqual(2.0f, V2.y);
+			Assert::AreEqual(2.0f, V2.z);
+			Assert::AreEqual(1.0f, V2.w);
 		}
 	};
 }
