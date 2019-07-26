@@ -2126,6 +2126,29 @@ namespace UnitTests
 			Assert::AreEqual(7.89f, M1.m43);
 			Assert::AreEqual(1.0f, M1.m44);
 		}
+		TEST_METHOD(TestMatrixTranslation3)
+		{
+			TinyMathLib::Matrix4x4<float> M1 = TinyMathLib::CreateTranslationMatrix4x4<float>(1.23f, 4.56f, 7.89f);
+			TinyMathLib::Matrix4x4<float> M2 = TinyMathLib::CreateRotationMatrix4x4AxisX<float>(90.0f);
+			TinyMathLib::Matrix4x4<float> M3 = M2 * M1;
+
+			Assert::AreEqual(M2.m11, M3.m11);
+			Assert::AreEqual(M2.m12, M3.m12);
+			Assert::AreEqual(M2.m13, M3.m13);
+			Assert::AreEqual(0.0f, M3.m14);
+			Assert::AreEqual(M2.m21, M3.m21);
+			Assert::AreEqual(M2.m22, M3.m22);
+			Assert::AreEqual(M2.m23, M3.m23);
+			Assert::AreEqual(0.0f, M3.m24);
+			Assert::AreEqual(M2.m31, M3.m31);
+			Assert::AreEqual(M2.m32, M3.m32);
+			Assert::AreEqual(M2.m33, M3.m33);
+			Assert::AreEqual(0.0f, M3.m34);
+			Assert::AreEqual(M1.m41, M3.m41);
+			Assert::AreEqual(M1.m42, M3.m42);
+			Assert::AreEqual(M1.m43, M3.m43);
+			Assert::AreEqual(1.0f, M3.m44);
+		}
 		TEST_METHOD(TestCreateRotationMatrix1)
 		{
 			TinyMathLib::Matrix4x4<float> M1 = TinyMathLib::CreateRotationMatrix4x4AxisX<float>(90.0f);
