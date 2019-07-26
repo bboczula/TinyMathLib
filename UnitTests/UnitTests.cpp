@@ -2149,6 +2149,22 @@ namespace UnitTests
 			Assert::AreEqual(M1.m43, M3.m43);
 			Assert::AreEqual(1.0f, M3.m44);
 		}
+		TEST_METHOD(TestMatrixTranslation4)
+		{
+			// The 'w' component of a 4D vector can be used to selectively "switch off" the transltion portion of 4x4 matrix
+			TinyMathLib::Matrix4x4<float> M1 = TinyMathLib::CreateTranslationMatrix4x4<float>(1.23f, 4.56f, 7.89f);
+			TinyMathLib::Matrix4x4<float> M2 = TinyMathLib::CreateRotationMatrix4x4AxisX<float>(90.0f);
+			TinyMathLib::Matrix4x4<float> M3 = M2 * M1;
+			// This vector represents "point at infinity"
+			TinyMathLib::Vector4<float> V1(3.14f, 6.25f, -1.23f, 0.0f);
+			TinyMathLib::Vector4<float> V2 = V1 * M2;
+			TinyMathLib::Vector4<float> V3 = V1 * M3;
+
+			Assert::AreEqual(V3.x, V2.x);
+			Assert::AreEqual(V3.y, V2.y);
+			Assert::AreEqual(V3.z, V2.z);
+			Assert::AreEqual(V3.w, V2.w);
+		}
 		TEST_METHOD(TestCreateRotationMatrix1)
 		{
 			TinyMathLib::Matrix4x4<float> M1 = TinyMathLib::CreateRotationMatrix4x4AxisX<float>(90.0f);
