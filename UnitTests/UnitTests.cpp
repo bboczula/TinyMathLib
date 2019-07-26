@@ -287,6 +287,15 @@ namespace UnitTests
 
 			Assert::AreEqual(S1, S2);
 		}
+		TEST_METHOD(TestDotProductAssiciativity1)
+		{
+			TinyMathLib::Vector2<float> V1(3.14f, 6.28f);
+			TinyMathLib::Vector2<float> V2(1.23f, 4.56f);
+			float S1 = (2.0f * V1).dotProduct(V2);
+			float S2 = 2.0f * (V1.dotProduct(V2));
+
+			Assert::AreEqual(S2, S1);
+		}
 	};
 
 	TEST_CLASS(GeneralVector3DTesting) 
@@ -490,6 +499,15 @@ namespace UnitTests
 
 			Assert::AreEqual(S1, S2);
 		}
+		TEST_METHOD(TestDotProductAssociativity1)
+		{
+			TinyMathLib::Vector3<float> V1(3.14f, 6.28f, 5.11f);
+			TinyMathLib::Vector3<float> V2(1.23f, 4.56f, -1.0f);
+			float S1 = (2.0f * V1).dotProduct(V2);
+			float S2 = 2.0f * (V2.dotProduct(V1));
+
+			Assert::AreEqual(S1, S2);
+		}
 	};
 
 	TEST_CLASS(GeneralVector4DTesting)
@@ -681,6 +699,15 @@ namespace UnitTests
 			TinyMathLib::Vector4<float> V2(1.23f, 4.56f, -1.0f, 7.89f);
 			float S1 = V1.dotProduct(V2);
 			float S2 = V2.dotProduct(V1);
+
+			Assert::AreEqual(S1, S2);
+		}
+		TEST_METHOD(TestDotProductAssociativity1)
+		{
+			TinyMathLib::Vector4<float> V1(3.14f, 6.28f, 5.11f, -5.11f);
+			TinyMathLib::Vector4<float> V2(1.23f, 4.56f, -1.0f, 7.89f);
+			float S1 = (2.0f * V1).dotProduct(V2);
+			float S2 = 2.0f * (V2.dotProduct(V1));
 
 			Assert::AreEqual(S1, S2);
 		}
