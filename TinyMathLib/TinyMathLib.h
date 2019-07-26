@@ -577,7 +577,7 @@ namespace TinyMathLib
 
 	// This library is using left-hand rule for determining "positive" and "negative" rotation
 	template<typename T>
-	Matrix3x3<T> CreateRotationMatrixAxisX(float angle)
+	Matrix3x3<T> CreateRotationMatrix3x3AxisX(float angle)
 	{
 		return Matrix3x3<T>(1, 0, 0, 0, cos(angle), sin(angle), 0, -sin(angle), cos(angle));
 	}
@@ -601,6 +601,35 @@ namespace TinyMathLib
 			(unitAxis.x * unitAxis.x) * (1 - cos(angle)) +                cos(angle), (unitAxis.x * unitAxis.y) * (1 - cos(angle)) + (unitAxis.z * sin(angle)), (unitAxis.x * unitAxis.z) * (1 - cos(angle)) - (unitAxis.y * sin(angle)),
 			(unitAxis.x * unitAxis.y) * (1 - cos(angle)) - (unitAxis.z * sin(angle)), (unitAxis.y * unitAxis.y) * (1 - cos(angle)) +                cos(angle), (unitAxis.y * unitAxis.z) * (1 - cos(angle)) + (unitAxis.x * sin(angle)),
 			(unitAxis.x * unitAxis.z) * (1 - cos(angle)) + (unitAxis.y * sin(angle)), (unitAxis.y * unitAxis.z) * (1 - cos(angle)) - (unitAxis.x * sin(angle)), (unitAxis.z * unitAxis.z) * (1 - cos(angle)) + cos(angle)
+		);
+	}
+
+	template<typename T>
+	Matrix4x4<T> CreateRotationMatrix4x4AxisX(float angle)
+	{
+		return Matrix4x4<T>(1, 0, 0, 0, 0, cos(angle), sin(angle), 0,  0, -sin(angle), cos(angle), 0, 0, 0, 0, 1);
+	}
+
+	template<typename T>
+	Matrix4x4<T> CreateRotationMatrix4x4AxisY(float angle)
+	{
+		return Matrix4x4<T>(cos(angle), 0, -sin(angle), 0, 0, 1, 0, 0, sin(angle), 0, cos(angle), 0, 0, 0, 0, 1);
+	}
+
+	template<typename T>
+	Matrix4x4<T> CreateRotationMatrix4x4AxisZ(float angle)
+	{
+		return Matrix4x4<T>(cos(angle), sin(angle), 0, 0, -sin(angle), cos(angle), 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+	}
+
+	template<typename T>
+	Matrix4x4<T> CreateRotationMatrix4x4(float angle, Vector3<T> unitAxis)
+	{
+		return Matrix4x4<T>(
+			(unitAxis.x * unitAxis.x) * (1 - cos(angle)) + cos(angle), (unitAxis.x * unitAxis.y) * (1 - cos(angle)) + (unitAxis.z * sin(angle)), (unitAxis.x * unitAxis.z) * (1 - cos(angle)) - (unitAxis.y * sin(angle)), 0,
+			(unitAxis.x * unitAxis.y) * (1 - cos(angle)) - (unitAxis.z * sin(angle)), (unitAxis.y * unitAxis.y) * (1 - cos(angle)) + cos(angle), (unitAxis.y * unitAxis.z) * (1 - cos(angle)) + (unitAxis.x * sin(angle)), 0,
+			(unitAxis.x * unitAxis.z) * (1 - cos(angle)) + (unitAxis.y * sin(angle)), (unitAxis.y * unitAxis.z) * (1 - cos(angle)) - (unitAxis.x * sin(angle)), (unitAxis.z * unitAxis.z) * (1 - cos(angle)) + cos(angle), 0,
+			 0, 0, 0, 1
 		);
 	}
 
