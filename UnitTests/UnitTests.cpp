@@ -2105,5 +2105,26 @@ namespace UnitTests
 			Assert::AreEqual(2.0f, V2.z);
 			Assert::AreEqual(1.0f, V2.w);
 		}
+		TEST_METHOD(TestMatrixTranslation2)
+		{
+			TinyMathLib::Matrix4x4<float> M1 = TinyMathLib::CreateTranslationMatrix4x4<float>(1.23f, 4.56f, 7.89f);
+
+			Assert::AreEqual(1.0f, M1.m11);
+			Assert::AreEqual(0.0f, M1.m12);
+			Assert::AreEqual(0.0f, M1.m13);
+			Assert::AreEqual(0.0f, M1.m14);
+			Assert::AreEqual(0.0f, M1.m21);
+			Assert::AreEqual(1.0f, M1.m22);
+			Assert::AreEqual(0.0f, M1.m23);
+			Assert::AreEqual(0.0f, M1.m24);
+			Assert::AreEqual(0.0f, M1.m31);
+			Assert::AreEqual(0.0f, M1.m32);
+			Assert::AreEqual(1.0f, M1.m33);
+			Assert::AreEqual(0.0f, M1.m34);
+			Assert::AreEqual(1.23f, M1.m41);
+			Assert::AreEqual(4.56f, M1.m42);
+			Assert::AreEqual(7.89f, M1.m43);
+			Assert::AreEqual(1.0f, M1.m44);
+		}
 	};
 }
