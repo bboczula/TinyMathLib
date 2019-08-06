@@ -296,6 +296,15 @@ namespace UnitTests
 
 			Assert::AreEqual(S2, S1);
 		}
+		TEST_METHOD(TestDotProductDistributivity1)
+		{
+			// The dot product can be distributed across vector addition
+			TinyMathLib::Vector2<float> V1(3.14f, 6.28f);
+			TinyMathLib::Vector2<float> V2(1.23f, 4.56f);
+			TinyMathLib::Vector2<float> V3(7.89f, -2.31f);
+			float S1 = (V1 + V2).dotProduct(V3);
+			float S2 = V1.dotProduct(V3) + V2.dotProduct(V3);
+		}
 	};
 
 	TEST_CLASS(GeneralVector3DTesting) 
@@ -508,6 +517,17 @@ namespace UnitTests
 
 			Assert::AreEqual(S1, S2);
 		}
+		TEST_METHOD(TestDotProductDistributivity1)
+		{
+			TinyMathLib::Vector3<float> V1(3.14f, 6.28f, 5.11f);
+			TinyMathLib::Vector3<float> V2(1.23f, 4.56f, -1.0f);
+			TinyMathLib::Vector3<float> V3(9.87f, 6.54f, 3.21f);
+			float S1 = (V1 + V2).dotProduct(V3);
+			float S2 = V1.dotProduct(V3) + V2.dotProduct(V3);
+
+			const float TOLERANCE = 0.001f;
+			Assert::AreEqual(S1, S2, TOLERANCE);
+		}
 	};
 
 	TEST_CLASS(GeneralVector4DTesting)
@@ -708,6 +728,16 @@ namespace UnitTests
 			TinyMathLib::Vector4<float> V2(1.23f, 4.56f, -1.0f, 7.89f);
 			float S1 = (2.0f * V1).dotProduct(V2);
 			float S2 = 2.0f * (V2.dotProduct(V1));
+
+			Assert::AreEqual(S1, S2);
+		}
+		TEST_METHOD(TestDotProductDistributivity1)
+		{
+			TinyMathLib::Vector4<float> V1(3.14f, 6.28f, 5.11f, -5.11f);
+			TinyMathLib::Vector4<float> V2(1.23f, 4.56f, -1.0f, 7.89f);
+			TinyMathLib::Vector4<float> V3(9.87f, 6.54f, 3.21f, 1.0f);
+			float S1 = (V1 + V2).dotProduct(V3);
+			float S2 = V1.dotProduct(V3) + V2.dotProduct(V3);
 
 			Assert::AreEqual(S1, S2);
 		}
