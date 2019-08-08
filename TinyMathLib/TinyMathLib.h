@@ -787,4 +787,36 @@ namespace TinyMathLib
 			0, 0, 1
 			)
 	}
+
+	template<typename T>
+	Matrix4x4<T> CreateClipMatrixForOrtographicProjection()
+	{
+		// The first goal of the clip matrix is to get the correct value into 'w'
+		// such that the division caused the desired projection.
+		// The projection doesn't take place during the multiplication by this matrix,
+		// it happens when we divide 'x', 'y' and 'z' by 'w'.
+		// For ortographic projection, 'w' ought to be '1'.
+		return Matrix4x4<T>(
+			1, 0, 0, 0,
+			0, 1, 0, 0,
+			0, 0, 1, 0,
+			0, 0, 0, 1
+		);
+	}
+
+	template<typename T>
+	Matrix4x4<T> CreateClipMatrixForPerspectiveProjection()
+	{
+		// The first goal of the clip matrix is to get the correct value into 'w'
+		// such that the division caused the desired projection.
+		// The projection doesn't take place during the multiplication by this matrix,
+		// it happens when we divide 'x', 'y' and 'z' by 'w'.
+		// For ortographic projection, 'w' ought to be 'z'.
+		return Matrix4x4<T>(
+			1, 0, 0, 0,
+			0, 1, 0, 0,
+			0, 0, 1, 1,
+			0, 0, 0, 0
+		);
+	}
 }
