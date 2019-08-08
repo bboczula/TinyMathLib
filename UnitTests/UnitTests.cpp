@@ -1,8 +1,10 @@
 #include "pch.h"
 #include "CppUnitTest.h"
 #include "../TinyMathLib/TinyMathLib.h"
+#include <DirectXMath.h>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+using namespace DirectX;
 
 namespace UnitTests
 {
@@ -2309,6 +2311,27 @@ namespace UnitTests
 			Assert::AreEqual(0.0f, M1.m42);
 			Assert::AreEqual(0.0f, M1.m43);
 			Assert::AreEqual(1.0f, M1.m44);
+		}
+	};
+
+	TEST_CLASS(GeneralCompatibilityTesting)
+	{
+		TEST_METHOD(TestVectorAddition)
+		{
+			XMVECTOR V1 = XMVectorSet(1.0f, 0.0f, 0.0f, 0.0f);
+			XMVECTOR V2 = XMVectorSet(0.0f, 2.0f, 0.0f, 0.0f);
+			XMVECTOR V3 = V1 + V2;
+			XMFLOAT4 R1;
+			XMStoreFloat4(&R1, V3);
+
+			TinyMathLib::Vector4<float> V4(1.0f, 0.0f, 0.0f, 0.0f);
+			TinyMathLib::Vector4<float> V5(0.0f, 2.0f, 0.0f, 0.0f);
+			TinyMathLib::Vector4<float> V6 = V4 + V5;
+
+			Assert::AreEqual(R1.x, V6.x);
+			Assert::AreEqual(R1.y, V6.y);
+			Assert::AreEqual(R1.z, V6.z);
+			Assert::AreEqual(R1.w, V6.w);
 		}
 	};
 }
