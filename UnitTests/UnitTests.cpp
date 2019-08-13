@@ -2338,7 +2338,7 @@ namespace UnitTests
 
 	TEST_CLASS(GeneralCompatibilityTesting)
 	{
-		TEST_METHOD(TestVectorAddition)
+		TEST_METHOD(TestVectorAddition1)
 		{
 			XMVECTOR V1 = XMVectorSet(1.0f, 0.0f, 0.0f, 0.0f);
 			XMVECTOR V2 = XMVectorSet(0.0f, 2.0f, 0.0f, 0.0f);
@@ -2354,6 +2354,126 @@ namespace UnitTests
 			Assert::AreEqual(R1.y, V6.y);
 			Assert::AreEqual(R1.z, V6.z);
 			Assert::AreEqual(R1.w, V6.w);
+		}
+		TEST_METHOD(TestVectorByMatrixMultiplication1)
+		{
+			XMMATRIX M1 = XMMatrixSet(1.2f, 3.4f, 5.6f, 7.8f, 9.0f, 8.0f, 7.0f, 6.0f, 0.0f, 0.0f, 1.0f, 0.0f, 3.14f, 6.28f, 0.0f, 1.0f);
+			XMVECTOR V1 = XMVectorSet(1.0f, 21.0f, 0.365f, -0.25f);
+			XMVECTOR V2 = XMVector4Transform(V1, M1);
+			XMFLOAT4 R1;
+			XMStoreFloat4(&R1, V2);
+			
+			TinyMathLib::Matrix4x4<float> M2(1.2f, 3.4f, 5.6f, 7.8f, 9.0f, 8.0f, 7.0f, 6.0f, 0.0f, 0.0f, 1.0f, 0.0f, 3.14f, 6.28f, 0.0f, 1.0f);
+			TinyMathLib::Vector4<float> V3(1.0f, 21.0f, 0.365f, -0.25f);
+			TinyMathLib::Vector4<float> V4 = V3 * M2;
+
+			Assert::AreEqual(R1.x, V4.x);
+			Assert::AreEqual(R1.y, V4.y);
+			Assert::AreEqual(R1.z, V4.z);
+			Assert::AreEqual(R1.w, V4.w);
+		}
+		TEST_METHOD(TestScaleMatrix1)
+		{
+			XMMATRIX M1 = XMMatrixScaling(1.0f, 2.0f, 3.0f);
+			XMFLOAT4X4 R1;
+			XMStoreFloat4x4(&R1, M1);
+
+			TinyMathLib::Matrix4x4<float> M2 = TinyMathLib::CreateScaleMatrix3x3<float>(1.0f, 2.0f, 3.0f).extend();
+
+			Assert::AreEqual(R1._11, M2.m11);
+			Assert::AreEqual(R1._12, M2.m12);
+			Assert::AreEqual(R1._13, M2.m13);
+			Assert::AreEqual(R1._14, M2.m14);
+			Assert::AreEqual(R1._21, M2.m21);
+			Assert::AreEqual(R1._22, M2.m22);
+			Assert::AreEqual(R1._23, M2.m23);
+			Assert::AreEqual(R1._24, M2.m24);
+			Assert::AreEqual(R1._31, M2.m31);
+			Assert::AreEqual(R1._32, M2.m32);
+			Assert::AreEqual(R1._33, M2.m33);
+			Assert::AreEqual(R1._34, M2.m34);
+			Assert::AreEqual(R1._41, M2.m41);
+			Assert::AreEqual(R1._42, M2.m42);
+			Assert::AreEqual(R1._43, M2.m43);
+			Assert::AreEqual(R1._44, M2.m44);
+		}
+		TEST_METHOD(TestRotationXMatrix1)
+		{
+			XMMATRIX M1 = XMMatrixRotationX(XMConvertToRadians(45.0f));
+			XMFLOAT4X4 R1;
+			XMStoreFloat4x4(&R1, M1);
+
+			TinyMathLib::Matrix4x4<float> M2 = TinyMathLib::CreateRotationMatrix4x4AxisX<float>(TinyMathLib::convertToRadians(45.0f));
+
+			const float TOLERANCE = 0.001f;
+			Assert::AreEqual(R1._11, M2.m11, TOLERANCE);
+			Assert::AreEqual(R1._12, M2.m12, TOLERANCE);
+			Assert::AreEqual(R1._13, M2.m13, TOLERANCE);
+			Assert::AreEqual(R1._14, M2.m14, TOLERANCE);
+			Assert::AreEqual(R1._21, M2.m21, TOLERANCE);
+			Assert::AreEqual(R1._22, M2.m22, TOLERANCE);
+			Assert::AreEqual(R1._23, M2.m23, TOLERANCE);
+			Assert::AreEqual(R1._24, M2.m24, TOLERANCE);
+			Assert::AreEqual(R1._31, M2.m31, TOLERANCE);
+			Assert::AreEqual(R1._32, M2.m32, TOLERANCE);
+			Assert::AreEqual(R1._33, M2.m33, TOLERANCE);
+			Assert::AreEqual(R1._34, M2.m34, TOLERANCE);
+			Assert::AreEqual(R1._41, M2.m41, TOLERANCE);
+			Assert::AreEqual(R1._42, M2.m42, TOLERANCE);
+			Assert::AreEqual(R1._43, M2.m43, TOLERANCE);
+			Assert::AreEqual(R1._44, M2.m44, TOLERANCE);
+		}
+		TEST_METHOD(TestRotationYMatrix1)
+		{
+			XMMATRIX M1 = XMMatrixRotationY(XMConvertToRadians(45.0f));
+			XMFLOAT4X4 R1;
+			XMStoreFloat4x4(&R1, M1);
+
+			TinyMathLib::Matrix4x4<float> M2 = TinyMathLib::CreateRotationMatrix4x4AxisY<float>(TinyMathLib::convertToRadians(45.0f));
+
+			const float TOLERANCE = 0.001f;
+			Assert::AreEqual(R1._11, M2.m11, TOLERANCE);
+			Assert::AreEqual(R1._12, M2.m12, TOLERANCE);
+			Assert::AreEqual(R1._13, M2.m13, TOLERANCE);
+			Assert::AreEqual(R1._14, M2.m14, TOLERANCE);
+			Assert::AreEqual(R1._21, M2.m21, TOLERANCE);
+			Assert::AreEqual(R1._22, M2.m22, TOLERANCE);
+			Assert::AreEqual(R1._23, M2.m23, TOLERANCE);
+			Assert::AreEqual(R1._24, M2.m24, TOLERANCE);
+			Assert::AreEqual(R1._31, M2.m31, TOLERANCE);
+			Assert::AreEqual(R1._32, M2.m32, TOLERANCE);
+			Assert::AreEqual(R1._33, M2.m33, TOLERANCE);
+			Assert::AreEqual(R1._34, M2.m34, TOLERANCE);
+			Assert::AreEqual(R1._41, M2.m41, TOLERANCE);
+			Assert::AreEqual(R1._42, M2.m42, TOLERANCE);
+			Assert::AreEqual(R1._43, M2.m43, TOLERANCE);
+			Assert::AreEqual(R1._44, M2.m44, TOLERANCE);
+		}
+		TEST_METHOD(TestRotationZMatrix1)
+		{
+			XMMATRIX M1 = XMMatrixRotationZ(XMConvertToRadians(45.0f));
+			XMFLOAT4X4 R1;
+			XMStoreFloat4x4(&R1, M1);
+
+			TinyMathLib::Matrix4x4<float> M2 = TinyMathLib::CreateRotationMatrix4x4AxisZ<float>(TinyMathLib::convertToRadians(45.0f));
+
+			const float TOLERANCE = 0.001f;
+			Assert::AreEqual(R1._11, M2.m11, TOLERANCE);
+			Assert::AreEqual(R1._12, M2.m12, TOLERANCE);
+			Assert::AreEqual(R1._13, M2.m13, TOLERANCE);
+			Assert::AreEqual(R1._14, M2.m14, TOLERANCE);
+			Assert::AreEqual(R1._21, M2.m21, TOLERANCE);
+			Assert::AreEqual(R1._22, M2.m22, TOLERANCE);
+			Assert::AreEqual(R1._23, M2.m23, TOLERANCE);
+			Assert::AreEqual(R1._24, M2.m24, TOLERANCE);
+			Assert::AreEqual(R1._31, M2.m31, TOLERANCE);
+			Assert::AreEqual(R1._32, M2.m32, TOLERANCE);
+			Assert::AreEqual(R1._33, M2.m33, TOLERANCE);
+			Assert::AreEqual(R1._34, M2.m34, TOLERANCE);
+			Assert::AreEqual(R1._41, M2.m41, TOLERANCE);
+			Assert::AreEqual(R1._42, M2.m42, TOLERANCE);
+			Assert::AreEqual(R1._43, M2.m43, TOLERANCE);
+			Assert::AreEqual(R1._44, M2.m44, TOLERANCE);
 		}
 	};
 }

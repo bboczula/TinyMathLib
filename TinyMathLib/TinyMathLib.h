@@ -24,7 +24,7 @@
 // An r x n matrix may be multiplied by an n x c matrix and the result is an r x c matrix.
 // For now we only support 2x2, 3x3 and 4x4 matrices, so basically you can only multiply them by themselves.
 
-// This library uses ROW VECTORS (at leas for now).
+// This library uses ROW VECTORS (at least for now).
 
 // Linear transformation do not contain translation. A transformation that contains translation is known as an affine transformation.
 
