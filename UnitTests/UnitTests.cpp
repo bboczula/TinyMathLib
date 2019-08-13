@@ -1962,6 +1962,28 @@ namespace UnitTests
 			const float TOLERANCE = 0.001f;
 			Assert::AreEqual(S1, S2, TOLERANCE);
 		}
+		TEST_METHOD(TestExtendTo4D1)
+		{
+			TinyMathLib::Matrix3x3<float> M1 = TinyMathLib::CreateScaleMatrix3x3<float>(1.0f, 2.0f, 3.0f);
+			TinyMathLib::Matrix4x4<float> M2 = M1.extend();
+
+			Assert::AreEqual(M1.m11, M2.m11);
+			Assert::AreEqual(M1.m12, M2.m12);
+			Assert::AreEqual(M1.m13, M2.m13);
+			Assert::AreEqual(0.0f, M2.m14);
+			Assert::AreEqual(M1.m21, M2.m21);
+			Assert::AreEqual(M1.m22, M2.m22);
+			Assert::AreEqual(M1.m23, M2.m23);
+			Assert::AreEqual(0.0f, M2.m24);
+			Assert::AreEqual(M1.m31, M2.m31);
+			Assert::AreEqual(M1.m32, M2.m32);
+			Assert::AreEqual(M1.m33, M2.m33);
+			Assert::AreEqual(0.0f, M2.m34);
+			Assert::AreEqual(0.0f, M2.m41);
+			Assert::AreEqual(0.0f, M2.m42);
+			Assert::AreEqual(0.0f, M2.m43);
+			Assert::AreEqual(1.0f, M2.m44);
+		}
 	};
 
 	TEST_CLASS(GeneralMatrix4x4DTesting)

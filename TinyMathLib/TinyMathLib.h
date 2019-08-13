@@ -37,34 +37,50 @@ namespace TinyMathLib
 	constexpr auto PI = 3.141592f;
 
 	template<typename T>
-	class Matrix2x2
+	class Matrix4x4
 	{
 	public:
-		Matrix2x2() : m11(0), m12(0), m21(0), m22(0)
+		Matrix4x4() : m11(0), m12(0), m13(0), m14(0), m21(0), m22(0), m23(0), m24(0), m31(0), m32(0), m33(0), m34(0), m41(0), m42(0), m43(0), m44(0)
 		{
 		}
-		Matrix2x2(T _m11, T _m12, T _m21, T _m22)
-			: m11(_m11), m12(_m12), m21(_m21), m22(_m22)
+		Matrix4x4(T _m11, T _m12, T _m13, T _m14, T _m21, T _m22, T _m23, T _m24, T _m31, T _m32, T _m33, T _m34, T _m41, T _m42, T _m43, T _m44)
+			: m11(_m11), m12(_m12), m13(_m13), m14(_m14), m21(_m21), m22(_m22), m23(_m23), m24(_m24), m31(_m31), m32(_m32), m33(_m33), m34(_m34), m41(_m41), m42(_m42), m43(_m43), m44(_m44)
 		{
 		}
-		Matrix2x2<T> transpose()
+		Matrix4x4<T> transpose()
 		{
-			return Matrix2x2(m11, m21, m12, m22);
+			return Matrix4x4(m11, m21, m31, m41, m12, m22, m32, m42, m13, m23, m33, m43, m14, m24, m34, m44);
 		}
-		Matrix2x2<T> operator*(T scalar)
+		Matrix4x4<T> operator*(T scalar)
 		{
-			return Matrix2x2(m11 * scalar, m12 * scalar, m21 * scalar, m22 * scalar);
+			return Matrix4x4(m11 * scalar, m12 * scalar, m13 * scalar, m14 * scalar, m21 * scalar, m22 * scalar, m23 * scalar, m24 * scalar, m31 * scalar, m32 * scalar, m33 * scalar, m34 * scalar, m41 * scalar, m42 * scalar, m43 * scalar, m44 * scalar);
 		}
-		Matrix2x2<T> operator*(Matrix2x2<T> matrix)
+		Matrix4x4<T> operator*(Matrix4x4<T> matrix)
 		{
-			return Matrix2x2((m11 * matrix.m11 + m12 * matrix.m21), (m11 * matrix.m12 + m12 * matrix.m22), (m21 * matrix.m11 + m22 * matrix.m21), (m21 * matrix.m12 + m22 * matrix.m22));
-		}
-		T determinant()
-		{
-			return (m11 * m22) - (m12 * m21);
+			return Matrix4x4(
+				(m11 * matrix.m11 + m12 * matrix.m21 + m13 * matrix.m31 + m14 * matrix.m41),
+				(m11 * matrix.m12 + m12 * matrix.m22 + m13 * matrix.m32 + m14 * matrix.m42),
+				(m11 * matrix.m13 + m12 * matrix.m23 + m13 * matrix.m33 + m14 * matrix.m43),
+				(m11 * matrix.m14 + m12 * matrix.m24 + m13 * matrix.m34 + m14 * matrix.m44),
+
+				(m21 * matrix.m11 + m22 * matrix.m21 + m23 * matrix.m31 + m24 * matrix.m41),
+				(m21 * matrix.m12 + m22 * matrix.m22 + m23 * matrix.m32 + m24 * matrix.m42),
+				(m21 * matrix.m13 + m22 * matrix.m23 + m23 * matrix.m33 + m24 * matrix.m43),
+				(m21 * matrix.m14 + m22 * matrix.m24 + m23 * matrix.m34 + m24 * matrix.m44),
+
+				(m31 * matrix.m11 + m32 * matrix.m21 + m33 * matrix.m31 + m34 * matrix.m41),
+				(m31 * matrix.m12 + m32 * matrix.m22 + m33 * matrix.m32 + m34 * matrix.m42),
+				(m31 * matrix.m13 + m32 * matrix.m23 + m33 * matrix.m33 + m34 * matrix.m43),
+				(m31 * matrix.m14 + m32 * matrix.m24 + m33 * matrix.m34 + m34 * matrix.m44),
+
+				(m41 * matrix.m11 + m42 * matrix.m21 + m43 * matrix.m31 + m44 * matrix.m41),
+				(m41 * matrix.m12 + m42 * matrix.m22 + m43 * matrix.m32 + m44 * matrix.m42),
+				(m41 * matrix.m13 + m42 * matrix.m23 + m43 * matrix.m33 + m44 * matrix.m43),
+				(m41 * matrix.m14 + m42 * matrix.m24 + m43 * matrix.m34 + m44 * matrix.m44)
+			);
 		}
 	public:
-		T m11, m12, m21, m22;
+		T m11, m12, m13, m14, m21, m22, m23, m24, m31, m32, m33, m34, m41, m42, m43, m44;
 	};
 
 	template<typename T>
@@ -200,55 +216,48 @@ namespace TinyMathLib
 			Matrix3x3<float> temp = classicalAdjoint();
 			return temp / determinant();
 		}
+		Matrix4x4<T> extend()
+		{
+			return Matrix4x4<T>(
+				m11, m12, m13, 0,
+				m21, m22, m23, 0,
+				m31, m32, m33, 0,
+				  0,   0,   0, 1
+			);
+		}
 	public:
 		T m11, m12, m13, m21, m22, m23, m31, m32, m33;
 	};
 
 	template<typename T>
-	class Matrix4x4
+	class Matrix2x2
 	{
 	public:
-		Matrix4x4() : m11(0), m12(0), m13(0), m14(0), m21(0), m22(0), m23(0), m24(0), m31(0), m32(0), m33(0), m34(0), m41(0), m42(0), m43(0), m44(0)
+		Matrix2x2() : m11(0), m12(0), m21(0), m22(0)
 		{
 		}
-		Matrix4x4(T _m11, T _m12, T _m13, T _m14, T _m21, T _m22, T _m23, T _m24, T _m31, T _m32, T _m33, T _m34, T _m41, T _m42, T _m43, T _m44)
-			: m11(_m11), m12(_m12), m13(_m13), m14(_m14), m21(_m21), m22(_m22), m23(_m23), m24(_m24), m31(_m31), m32(_m32), m33(_m33), m34(_m34), m41(_m41), m42(_m42), m43(_m43), m44(_m44)
+		Matrix2x2(T _m11, T _m12, T _m21, T _m22)
+			: m11(_m11), m12(_m12), m21(_m21), m22(_m22)
 		{
 		}
-		Matrix4x4<T> transpose()
+		Matrix2x2<T> transpose()
 		{
-			return Matrix4x4(m11, m21, m31, m41, m12, m22, m32, m42, m13, m23, m33, m43, m14, m24, m34, m44);
+			return Matrix2x2(m11, m21, m12, m22);
 		}
-		Matrix4x4<T> operator*(T scalar)
+		Matrix2x2<T> operator*(T scalar)
 		{
-			return Matrix4x4(m11 * scalar, m12 * scalar, m13 * scalar, m14 * scalar, m21 * scalar, m22 * scalar, m23 * scalar, m24 * scalar, m31 * scalar, m32 * scalar, m33 * scalar, m34 * scalar, m41 * scalar, m42 * scalar, m43 * scalar, m44 * scalar);
+			return Matrix2x2(m11 * scalar, m12 * scalar, m21 * scalar, m22 * scalar);
 		}
-		Matrix4x4<T> operator*(Matrix4x4<T> matrix)
+		Matrix2x2<T> operator*(Matrix2x2<T> matrix)
 		{
-			return Matrix4x4(
-				(m11 * matrix.m11 + m12 * matrix.m21 + m13 * matrix.m31 + m14 * matrix.m41),
-				(m11 * matrix.m12 + m12 * matrix.m22 + m13 * matrix.m32 + m14 * matrix.m42),
-				(m11 * matrix.m13 + m12 * matrix.m23 + m13 * matrix.m33 + m14 * matrix.m43),
-				(m11 * matrix.m14 + m12 * matrix.m24 + m13 * matrix.m34 + m14 * matrix.m44),
-
-				(m21 * matrix.m11 + m22 * matrix.m21 + m23 * matrix.m31 + m24 * matrix.m41),
-				(m21 * matrix.m12 + m22 * matrix.m22 + m23 * matrix.m32 + m24 * matrix.m42),
-				(m21 * matrix.m13 + m22 * matrix.m23 + m23 * matrix.m33 + m24 * matrix.m43),
-				(m21 * matrix.m14 + m22 * matrix.m24 + m23 * matrix.m34 + m24 * matrix.m44),
-
-				(m31 * matrix.m11 + m32 * matrix.m21 + m33 * matrix.m31 + m34 * matrix.m41),
-				(m31 * matrix.m12 + m32 * matrix.m22 + m33 * matrix.m32 + m34 * matrix.m42),
-				(m31 * matrix.m13 + m32 * matrix.m23 + m33 * matrix.m33 + m34 * matrix.m43),
-				(m31 * matrix.m14 + m32 * matrix.m24 + m33 * matrix.m34 + m34 * matrix.m44),
-
-				(m41 * matrix.m11 + m42 * matrix.m21 + m43 * matrix.m31 + m44 * matrix.m41),
-				(m41 * matrix.m12 + m42 * matrix.m22 + m43 * matrix.m32 + m44 * matrix.m42),
-				(m41 * matrix.m13 + m42 * matrix.m23 + m43 * matrix.m33 + m44 * matrix.m43),
-				(m41 * matrix.m14 + m42 * matrix.m24 + m43 * matrix.m34 + m44 * matrix.m44)
-			);
+			return Matrix2x2((m11 * matrix.m11 + m12 * matrix.m21), (m11 * matrix.m12 + m12 * matrix.m22), (m21 * matrix.m11 + m22 * matrix.m21), (m21 * matrix.m12 + m22 * matrix.m22));
+		}
+		T determinant()
+		{
+			return (m11 * m22) - (m12 * m21);
 		}
 	public:
-		T m11, m12, m13, m14, m21, m22, m23, m24, m31, m32, m33, m34, m41, m42, m43, m44;
+		T m11, m12, m21, m22;
 	};
 
 	template<typename T>
