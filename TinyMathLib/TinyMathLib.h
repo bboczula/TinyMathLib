@@ -34,6 +34,10 @@
 
 namespace TinyMathLib
 {
+	// Forward Declaration
+	template<typename T>
+	class Matrix2x2;
+
 	constexpr auto PI = 3.141592f;
 
 	template<typename T>
@@ -129,7 +133,7 @@ namespace TinyMathLib
 		}
 		T minor(unsigned rowIndex, unsigned columnIndex)
 		{
-			TinyMathLib::Matrix2x2<T> subMatrix;
+			Matrix2x2<T> subMatrix;
 			if (rowIndex == 1)
 			{
 				if (columnIndex == 1)
@@ -140,7 +144,7 @@ namespace TinyMathLib
 				{
 					subMatrix = TinyMathLib::Matrix2x2<T>(m21, m23, m31, m33);
 				}
-				else if(columnIndex == 3)
+				else if (columnIndex == 3)
 				{
 					subMatrix = TinyMathLib::Matrix2x2<T>(m21, m22, m31, m32);
 				}
@@ -222,8 +226,8 @@ namespace TinyMathLib
 				m11, m12, m13, 0,
 				m21, m22, m23, 0,
 				m31, m32, m33, 0,
-				  0,   0,   0, 1
-			);
+				0, 0, 0, 1
+				);
 		}
 	public:
 		T m11, m12, m13, m21, m22, m23, m31, m32, m33;
@@ -607,16 +611,16 @@ namespace TinyMathLib
 	Matrix3x3<T> CreateRotationMatrix3x3(float angle, Vector3<T> unitAxis)
 	{
 		return Matrix3x3<T>(
-			(unitAxis.x * unitAxis.x) * (1 - cos(angle)) +                cos(angle), (unitAxis.x * unitAxis.y) * (1 - cos(angle)) + (unitAxis.z * sin(angle)), (unitAxis.x * unitAxis.z) * (1 - cos(angle)) - (unitAxis.y * sin(angle)),
-			(unitAxis.x * unitAxis.y) * (1 - cos(angle)) - (unitAxis.z * sin(angle)), (unitAxis.y * unitAxis.y) * (1 - cos(angle)) +                cos(angle), (unitAxis.y * unitAxis.z) * (1 - cos(angle)) + (unitAxis.x * sin(angle)),
+			(unitAxis.x * unitAxis.x) * (1 - cos(angle)) + cos(angle), (unitAxis.x * unitAxis.y) * (1 - cos(angle)) + (unitAxis.z * sin(angle)), (unitAxis.x * unitAxis.z) * (1 - cos(angle)) - (unitAxis.y * sin(angle)),
+			(unitAxis.x * unitAxis.y) * (1 - cos(angle)) - (unitAxis.z * sin(angle)), (unitAxis.y * unitAxis.y) * (1 - cos(angle)) + cos(angle), (unitAxis.y * unitAxis.z) * (1 - cos(angle)) + (unitAxis.x * sin(angle)),
 			(unitAxis.x * unitAxis.z) * (1 - cos(angle)) + (unitAxis.y * sin(angle)), (unitAxis.y * unitAxis.z) * (1 - cos(angle)) - (unitAxis.x * sin(angle)), (unitAxis.z * unitAxis.z) * (1 - cos(angle)) + cos(angle)
-		);
+			);
 	}
 
 	template<typename T>
 	Matrix4x4<T> CreateRotationMatrix4x4AxisX(float angle)
 	{
-		return Matrix4x4<T>(1, 0, 0, 0, 0, cos(angle), sin(angle), 0,  0, -sin(angle), cos(angle), 0, 0, 0, 0, 1);
+		return Matrix4x4<T>(1, 0, 0, 0, 0, cos(angle), sin(angle), 0, 0, -sin(angle), cos(angle), 0, 0, 0, 0, 1);
 	}
 
 	template<typename T>
@@ -638,8 +642,8 @@ namespace TinyMathLib
 			(unitAxis.x * unitAxis.x) * (1 - cos(angle)) + cos(angle), (unitAxis.x * unitAxis.y) * (1 - cos(angle)) + (unitAxis.z * sin(angle)), (unitAxis.x * unitAxis.z) * (1 - cos(angle)) - (unitAxis.y * sin(angle)), 0,
 			(unitAxis.x * unitAxis.y) * (1 - cos(angle)) - (unitAxis.z * sin(angle)), (unitAxis.y * unitAxis.y) * (1 - cos(angle)) + cos(angle), (unitAxis.y * unitAxis.z) * (1 - cos(angle)) + (unitAxis.x * sin(angle)), 0,
 			(unitAxis.x * unitAxis.z) * (1 - cos(angle)) + (unitAxis.y * sin(angle)), (unitAxis.y * unitAxis.z) * (1 - cos(angle)) - (unitAxis.x * sin(angle)), (unitAxis.z * unitAxis.z) * (1 - cos(angle)) + cos(angle), 0,
-			 0, 0, 0, 1
-		);
+			0, 0, 0, 1
+			);
 	}
 
 	template<typename T>
@@ -655,16 +659,16 @@ namespace TinyMathLib
 			scaleX, 0, 0,
 			0, scaleY, 0,
 			0, 0, scaleZ
-		);
+			);
 	}
 
 	template<typename T>
 	Matrix2x2<T> CreateScaleMatrix2x2(float scale, TinyMathLib::Vector2<T> direction)
 	{
 		return Matrix2x2<T>(
-			1 + (scale - 1) * direction.x * direction.x,     (scale - 1) * direction.x * direction.y,
-			    (scale - 1) * direction.x * direction.y, 1 + (scale - 1) * direction.y * direction.y
-		);
+			1 + (scale - 1) * direction.x * direction.x, (scale - 1) * direction.x * direction.y,
+			(scale - 1) * direction.x * direction.y, 1 + (scale - 1) * direction.y * direction.y
+			);
 	}
 
 	template<typename T>
@@ -674,7 +678,7 @@ namespace TinyMathLib
 			1 + (scale - 1) * direction.x * direction.x, (scale - 1) * direction.x * direction.y, (scale - 1) * direction.x * direction.z,
 			(scale - 1) * direction.y * direction.x, 1 + (scale - 1) * direction.y * direction.y, (scale - 1) * direction.y * direction.z,
 			(scale - 1) * direction.z * direction.x, (scale - 1) * direction.z * direction.y, 1 + (scale - 1) * direction.z * direction.z
-		);
+			);
 	}
 
 	template<typename T>
@@ -723,7 +727,7 @@ namespace TinyMathLib
 			0, 0, 0,
 			0, 1, 0,
 			0, 0, 1
-		);
+			);
 	}
 
 	template<typename T>
@@ -733,7 +737,7 @@ namespace TinyMathLib
 			+1 - normal.x * normal.x, -1 * normal.x * normal.y, -1 * normal.x * normal.z,
 			-1 * normal.y * normal.x, +1 - normal.y * normal.y, -1 * normal.y * normal.z,
 			-1 * normal.z * normal.x, -1 * normal.z * normal.y, +1 - normal.z * normal.z
-		);
+			);
 	}
 
 	template<typename T>
@@ -749,9 +753,9 @@ namespace TinyMathLib
 	Matrix3x3<T> CreateReflectionMatrix3x3(TinyMathLib::Vector3<T> plane)
 	{
 		return Matrix3x3<T>(
-			1 - 2 * plane.x * plane.x,    -2 * plane.y * plane.x,    -2 * plane.z * plane.x,
-			   -2 * plane.x * plane.y, 1 - 2 * plane.y * plane.y,    -2 * plane.z * plane.y,
-			   -2 * plane.x * plane.z,    -2 * plane.y * plane.z, 1 - 2 * plane.z * plane.z
+			1 - 2 * plane.x * plane.x, -2 * plane.y * plane.x, -2 * plane.z * plane.x,
+			-2 * plane.x * plane.y, 1 - 2 * plane.y * plane.y, -2 * plane.z * plane.y,
+			-2 * plane.x * plane.z, -2 * plane.y * plane.z, 1 - 2 * plane.z * plane.z
 			);
 	}
 
@@ -798,7 +802,7 @@ namespace TinyMathLib
 	}
 
 	template<typename T>
-	Matrix4x4<T> CreateLookAtMatrix4x4(TinyMathLib::Vector3<T> position)
+	Matrix4x4<T> CreateLookAtMatrix4x4(TinyMathLib::Vector3<T> position, TinyMathLib::Vector3<T> target, TinyMathLib::Vector3<T> up)
 	{
 		Vector3<T> viewDirection = (target - position).normalize();
 		Vector3<T> viewSide = viewDirection.crossProduct(up).normalize();
@@ -835,7 +839,7 @@ namespace TinyMathLib
 			0, 1, 0, 0,
 			0, 0, 1, 0,
 			0, 0, 0, 1
-		);
+			);
 	}
 
 	template<typename T>
@@ -851,6 +855,6 @@ namespace TinyMathLib
 			0, 1, 0, 0,
 			0, 0, 1, 1,
 			0, 0, 0, 0
-		);
+			);
 	}
 }
