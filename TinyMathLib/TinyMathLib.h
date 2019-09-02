@@ -668,6 +668,17 @@ namespace TinyMathLib
 	}
 
 	template<typename T>
+	Matrix4x4<T> CreateScaleMatrix4x4(float scaleX, float scaleY, float scaleZ)
+	{
+		return Matrix4x4<T>(
+			scaleX, 0, 0, 0,
+			0, scaleY, 0, 0,
+			0, 0, scaleZ, 0,
+			0, 0,      0, 1
+			);
+	}
+
+	template<typename T>
 	Matrix2x2<T> CreateScaleMatrix2x2(float scale, TinyMathLib::Vector2<T> direction)
 	{
 		return Matrix2x2<T>(
