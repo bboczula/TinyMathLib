@@ -798,6 +798,31 @@ namespace TinyMathLib
 	}
 
 	template<typename T>
+	Matrix4x4<T> CreateLookAtMatrix4x4(TinyMathLib::Vector3<T> position)
+	{
+		Vector3<T> viewDirection = (target - position).normalize();
+		Vector3<T> viewSide = viewDirection.crossProduct(up).normalize();
+		Vector3<T> viewUp = (viewSide.crossProduct(viewDirection)).normalize();
+
+		Matrix4x4<T> orientation(
+			viewSide.x, viewUp.x, viewDirection.x, 0,
+			viewSide.y, viewUp.y, viewDirection.y, 0,
+			viewSide.z, viewUp.z, viewDirection.z, 0,
+			0, 0, 0, 1
+		);
+
+		Matrix4x4<T> translation(
+			1, 0, 0, 0,
+			0, 1, 0, 0,
+			0, 0, 1, 0,
+			-position.x, -position.y, -position.z, 1
+		);
+
+		// Somehow this order is very important, otherwise it won't work. Again, this has something to do with inverse/transposition/column-row stuff
+		return (translation * orientation);
+	}
+
+	template<typename T>
 	Matrix4x4<T> CreateClipMatrixForOrtographicProjection()
 	{
 		// The first goal of the clip matrix is to get the correct value into 'w'
