@@ -471,17 +471,22 @@ namespace TinyMathLib
 		{
 			return (x * vector.x) + (y * vector.y) + (z * vector.z) + (w * vector.w);
 		}
+		friend std::ostream& operator<< (std::ostream& out, const Vector4& obj)
+		{
+			out << "[" << obj.x << ", " << obj.y << ", " << obj.z << ", " << obj.w << "]";
+			return out;
+		}
 	public:
 		T x, y, z, w;
 	};
 
 	// Converts Degrees to Radians
-	float convertToRadians(float degrees)
+	inline float convertToRadians(float degrees)
 	{
 		return degrees * (PI / 180.0f);
 	}
 
-	float convertToDegrees(float radians)
+	inline float convertToDegrees(float radians)
 	{
 		return radians * (180 / PI);
 	}
